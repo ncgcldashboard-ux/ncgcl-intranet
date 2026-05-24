@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="192x192" href="favicon-192.png">
+<title>NCGCL Impact Assessment Framework | Intranet Quick Guide</title>
+<style>
+:root {
+  --white: #FFFFFF;
+  --bg: #FAFAFA;
+  --soft: #F7F4EF;
+  --border: #E5E5E5;
+  --accent: #39A949;
+  --accent-soft: rgba(57, 169, 73, 0.10);
+  --cerulean: #035076;
+  --cerulean-soft: rgba(3, 80, 118, 0.08);
+  --green: #39A949;
+  --green-soft: rgba(57, 169, 73, 0.10);
+  --red: #9B2335;
+  --red-soft: rgba(155, 35, 53, 0.08);
+  --text: #1A1A1A;
+  --muted: #666666;
+  --faint: #999999;
+  --warn-bg: #FEF6ED;
+  --warn-border: #F5CBA7;
+  --sans: 'Inter', 'Helvetica Neue', -apple-system, BlinkMacSystemFont, sans-serif;
+  --serif: 'Source Serif Pro', 'Georgia', 'Times New Roman', serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--white);
+  color: #2D2D2D;
+  line-height: 1.6;
+  font-size: 15px;
+}
+.container { max-width: 1120px; margin: 0 auto; padding: 0 1.5rem; }
+.site-header {
+  border-bottom: 1px solid var(--border);
+  padding: 1.25rem 0;
+  margin-bottom: 1.25rem;
+  background: rgba(255,255,255,0.96);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(8px);
+}
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.logo-block { display: flex; align-items: center; gap: 12px; }
+.logo-box {
+  width: 40px; height: 40px; background: var(--cerulean); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  font-weight: 700; color: white; font-size: 16px;
+}
+.logo-text { font-family: var(--serif); font-size: 18px; color: var(--text); font-weight: 400; }
+.logo-sub { font-size: 12px; color: var(--faint); letter-spacing: 0.04em; }
+.header-actions { display: flex; gap: 8px; align-items: center; }
+.btn {
+  border: 1px solid var(--border); background: var(--white); color: var(--cerulean);
+  border-radius: 999px; padding: 0.45rem 0.8rem; font-size: 12px; font-weight: 700;
+  text-decoration: none; cursor: pointer; transition: all 0.2s;
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+.alert-banner {
+  background: var(--warn-bg); border: 1px solid var(--warn-border); border-top: 3px solid var(--accent);
+  padding: 1rem 1.5rem; margin-bottom: 1.5rem; border-radius: 4px;
+  display: flex; gap: 1rem; align-items: flex-start;
+}
+.alert-icon { font-size: 20px; flex-shrink: 0; }
+.alert-content strong { color: var(--text); }
+.alert-content p { font-size: 13px; color: var(--muted); margin-top: 0.25rem; }
+.alert-close { background: none; border: none; cursor: pointer; font-size: 18px; color: var(--faint); margin-left: auto; flex-shrink: 0; }
+.page-hero { padding: 2.5rem 0 1.5rem; border-bottom: 1px solid var(--border); margin-bottom: 2.25rem; }
+.section-label { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: var(--faint); text-transform: uppercase; margin-bottom: 0.5rem; }
+.page-title { font-family: var(--serif); font-size: 36px; font-weight: 400; color: var(--text); line-height: 1.2; margin-bottom: 0.75rem; }
+.page-desc { font-size: 14px; color: var(--muted); line-height: 1.75; max-width: 860px; }
+.search-row { display: flex; gap: 12px; align-items: center; margin: 1.25rem 0 0; flex-wrap: wrap; }
+.search-box {
+  flex: 1; min-width: 250px; border: 1px solid var(--border); border-radius: 999px;
+  padding: 0.75rem 1rem; font-size: 13px; color: var(--text); outline: none;
+}
+.search-box:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.quick-nav { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 2rem; }
+.quick-nav a {
+  font-size: 12px; font-weight: 700; color: var(--cerulean); text-decoration: none;
+  border: 1px solid var(--border); border-radius: 999px; padding: 0.45rem 0.75rem; background: var(--white);
+}
+.quick-nav a:hover { color: var(--accent); border-color: var(--accent); }
+.kpi-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 2.5rem; }
+.kpi-card {
+  background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 1.15rem;
+  transition: border-color 0.2s; text-align: center; min-height: 104px; display: flex; flex-direction: column; justify-content: center;
+}
+.kpi-card:hover { border-color: var(--accent); }
+.kpi-label { font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--faint); margin-bottom: 0.5rem; }
+.kpi-val { font-family: Georgia, serif; font-size: 25px; color: var(--text); line-height: 1.15; }
+.kpi-sub { font-size: 11px; color: var(--muted); margin-top: 0.35rem; }
+.section-title {
+  font-family: Georgia, serif; font-size: 28px; font-weight: 400; color: var(--text);
+  line-height: 1.2; margin-bottom: 1.35rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+}
+.section-intro { font-size: 13px; color: var(--muted); margin-bottom: 1.25rem; max-width: 920px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 2.5rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 2.5rem; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 2.5rem; }
+.card {
+  background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem;
+  transition: all 0.2s; display: flex; flex-direction: column; position: relative;
+}
+.card:hover { border-color: var(--accent); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08); }
+.card-icon { font-size: 28px; margin-bottom: 0.75rem; display: inline-block; }
+.card-title { font-family: Georgia, serif; font-size: 17px; font-weight: 400; color: var(--text); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+.card-desc { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 1rem; flex-grow: 1; }
+.card-meta { font-size: 11px; color: var(--faint); border-top: 1px solid var(--border); padding-top: 0.7rem; margin-top: auto; }
+.badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--faint); background: var(--bg); border: 1px solid var(--border); padding: 3px 10px; border-radius: 12px; margin-bottom: 0.75rem; }
+.badge.gold { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
+.badge.blue { background: var(--cerulean-soft); color: var(--cerulean); border-color: rgba(3,80,118,0.25); }
+.badge.green { background: var(--green-soft); color: var(--green); border-color: rgba(57,169,73,0.3); }
+.badge.red { background: var(--red-soft); color: var(--red); border-color: rgba(155,35,53,0.25); }
+.verdict { background: var(--bg); border: 1px solid var(--border); border-left: 4px solid var(--accent); padding: 1.25rem; border-radius: 4px; margin: 1.5rem 0 2.5rem; }
+.verdict-label { font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--faint); margin-bottom: 0.4rem; }
+.verdict-text { font-size: 13px; color: #2D2D2D; line-height: 1.7; }
+.policy-flow { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin: 0 0 2.5rem; }
+.flow-step { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; position: relative; min-height: 140px; }
+.flow-no { width: 26px; height: 26px; border-radius: 50%; background: var(--cerulean); color: white; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; margin-bottom: 0.7rem; }
+.flow-title { font-family: Georgia, serif; color: var(--text); font-size: 15px; margin-bottom: 0.4rem; }
+.flow-desc { font-size: 12px; color: var(--muted); line-height: 1.55; }
+.table-wrap { overflow-x: auto; margin: 0 0 2.5rem; border: 1px solid var(--border); border-radius: 8px; background: white; }
+table { width: 100%; border-collapse: collapse; min-width: 760px; }
+th { background: var(--bg); color: var(--text); font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; text-align: left; padding: 0.85rem; border-bottom: 1px solid var(--border); }
+td { padding: 0.8rem 0.85rem; border-bottom: 1px solid var(--border); font-size: 13px; color: #333; vertical-align: top; }
+tr:last-child td { border-bottom: none; }
+td strong { color: var(--text); }
+.callout-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 12px; margin-bottom: 2.5rem; }
+.callout {
+  background: linear-gradient(135deg, var(--cerulean-soft), rgba(255,255,255,0.85));
+  border: 1px solid rgba(3,80,118,0.18); border-radius: 8px; padding: 1.25rem;
+}
+.callout h3 { font-family: Georgia, serif; font-size: 20px; font-weight: 400; color: var(--text); margin-bottom: 0.75rem; }
+.callout p, .callout li { font-size: 13px; color: var(--muted); line-height: 1.7; }
+ul.clean { list-style: none; margin-top: 0.5rem; }
+ul.clean li { padding-left: 1.2rem; position: relative; margin: 0.4rem 0; }
+ul.clean li:before { content: "•"; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
+.checklist { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 2.5rem; }
+.check-item { border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--white); }
+.check-item h4 { font-family: Georgia, serif; font-size: 15px; font-weight: 400; color: var(--text); margin-bottom: 0.35rem; }
+.check-item p { font-size: 12px; color: var(--muted); line-height: 1.6; }
+.calculator {
+  border: 1px solid var(--border); border-radius: 8px; background: var(--white); margin-bottom: 2.5rem; overflow: hidden;
+}
+.calc-header { padding: 1.2rem 1.25rem; border-bottom: 1px solid var(--border); background: var(--bg); }
+.calc-header h3 { font-family: Georgia, serif; font-size: 20px; font-weight: 400; color: var(--text); margin-bottom: 0.25rem; }
+.calc-header p { font-size: 13px; color: var(--muted); }
+.calc-body { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.calc-inputs { padding: 1.25rem; border-right: 1px solid var(--border); }
+.calc-results { padding: 1.25rem; background: linear-gradient(135deg, rgba(250,250,250,0.95), rgba(255,255,255,0.95)); }
+.input-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.input-group label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; color: var(--faint); text-transform: uppercase; margin-bottom: 0.35rem; }
+.input-group input, .input-group select {
+  width: 100%; border: 1px solid var(--border); border-radius: 6px; padding: 0.65rem; font-size: 13px; outline: none; color: var(--text); background: white;
+}
+.input-group input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.result-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.result-card { border: 1px solid var(--border); border-radius: 8px; padding: 0.95rem; background: white; }
+.result-label { font-size: 10px; font-weight: 800; color: var(--faint); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.3rem; }
+.result-value { font-family: Georgia, serif; font-size: 22px; color: var(--text); line-height: 1.1; }
+.result-note { font-size: 11px; color: var(--muted); margin-top: 0.4rem; line-height: 1.45; }
+.status-pill { display:inline-block; padding: 0.25rem 0.55rem; border-radius: 999px; font-size: 11px; font-weight: 800; margin-top: 0.5rem; }
+.status-green { color: var(--green); background: var(--green-soft); border: 1px solid rgba(57,169,73,0.25); }
+.status-amber { color: var(--accent); background: var(--accent-soft); border: 1px solid rgba(200,146,58,0.35); }
+.status-red { color: var(--red); background: var(--red-soft); border: 1px solid rgba(155,35,53,0.25); }
+.accordion { margin-bottom: 2.5rem; }
+.accordion-item { border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; background: white; overflow: hidden; }
+.accordion-head { width: 100%; background: var(--white); border: 0; padding: 1rem 1.25rem; text-align: left; display: flex; justify-content: space-between; gap: 1rem; align-items: center; cursor: pointer; }
+.accordion-title { font-family: Georgia, serif; color: var(--text); font-size: 16px; }
+.accordion-body { display: none; padding: 0 1.25rem 1.25rem; color: var(--muted); font-size: 13px; line-height: 1.7; }
+.accordion-item.open .accordion-body { display: block; }
+.accordion-item.open .accordion-head { border-bottom: 1px solid var(--border); }
+footer { border-top: 1px solid var(--border); padding: 2rem 1.5rem; margin-top: 3rem; text-align: center; }
+footer p { font-size: 12px; color: var(--muted); margin: 0.25rem 0; }
+.hidden { display: none !important; }
+mark { background: rgba(200,146,58,0.22); color: inherit; padding: 0 2px; border-radius: 2px; }
+@media (max-width: 980px) {
+  .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .policy-flow { grid-template-columns: repeat(2, 1fr); }
+  .callout-grid { grid-template-columns: 1fr; }
+  .calc-body { grid-template-columns: 1fr; }
+  .calc-inputs { border-right: 0; border-bottom: 1px solid var(--border); }
+}
+@media (max-width: 768px) {
+  .grid-2, .grid-3, .grid-4, .checklist, .input-grid, .result-grid { grid-template-columns: 1fr; }
+  .policy-flow { grid-template-columns: 1fr; }
+  .page-title { font-size: 26px; }
+  .section-title { font-size: 22px; }
+  .header-actions { display: none; }
+}
+@media print {
+  .site-header, .search-row, .quick-nav, .alert-close, .btn { display: none !important; }
+  body { font-size: 12px; }
+  .container { max-width: 100%; }
+  .card, .flow-step, .table-wrap, .verdict, .callout, .check-item, .calculator { break-inside: avoid; }
+}
+
+/* === NCGCL Brand Utility Bar === */
+.ncgcl-utility-bar {
+  background: #0E1A24;
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
+.ncgcl-utility-inner {
+  max-width: 1280px; margin: 0 auto; padding: 0 1.5rem;
+  height: 36px; display: flex; align-items: center; justify-content: space-between;
+}
+.ncgcl-utility-left { display: flex; gap: 1rem; align-items: center; }
+.ncgcl-utility-left span { color: rgba(255,255,255,0.7); }
+.ncgcl-utility-left strong { color: #fff; font-weight: 600; }
+.ncgcl-utility-right { display: flex; gap: 1.25rem; align-items: center; }
+.ncgcl-utility-right a {
+  color: rgba(255,255,255,0.75); font-size: 12px; text-decoration: none;
+  transition: color 0.15s ease;
+}
+.ncgcl-utility-right a:hover { color: #fff; }
+.ncgcl-utility-divider { width: 1px; height: 14px; background: rgba(255,255,255,0.15); }
+
+/* === Brand logo override === */
+.brand-logo {
+  display: flex; align-items: center; gap: 14px; text-decoration: none;
+}
+.brand-logo img { height: 34px; width: auto; }
+.brand-logo .brand-meta {
+  border-left: 1px solid #D9DDE2; padding-left: 14px;
+}
+.brand-logo .brand-meta .ml1 {
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #8A95A0; font-weight: 600;
+}
+.brand-logo .brand-meta .ml2 {
+  font-size: 13px; color: var(--cerulean); font-weight: 600;
+  letter-spacing: -0.005em; margin-top: 2px;
+}
+
+/* === Mobile utility bar === */
+@media (max-width: 640px) {
+  .ncgcl-utility-inner { padding: 0 1rem; height: 32px; }
+  .ncgcl-utility-left { gap: 0.6rem; font-size: 11px; }
+  .ncgcl-utility-right { gap: 0.85rem; }
+  .ncgcl-utility-left span { display: none; }
+}
+
+/* === NCGCL Brand Footer === */
+footer.ncgcl-footer {
+  background: #013E5C; color: rgba(255,255,255,0.7);
+  margin-top: 4rem; padding: 3rem 0 1.5rem;
+  text-align: left;  /* override generic footer rule */
+  border-top: none;
+}
+.ncgcl-footer-inner { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+.ncgcl-footer-top {
+  display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
+  padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+.ncgcl-footer-brand img { height: 40px; margin-bottom: 1rem; }
+.ncgcl-footer-brand p {
+  font-size: 13px; color: rgba(255,255,255,0.7);
+  line-height: 1.6; max-width: 320px; font-weight: 300;
+}
+.ncgcl-footer-col h4 {
+  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--green); font-weight: 600; margin-bottom: 0.75rem;
+}
+.ncgcl-footer-col a {
+  display: block; font-size: 13px; color: rgba(255,255,255,0.7);
+  padding: 4px 0; text-decoration: none; font-weight: 300;
+  transition: color 0.15s ease;
+}
+.ncgcl-footer-col a:hover { color: #fff; }
+.ncgcl-footer-bottom {
+  padding-top: 1.5rem; font-size: 12px; color: rgba(255,255,255,0.5);
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;
+}
+@media (max-width: 720px) {
+  .ncgcl-footer-top { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ==================== UTILITY BAR (NCGCL brand) ==================== -->
+<div class="ncgcl-utility-bar">
+  <div class="ncgcl-utility-inner">
+    <div class="ncgcl-utility-left">
+      <strong>NCGCL</strong>
+      <span>National Credit Guarantee Company Limited</span>
+    </div>
+    <div class="ncgcl-utility-right">
+      <a href="index.html">Hub</a>
+      <span class="ncgcl-utility-divider"></span>
+      <a href="#">Staff Directory</a>
+      <a href="mailto:it@ncgcl.pk">IT Support</a>
+    </div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="index.html" class="brand-logo">
+        <img src="Company_Logo_transparent.png" alt="NCGCL">
+        <div class="brand-meta">
+          <div class="ml1">Policy Document</div>
+          <div class="ml2">Impact Assessment Framework</div>
+        </div>
+      </a>
+      <div class="header-actions">
+        <a class="btn" href="index.html">← Hub</a>
+        <button class="btn" onclick="window.print()">Print / Save PDF</button>
+        <a class="btn" href="#reporting">Reporting Cadence</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="alert-banner" id="alertBanner">
+    <div class="alert-icon">📌</div>
+    <div class="alert-content">
+      <strong>Impact Assessment Framework</strong>
+      <p>This page translates the Impact Assessment Framework into a quick-access intranet guide for staff, management and Board reporting. Replace placeholders with live dashboard and document links when available.</p>
+    </div>
+    <button class="alert-close" onclick="this.parentElement.style.display='none'">×</button>
+  </div>
+
+  <div class="page-hero">
+    <div class="section-label">Policy Overview</div>
+    <h1 class="page-title">Impact Assessment Framework</h1>
+    <p class="page-desc">A practical guide to how NCGCL measures, manages and reports its development impact. The framework links NCGCL’s mission to measurable outcomes and operational outputs across MSME growth, employment, climate action, access to finance, gender/youth inclusion and institutional sustainability.</p>
+    <div class="search-row">
+      <input id="searchInput" class="search-box" type="search" placeholder="Search indicators, data sources, responsibilities, reporting cadence...">
+      <button class="btn" onclick="clearSearch()">Clear</button>
+    </div>
+  </div>
+
+  <nav class="quick-nav">
+    <a href="#purpose">Purpose</a>
+    <a href="#principles">Principles</a>
+    <a href="#structure">Framework</a>
+    <a href="#outcomes">Outcome Indicators</a>
+    <a href="#outputs">Output Indicators</a>
+    <a href="#tracker">Impact Tracker</a>
+    <a href="#governance">Roles</a>
+    <a href="#reporting">Reporting</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+
+  <div class="kpi-strip searchable">
+    <div class="kpi-card">
+      <div class="kpi-label">Measurement Tiers</div>
+      <div class="kpi-val">2</div>
+      <div class="kpi-sub">Outcomes + Outputs</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Total Indicators</div>
+      <div class="kpi-val">13</div>
+      <div class="kpi-sub">3 outcome + 10 output</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Outcome Areas</div>
+      <div class="kpi-val">3</div>
+      <div class="kpi-sub">Economy, jobs, climate</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Output Areas</div>
+      <div class="kpi-val">5</div>
+      <div class="kpi-sub">Access, risk, climate, inclusion, institution</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Board Reporting</div>
+      <div class="kpi-val">Bi-annual</div>
+      <div class="kpi-sub">Impact & Performance Report</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">External Evaluation</div>
+      <div class="kpi-val">3–5 yrs</div>
+      <div class="kpi-sub">Independent assessment cycle</div>
+    </div>
+  </div>
+
+  <section id="purpose" class="searchable">
+    <div class="section-label">Why it matters</div>
+    <h2 class="section-title">Purpose of the Framework</h2>
+    <div class="callout-grid">
+      <div class="callout">
+        <h3>Mission-aligned measurement for catalytic finance</h3>
+        <p>The Impact Assessment Framework is designed to systematically measure, manage and report NCGCL’s progress against its strategic objectives. It gives the organization a disciplined way to understand whether guarantees are translating into economic productivity, SME growth, climate action and inclusion.</p>
+        <ul class="clean">
+          <li>Measures both development impact and operational delivery.</li>
+          <li>Creates accountability to Board, regulators, funding partners and the public.</li>
+          <li>Supports evidence-based adaptation of products, strategy and operations.</li>
+          <li>Ensures impact claims are grounded in verifiable data rather than anecdotes.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="badge gold">Core Question</span>
+        <div class="card-icon">🎯</div>
+        <h3 class="card-title">Are we achieving our mission?</h3>
+        <p class="card-desc">The framework tracks whether NCGCL is enabling additional finance and whether that finance is supporting revenue growth, jobs, emissions reduction, women/youth inclusion and stronger institutional performance.</p>
+        <div class="card-meta">Use this guide for staff orientation, M&E design, Board reporting and intranet quick reference.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="principles" class="searchable">
+    <div class="section-label">Core design principles</div>
+    <h2 class="section-title">Guiding Principles</h2>
+    <div class="grid-5 grid-4">
+      <div class="card">
+        <span class="badge blue">Principle 1</span>
+        <div class="card-icon">🧭</div>
+        <h3 class="card-title">Mission Alignment</h3>
+        <p class="card-desc">Metrics and processes are linked to NCGCL’s mission and causal pathways, ensuring measurement supports strategy and prevents mission drift.</p>
+      </div>
+      <div class="card">
+        <span class="badge blue">Principle 2</span>
+        <div class="card-icon">📊</div>
+        <h3 class="card-title">Data-Driven</h3>
+        <p class="card-desc">The framework relies on systematic collection and analysis of verifiable quantitative and qualitative data.</p>
+      </div>
+      <div class="card">
+        <span class="badge blue">Principle 3</span>
+        <div class="card-icon">🔍</div>
+        <h3 class="card-title">Accountability & Transparency</h3>
+        <p class="card-desc">It provides a clear basis for reporting performance to the Board, regulators, funders and public stakeholders.</p>
+      </div>
+      <div class="card">
+        <span class="badge blue">Principle 4</span>
+        <div class="card-icon">🔁</div>
+        <h3 class="card-title">Learning & Adaptation</h3>
+        <p class="card-desc">Insights from impact reporting should refine products, operations and strategy over time.</p>
+      </div>
+      <div class="card">
+        <span class="badge blue">Principle 5</span>
+        <div class="card-icon">⚖️</div>
+        <h3 class="card-title">Proportionality</h3>
+        <p class="card-desc">Data collection should be proportionate to strategic importance and should not overburden PFIs or beneficiary SMEs.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="structure" class="searchable">
+    <div class="section-label">Measurement architecture</div>
+    <h2 class="section-title">How the Framework Works</h2>
+    <p class="section-intro">The IAF mirrors NCGCL’s logframe through two connected tiers: <strong>Outcome indicators</strong> measure long-term developmental impact, while <strong>Output indicators</strong> measure operational delivery and institutional effectiveness.</p>
+    <div class="policy-flow">
+      <div class="flow-step">
+        <div class="flow-no">1</div>
+        <div class="flow-title">Mission</div>
+        <div class="flow-desc">Catalyze SME finance, productivity, climate action and inclusion.</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-no">2</div>
+        <div class="flow-title">Guarantees</div>
+        <div class="flow-desc">Guarantee instruments are issued through PFIs and tracked internally.</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-no">3</div>
+        <div class="flow-title">Outputs</div>
+        <div class="flow-desc">Track finance enabled, guarantees issued, NPLs, climate and inclusion finance.</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-no">4</div>
+        <div class="flow-title">Outcomes</div>
+        <div class="flow-desc">Track revenue uplift, jobs supported and GHG emissions avoided or reduced.</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-no">5</div>
+        <div class="flow-title">Reporting</div>
+        <div class="flow-desc">Prepare bi-annual Impact and Performance Report for management and Board.</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-no">6</div>
+        <div class="flow-title">Learning</div>
+        <div class="flow-desc">Use insights to refine products, targeting, operations and risk appetite.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="outcomes" class="searchable">
+    <div class="section-label">Tier 1</div>
+    <h2 class="section-title">Outcome Indicators — Developmental Impact</h2>
+    <p class="section-intro">This tier answers the strategic question: <strong>“Are we achieving our mission?”</strong> It measures long-term, systemic change that NCGCL aims to facilitate.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Outcome Area</th>
+            <th>Indicator</th>
+            <th>Unit</th>
+            <th>Data Collection Methodology</th>
+            <th>Primary Owner</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Economic Expansion, MSME Growth & Employment</strong></td>
+            <td><strong>1.1 Cumulative incremental revenue generated by the guaranteed portfolio</strong></td>
+            <td>PKR millions</td>
+            <td>Annual representative SME surveys comparing pre- and post-guarantee revenue; review of financial statements; qualitative interviews; secondary PFI turnover data where available.</td>
+            <td>M&E function with PFIs and beneficiary SMEs</td>
+          </tr>
+          <tr>
+            <td><strong>Economic Expansion, MSME Growth & Employment</strong></td>
+            <td><strong>1.2 Cumulative jobs supported, disaggregated by gender and youth</strong></td>
+            <td>FTE jobs</td>
+            <td>PFI reporting based on SME payroll or HR records. FTE tracking is preferred to simple headcount and should include gender and youth disaggregation.</td>
+            <td>M&E function, PFIs and HR/SME records</td>
+          </tr>
+          <tr>
+            <td><strong>Sustainability & Climate Action</strong></td>
+            <td><strong>1.3 Net change in GHG emissions</strong></td>
+            <td>tCO₂e avoided or reduced per year</td>
+            <td>Technical assessments for climate finance projects using recognized GHG accounting protocols and relevant emission factor databases.</td>
+            <td>M&E function with technical assessors</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="outputs" class="searchable">
+    <div class="section-label">Tier 2</div>
+    <h2 class="section-title">Output Indicators — Operational Performance</h2>
+    <p class="section-intro">This tier answers the operational question: <strong>“Are we delivering products and services effectively and efficiently?”</strong></p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Output Area</th>
+            <th>Indicator</th>
+            <th>Unit</th>
+            <th>Data Collection Methodology</th>
+            <th>Operating Use</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1. Access to Finance</strong></td>
+            <td><strong>1.1 Number of guarantees issued, by sector</strong></td>
+            <td>Count of guarantee instruments</td>
+            <td>Internal NCGCL guarantee management system records, enabling real-time product uptake tracking.</td>
+            <td>Pipeline, product uptake and sector strategy</td>
+          </tr>
+          <tr>
+            <td><strong>1. Access to Finance</strong></td>
+            <td><strong>1.2 Value of financing enabled, by sector</strong></td>
+            <td>PKR millions</td>
+            <td>PFI reporting on underlying loans disbursed against NCGCL guarantees.</td>
+            <td>Leverage, reach and additionality tracking</td>
+          </tr>
+          <tr>
+            <td><strong>2. De-risking SME Finance</strong></td>
+            <td><strong>2.1 Portfolio-level NPL ratio vs. market NPLs</strong></td>
+            <td>Percentage</td>
+            <td>PFI reporting on guaranteed portfolio performance benchmarked against SBP industry data.</td>
+            <td>Credit quality and de-risking effectiveness</td>
+          </tr>
+          <tr>
+            <td><strong>2. De-risking SME Finance</strong></td>
+            <td><strong>2.2 Risk-sharing with PFIs</strong></td>
+            <td>% of credit risk covered by guarantee</td>
+            <td>Internal NCGCL records verified against guarantee agreements.</td>
+            <td>Skin-in-the-game and moral hazard monitoring</td>
+          </tr>
+          <tr>
+            <td><strong>3. Climate Finance</strong></td>
+            <td><strong>3.1 Value of financing for climate adaptation/mitigation projects</strong></td>
+            <td>PKR millions</td>
+            <td>PFI reporting with projects classified against an established Climate Finance Taxonomy.</td>
+            <td>Climate portfolio strategy and credible claims</td>
+          </tr>
+          <tr>
+            <td><strong>4. Gender and Youth Inclusion</strong></td>
+            <td><strong>4.1 Value of financing for women and youth-led SMEs</strong></td>
+            <td>PKR millions</td>
+            <td>PFI reporting using NCGCL’s criteria for women/youth-led businesses, such as ownership or senior management representation.</td>
+            <td>Inclusion targeting and product refinement</td>
+          </tr>
+          <tr>
+            <td><strong>5. Institutional Sustainability</strong></td>
+            <td><strong>5.1 Corporate governance effectiveness</strong></td>
+            <td>Count / frequency</td>
+            <td>Corporate Secretariat records, Board/committee minutes, action items and annual Board evaluation execution.</td>
+            <td>Governance performance tracking</td>
+          </tr>
+          <tr>
+            <td><strong>5. Institutional Sustainability</strong></td>
+            <td><strong>5.2 Regulatory compliance</strong></td>
+            <td>% of on-time submissions</td>
+            <td>Compliance Officer records and internal audit reports.</td>
+            <td>Regulatory standing and control discipline</td>
+          </tr>
+          <tr>
+            <td><strong>5. Institutional Sustainability</strong></td>
+            <td><strong>5.3 HR and functional needs addressed</strong></td>
+            <td>% of key positions filled</td>
+            <td>HR records and management reporting.</td>
+            <td>Execution capacity and organization readiness</td>
+          </tr>
+          <tr>
+            <td><strong>5. Institutional Sustainability</strong></td>
+            <td><strong>5.4 Women’s representation in workforce and leadership</strong></td>
+            <td>% by level / role</td>
+            <td>HRIS data tracked across staff, senior management and Board levels.</td>
+            <td>Internal inclusion and leadership diversity</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="tracker" class="searchable">
+    <div class="section-label">Interactive planning aid</div>
+    <h2 class="section-title">Mini Impact Tracker</h2>
+    <p class="section-intro">Use this lightweight calculator to test whether a reporting period is directionally aligned with the IAF. It is for internal planning and Board-pack preparation; official numbers should come from validated M&E datasets and PFI submissions.</p>
+    <div class="calculator">
+      <div class="calc-header">
+        <h3>Reporting Period Snapshot</h3>
+        <p>Enter period-level data to calculate leverage, revenue uplift, inclusion share, climate share, jobs intensity and portfolio comparison indicators.</p>
+      </div>
+      <div class="calc-body">
+        <div class="calc-inputs">
+          <div class="input-grid">
+            <div class="input-group">
+              <label>Guarantees issued</label>
+              <input id="guarantees" type="number" min="0" value="50" oninput="calcImpact()">
+            </div>
+            <div class="input-group">
+              <label>NCGCL guarantee exposure (PKR mn)</label>
+              <input id="guaranteeExposure" type="number" min="0" value="3000" oninput="calcImpact()">
+            </div>
+            <div class="input-group">
+              <label>Financing enabled (PKR mn)</label>
+              <input id="financeEnabled" type="number" min="0" value="9000" oninput="calcImpact()">
+            </div>
+            <div class="input-group">
+              <label>Climate finance (PKR mn)</label>
+              <input id="climateFinance" type="number" min="0" value="1200" oninput="calcImpact()">
+            </div>
+            <div class="input-group">
+              <label>Women/youth-led SME finance (PKR mn)</label>
+              <input id="inclusionFinance" type="number" min="0" value="1800" oninput="calcImpact()">
+            </div>
+            <div class="input-group">
+              <label>GHG reduced / avoided (tCO₂e)</label>
+              <input id="ghg" type="number" min="0" value="9000" oninput="calcImpact()">
+            </div>
+            <div class="input-group">
+              <label>Pre-guarantee SME revenue (PKR mn)</label>
+              <input id="revenueBefore" type="number" min="0" value="10000" oninput="calcImpact()">
+            </div>
+            <div class="input-group">
+              <label>Post-guarantee SME revenue (PKR mn)</label>
+              <input id="revenueAfter" type="number" min="0" value="11800" oninput="calcImpact()">
+            </div>
+            <div class="input-group">
+              <label>FTE jobs supported</label>
+              <input id="jobs" type="number" min="0" value="4200" oninput="calcImpact()">
+            </div>
+            <div class="input-group">
+              <label>PFI guaranteed portfolio NPL (%)</label>
+              <input id="portfolioNpl" type="number" min="0" step="0.1" value="4.5" oninput="calcImpact()">
+            </div>
+            <div class="input-group">
+              <label>Market NPL benchmark (%)</label>
+              <input id="marketNpl" type="number" min="0" step="0.1" value="7.0" oninput="calcImpact()">
+            </div>
+            <div class="input-group">
+              <label>On-time regulatory submissions (%)</label>
+              <input id="compliance" type="number" min="0" max="100" step="0.1" value="100" oninput="calcImpact()">
+            </div>
+          </div>
+        </div>
+        <div class="calc-results">
+          <div class="result-grid">
+            <div class="result-card">
+              <div class="result-label">Finance Leverage</div>
+              <div class="result-value" id="leverageOut">3.0×</div>
+              <div class="result-note">Financing enabled ÷ NCGCL guarantee exposure.</div>
+            </div>
+            <div class="result-card">
+              <div class="result-label">Average Ticket</div>
+              <div class="result-value" id="ticketOut">180</div>
+              <div class="result-note">PKR mn enabled per guarantee issued.</div>
+            </div>
+            <div class="result-card">
+              <div class="result-label">Revenue Uplift</div>
+              <div class="result-value" id="revenueOut">18.0%</div>
+              <div class="result-note">Post-guarantee revenue change versus baseline.</div>
+            </div>
+            <div class="result-card">
+              <div class="result-label">Jobs Intensity</div>
+              <div class="result-value" id="jobsOut">467</div>
+              <div class="result-note">FTE jobs supported per PKR 1bn of finance enabled.</div>
+            </div>
+            <div class="result-card">
+              <div class="result-label">Climate Share</div>
+              <div class="result-value" id="climateOut">13.3%</div>
+              <div class="result-note">Climate finance as % of total finance enabled.</div>
+            </div>
+            <div class="result-card">
+              <div class="result-label">Inclusion Share</div>
+              <div class="result-value" id="inclusionOut">20.0%</div>
+              <div class="result-note">Women/youth-led SME finance as % of total finance enabled.</div>
+            </div>
+            <div class="result-card">
+              <div class="result-label">GHG Intensity</div>
+              <div class="result-value" id="ghgOut">7,500</div>
+              <div class="result-note">tCO₂e per PKR 1bn of climate finance.</div>
+            </div>
+            <div class="result-card">
+              <div class="result-label">NPL Differential</div>
+              <div class="result-value" id="nplOut">-2.5 pp</div>
+              <div class="result-note">Guaranteed portfolio NPL minus market NPL.</div>
+            </div>
+          </div>
+          <div class="verdict" style="margin-bottom:0;">
+            <div class="verdict-label">Directional Assessment</div>
+            <div class="verdict-text" id="impactAssessment">Portfolio appears directionally positive: leverage, inclusion, climate and NPL comparison are within a constructive range. Validate data quality before Board submission.</div>
+            <span id="statusPill" class="status-pill status-green">Green</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="governance" class="searchable">
+    <div class="section-label">Operating model</div>
+    <h2 class="section-title">Roles and Responsibilities</h2>
+    <div class="grid-4">
+      <div class="card">
+        <span class="badge green">Lead</span>
+        <div class="card-icon">📈</div>
+        <h3 class="card-title">M&E Function</h3>
+        <p class="card-desc">Oversees data collection, develops survey instruments and PFI templates, trains PFIs, manages SME surveys, consolidates data and prepares impact reporting.</p>
+      </div>
+      <div class="card">
+        <span class="badge blue">Source</span>
+        <div class="card-icon">🏦</div>
+        <h3 class="card-title">Partner Financial Institutions</h3>
+        <p class="card-desc">Provide data on loans, portfolio performance, SME turnover where available, payroll/jobs, climate/inclusion classifications and disbursement values.</p>
+      </div>
+      <div class="card">
+        <span class="badge blue">Internal Data</span>
+        <div class="card-icon">🏛️</div>
+        <h3 class="card-title">NCGCL Departments</h3>
+        <p class="card-desc">Corporate Secretariat, Compliance, HR and Guarantee Operations provide governance, regulatory, staffing and guarantee management data.</p>
+      </div>
+      <div class="card">
+        <span class="badge gold">Oversight</span>
+        <div class="card-icon">👥</div>
+        <h3 class="card-title">Board & Management</h3>
+        <p class="card-desc">Review the bi-annual Impact and Performance Report, assess progress against strategic goals and hold management accountable for results.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="reporting" class="searchable">
+    <div class="section-label">Reporting architecture</div>
+    <h2 class="section-title">Reporting Cadence and Deliverables</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Deliverable</th>
+            <th>Frequency</th>
+            <th>Audience</th>
+            <th>Minimum Contents</th>
+            <th>Control Point</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Impact and Performance Report</strong></td>
+            <td>Bi-annual</td>
+            <td>Management Committee and Board</td>
+            <td>Dashboard summary, trend analysis, performance against targets, challenges, successes and lessons learned.</td>
+            <td>M&E validation before circulation.</td>
+          </tr>
+          <tr>
+            <td><strong>Annual Report Impact Section</strong></td>
+            <td>Annual</td>
+            <td>Public stakeholders, regulators, funders and Board</td>
+            <td>Abridged public-facing version of the impact report for transparency.</td>
+            <td>Consistency check with audited/internal records.</td>
+          </tr>
+          <tr>
+            <td><strong>SME Survey</strong></td>
+            <td>Annual or as designed</td>
+            <td>M&E, management and Board</td>
+            <td>Representative sample survey covering revenue change, jobs, qualitative growth drivers and beneficiary experience.</td>
+            <td>Sampling design and data quality review.</td>
+          </tr>
+          <tr>
+            <td><strong>Independent Impact Evaluation</strong></td>
+            <td>Every 3–5 years</td>
+            <td>Board and external stakeholders</td>
+            <td>Independent review of strategic relevance, effectiveness, impact claims and measurement methodology.</td>
+            <td>Board-commissioned third-party evaluator.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="checklists" class="searchable">
+    <div class="section-label">Practical implementation</div>
+    <h2 class="section-title">Quick Checklists</h2>
+    <div class="checklist">
+      <div class="check-item">
+        <h4>Before issuing a new product/program</h4>
+        <p>Define applicable impact indicators, baseline data requirement, PFI reporting fields, climate/inclusion tags, survey feasibility and expected reporting burden.</p>
+      </div>
+      <div class="check-item">
+        <h4>Before accepting PFI data</h4>
+        <p>Check completeness, format consistency, definitions, sector tagging, beneficiary classification, duplicate records and evidence availability.</p>
+      </div>
+      <div class="check-item">
+        <h4>Before Board reporting</h4>
+        <p>Reconcile internal guarantee data with PFI submissions, validate outliers, separate provisional from verified figures and document assumptions.</p>
+      </div>
+      <div class="check-item">
+        <h4>Before publishing impact claims</h4>
+        <p>Confirm methodology, avoid over-attribution, disclose data limitations, use conservative language and maintain audit trail for figures.</p>
+      </div>
+      <div class="check-item">
+        <h4>For climate finance</h4>
+        <p>Classify projects against a recognized taxonomy, use recognized GHG protocols, document emission factors and retain calculation worksheets.</p>
+      </div>
+      <div class="check-item">
+        <h4>For inclusion finance</h4>
+        <p>Apply clear criteria for women/youth-led SMEs, retain evidence basis, and disaggregate by ownership, management and beneficiary category where possible.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="searchable">
+    <div class="section-label">Frequently asked questions</div>
+    <h2 class="section-title">FAQ</h2>
+    <div class="accordion">
+      <div class="accordion-item open">
+        <button class="accordion-head" onclick="toggleAccordion(this)"><span class="accordion-title">What is the difference between outcome and output indicators?</span><span>+</span></button>
+        <div class="accordion-body">Outcome indicators measure long-term developmental impact, such as revenue growth, jobs supported and emissions reduced. Output indicators measure direct operational delivery, such as guarantees issued, financing enabled, portfolio NPLs and institutional sustainability.</div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-head" onclick="toggleAccordion(this)"><span class="accordion-title">Who owns the framework?</span><span>+</span></button>
+        <div class="accordion-body">The M&E function is responsible for data collection, analysis and reporting. PFIs and internal departments provide data. Management reviews performance and the Board provides oversight.</div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-head" onclick="toggleAccordion(this)"><span class="accordion-title">How often should impact be reported?</span><span>+</span></button>
+        <div class="accordion-body">The framework requires a bi-annual Impact and Performance Report for the Management Committee and Board. An abridged public-facing version should be included in NCGCL’s Annual Report.</div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-head" onclick="toggleAccordion(this)"><span class="accordion-title">Can all impact be attributed directly to NCGCL?</span><span>+</span></button>
+        <div class="accordion-body">Not necessarily. Impact reporting should distinguish between contribution and attribution, especially where external factors such as sector growth, macroeconomic conditions or PFI behavior also influence outcomes.</div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-head" onclick="toggleAccordion(this)"><span class="accordion-title">What is the role of third-party evaluation?</span><span>+</span></button>
+        <div class="accordion-body">The Board should commission independent evaluations every 3 to 5 years to assess data quality, strategic relevance, overall effectiveness and credibility of NCGCL’s impact claims.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="verdict searchable">
+    <div class="verdict-label">Implementation Note</div>
+    <div class="verdict-text">This intranet page should be linked to the live M&E dashboard, approved PFI reporting templates, survey instruments, climate taxonomy, inclusion definitions and the latest bi-annual Impact and Performance Report once these assets are finalized.</div>
+  </div>
+
+</div>
+<script>
+function num(id) {
+  const v = parseFloat(document.getElementById(id).value);
+  return isFinite(v) ? v : 0;
+}
+function fmt(n, d=1) {
+  if (!isFinite(n)) return '—';
+  return n.toLocaleString(undefined, {maximumFractionDigits: d, minimumFractionDigits: d});
+}
+function fmt0(n) {
+  if (!isFinite(n)) return '—';
+  return n.toLocaleString(undefined, {maximumFractionDigits: 0});
+}
+function calcImpact() {
+  const guarantees = num('guarantees');
+  const ge = num('guaranteeExposure');
+  const fe = num('financeEnabled');
+  const cf = num('climateFinance');
+  const inf = num('inclusionFinance');
+  const ghg = num('ghg');
+  const revB = num('revenueBefore');
+  const revA = num('revenueAfter');
+  const jobs = num('jobs');
+  const pnpl = num('portfolioNpl');
+  const mnpl = num('marketNpl');
+  const comp = num('compliance');
+
+  const leverage = ge > 0 ? fe / ge : 0;
+  const ticket = guarantees > 0 ? fe / guarantees : 0;
+  const revUplift = revB > 0 ? ((revA - revB) / revB) * 100 : 0;
+  const jobsIntensity = fe > 0 ? jobs / (fe / 1000) : 0;
+  const climateShare = fe > 0 ? (cf / fe) * 100 : 0;
+  const inclusionShare = fe > 0 ? (inf / fe) * 100 : 0;
+  const ghgIntensity = cf > 0 ? ghg / (cf / 1000) : 0;
+  const nplDiff = pnpl - mnpl;
+
+  document.getElementById('leverageOut').textContent = fmt(leverage, 1) + '×';
+  document.getElementById('ticketOut').textContent = fmt(ticket, 0);
+  document.getElementById('revenueOut').textContent = fmt(revUplift, 1) + '%';
+  document.getElementById('jobsOut').textContent = fmt0(jobsIntensity);
+  document.getElementById('climateOut').textContent = fmt(climateShare, 1) + '%';
+  document.getElementById('inclusionOut').textContent = fmt(inclusionShare, 1) + '%';
+  document.getElementById('ghgOut').textContent = fmt0(ghgIntensity);
+  document.getElementById('nplOut').textContent = (nplDiff >= 0 ? '+' : '') + fmt(nplDiff, 1) + ' pp';
+
+  let score = 0;
+  if (leverage >= 2) score++;
+  if (revUplift > 0) score++;
+  if (jobsIntensity >= 100) score++;
+  if (climateShare >= 5) score++;
+  if (inclusionShare >= 10) score++;
+  if (nplDiff <= 0) score++;
+  if (comp >= 95) score++;
+
+  const pill = document.getElementById('statusPill');
+  const msg = document.getElementById('impactAssessment');
+  pill.className = 'status-pill';
+  if (score >= 6) {
+    pill.classList.add('status-green');
+    pill.textContent = 'Green';
+    msg.textContent = 'Portfolio appears directionally positive: leverage, inclusion, climate and NPL comparison are within a constructive range. Validate data quality before Board submission.';
+  } else if (score >= 4) {
+    pill.classList.add('status-amber');
+    pill.textContent = 'Amber';
+    msg.textContent = 'Portfolio is mixed: some impact indicators are progressing, but management should review weak areas, data quality, and product targeting before reporting.';
+  } else {
+    pill.classList.add('status-red');
+    pill.textContent = 'Red';
+    msg.textContent = 'Portfolio requires management review: multiple indicators appear weak or incomplete. Validate inputs, explain drivers and prepare corrective actions before Board reporting.';
+  }
+}
+function toggleAccordion(btn) {
+  const item = btn.closest('.accordion-item');
+  item.classList.toggle('open');
+}
+function clearSearch() {
+  document.getElementById('searchInput').value = '';
+  applySearch('');
+}
+function applySearch(query) {
+  const q = query.trim().toLowerCase();
+  document.querySelectorAll('.searchable').forEach(el => {
+    const text = el.textContent.toLowerCase();
+    el.classList.toggle('hidden', q && !text.includes(q));
+  });
+}
+document.getElementById('searchInput').addEventListener('input', e => applySearch(e.target.value));
+calcImpact();
+</script>
+
+<!-- ==================== NCGCL BRAND FOOTER ==================== -->
+<footer class="ncgcl-footer">
+  <div class="ncgcl-footer-inner">
+    <div class="ncgcl-footer-top">
+      <div class="ncgcl-footer-brand">
+        <img src="Company_Logo_dark_bg.png" alt="NCGCL">
+        <p>National Credit Guarantee Company Limited — enabling catalytic finance for SME, agriculture, and climate growth across Pakistan.</p>
+      </div>
+      <div class="ncgcl-footer-col">
+        <h4>Navigate</h4>
+        <a href="index.html">Operational Hub</a>
+        <a href="index.html#policies">All Policies</a>
+        <a href="index.html#governance">Governance</a>
+        <a href="index.html#risk">Risk &amp; Compliance</a>
+      </div>
+      <div class="ncgcl-footer-col">
+        <h4>Support</h4>
+        <a href="mailto:it@ncgcl.pk">IT Support</a>
+        <a href="#">Staff Directory</a>
+        <a href="mailto:operations@ncgcl.pk">operations@ncgcl.pk</a>
+      </div>
+    </div>
+    <div class="ncgcl-footer-bottom">
+      <div>© 2025 National Credit Guarantee Company Limited · AAA Rated · SBP Regulated</div>
+      <div>Privacy · Terms of Use · Accessibility</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

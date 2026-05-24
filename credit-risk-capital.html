@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="192x192" href="favicon-192.png">
+<title>NCGCL Credit Risk & Capital Management | Intranet Quick Guide</title>
+<style>
+:root {
+  --white: #FFFFFF;
+  --bg: #FAFAFA;
+  --soft: #F7F4EF;
+  --border: #E5E5E5;
+  --accent: #39A949;
+  --accent-soft: rgba(57, 169, 73, 0.10);
+  --cerulean: #035076;
+  --cerulean-soft: rgba(3, 80, 118, 0.08);
+  --green: #39A949;
+  --green-soft: rgba(57, 169, 73, 0.10);
+  --red: #9B2335;
+  --red-soft: rgba(155, 35, 53, 0.08);
+  --text: #1A1A1A;
+  --muted: #666666;
+  --faint: #999999;
+  --warn-bg: #FEF6ED;
+  --warn-border: #F5CBA7;
+/* === NCGCL Brand Type System === */
+:root {
+  --sans: 'Inter', 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --serif: 'Source Serif Pro', 'Georgia', 'Times New Roman', serif;
+}
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--white);
+  color: #2D2D2D;
+  line-height: 1.6;
+  font-size: 15px;
+}
+.container { max-width: 1120px; margin: 0 auto; padding: 0 1.5rem; }
+.site-header {
+  border-bottom: 1px solid var(--border);
+  padding: 1.25rem 0;
+  margin-bottom: 1.25rem;
+  background: rgba(255,255,255,0.96);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(8px);
+}
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.logo-block { display: flex; align-items: center; gap: 12px; }
+.logo-box {
+  width: 40px; height: 40px; background: var(--cerulean); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  font-weight: 700; color: white; font-size: 16px;
+}
+.logo-text { font-family: var(--serif); font-size: 18px; color: var(--text); font-weight: 400; }
+.logo-sub { font-size: 12px; color: var(--faint); letter-spacing: 0.04em; }
+.header-actions { display: flex; gap: 8px; align-items: center; }
+.btn {
+  border: 1px solid var(--border); background: var(--white); color: var(--cerulean);
+  border-radius: 999px; padding: 0.45rem 0.8rem; font-size: 12px; font-weight: 700;
+  text-decoration: none; cursor: pointer; transition: all 0.2s;
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+.alert-banner {
+  background: var(--warn-bg); border: 1px solid var(--warn-border); border-top: 3px solid var(--accent);
+  padding: 1rem 1.5rem; margin-bottom: 1.5rem; border-radius: 4px;
+  display: flex; gap: 1rem; align-items: flex-start;
+}
+.alert-icon { font-size: 20px; flex-shrink: 0; }
+.alert-content strong { color: var(--text); }
+.alert-content p { font-size: 13px; color: var(--muted); margin-top: 0.25rem; }
+.alert-close { background: none; border: none; cursor: pointer; font-size: 18px; color: var(--faint); margin-left: auto; flex-shrink: 0; }
+.page-hero { padding: 2.5rem 0 1.5rem; border-bottom: 1px solid var(--border); margin-bottom: 2.25rem; }
+.section-label { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: var(--faint); text-transform: uppercase; margin-bottom: 0.5rem; }
+.page-title { font-family: var(--serif); font-size: 36px; font-weight: 400; color: var(--text); line-height: 1.2; margin-bottom: 0.75rem; }
+.page-desc { font-size: 14px; color: var(--muted); line-height: 1.75; max-width: 860px; }
+.search-row { display: flex; gap: 12px; align-items: center; margin: 1.25rem 0 0; flex-wrap: wrap; }
+.search-box {
+  flex: 1; min-width: 250px; border: 1px solid var(--border); border-radius: 999px;
+  padding: 0.75rem 1rem; font-size: 13px; color: var(--text); outline: none;
+}
+.search-box:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.quick-nav { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 2rem; }
+.quick-nav a {
+  font-size: 12px; font-weight: 700; color: var(--cerulean); text-decoration: none;
+  border: 1px solid var(--border); border-radius: 999px; padding: 0.45rem 0.75rem; background: var(--white);
+}
+.quick-nav a:hover { color: var(--accent); border-color: var(--accent); }
+.kpi-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 2.5rem; }
+.kpi-card {
+  background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 1.15rem;
+  transition: border-color 0.2s; text-align: center; min-height: 104px; display: flex; flex-direction: column; justify-content: center;
+}
+.kpi-card:hover { border-color: var(--accent); }
+.kpi-label { font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--faint); margin-bottom: 0.5rem; }
+.kpi-val { font-family: Georgia, serif; font-size: 25px; color: var(--text); line-height: 1.15; }
+.kpi-sub { font-size: 11px; color: var(--muted); margin-top: 0.35rem; }
+.section-title {
+  font-family: Georgia, serif; font-size: 28px; font-weight: 400; color: var(--text);
+  line-height: 1.2; margin-bottom: 1.35rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+}
+.section-intro { font-size: 13px; color: var(--muted); margin-bottom: 1.25rem; max-width: 930px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 2.5rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 2.5rem; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 2.5rem; }
+.card {
+  background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem;
+  transition: all 0.2s; display: flex; flex-direction: column; position: relative;
+}
+.card:hover { border-color: var(--accent); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08); }
+.card-icon { font-size: 28px; margin-bottom: 0.75rem; display: inline-block; }
+.card-title { font-family: Georgia, serif; font-size: 17px; font-weight: 400; color: var(--text); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+.card-desc { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 1rem; flex-grow: 1; }
+.card-meta { font-size: 11px; color: var(--faint); border-top: 1px solid var(--border); padding-top: 0.7rem; margin-top: auto; }
+.badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--faint); background: var(--bg); border: 1px solid var(--border); padding: 3px 10px; border-radius: 12px; margin-bottom: 0.75rem; }
+.badge.gold { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
+.badge.blue { background: var(--cerulean-soft); color: var(--cerulean); border-color: rgba(3,80,118,0.25); }
+.badge.green { background: var(--green-soft); color: var(--green); border-color: rgba(57,169,73,0.3); }
+.badge.red { background: var(--red-soft); color: var(--red); border-color: rgba(155,35,53,0.25); }
+.verdict { background: var(--bg); border: 1px solid var(--border); border-left: 4px solid var(--accent); padding: 1.25rem; border-radius: 4px; margin: 1.5rem 0 2.5rem; }
+.verdict-label { font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--faint); margin-bottom: 0.4rem; }
+.verdict-text { font-size: 13px; color: #2D2D2D; line-height: 1.7; }
+.policy-flow { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin: 0 0 2.5rem; }
+.flow-step { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; position: relative; min-height: 136px; }
+.flow-no { width: 26px; height: 26px; border-radius: 50%; background: var(--cerulean); color: white; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; margin-bottom: 0.7rem; }
+.flow-title { font-family: Georgia, serif; color: var(--text); font-size: 15px; margin-bottom: 0.4rem; }
+.flow-desc { font-size: 12px; color: var(--muted); line-height: 1.55; }
+.table-wrap { overflow-x: auto; margin: 0 0 2.5rem; border: 1px solid var(--border); border-radius: 8px; background: white; }
+table { width: 100%; border-collapse: collapse; min-width: 720px; }
+th { background: var(--bg); color: var(--text); font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; text-align: left; padding: 0.85rem; border-bottom: 1px solid var(--border); }
+td { padding: 0.8rem 0.85rem; border-bottom: 1px solid var(--border); font-size: 13px; color: #333; vertical-align: top; }
+tr:last-child td { border-bottom: none; }
+td strong { color: var(--text); }
+.callout-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 12px; margin-bottom: 2.5rem; }
+.callout {
+  background: linear-gradient(135deg, var(--cerulean-soft), rgba(255,255,255,0.85));
+  border: 1px solid rgba(3,80,118,0.18); border-radius: 8px; padding: 1.25rem;
+}
+.callout.gold { background: linear-gradient(135deg, var(--accent-soft), rgba(255,255,255,0.88)); border-color: rgba(200,146,58,0.24); }
+.callout h3 { font-family: Georgia, serif; font-size: 20px; font-weight: 400; color: var(--text); margin-bottom: 0.75rem; }
+.callout p, .callout li { font-size: 13px; color: var(--muted); line-height: 1.7; }
+ul.clean { list-style: none; margin-top: 0.5rem; }
+ul.clean li { padding-left: 1.2rem; position: relative; margin: 0.4rem 0; }
+ul.clean li:before { content: "•"; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
+.checklist { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 2.5rem; }
+.check-item { border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--white); }
+.check-item h4 { font-family: Georgia, serif; font-size: 15px; font-weight: 400; color: var(--text); margin-bottom: 0.35rem; }
+.check-item p { font-size: 12px; color: var(--muted); line-height: 1.6; }
+.accordion { margin-bottom: 2.5rem; }
+.accordion-item { border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; background: white; overflow: hidden; }
+.accordion-head { width: 100%; background: var(--white); border: 0; padding: 1rem 1.25rem; text-align: left; display: flex; justify-content: space-between; gap: 1rem; align-items: center; cursor: pointer; }
+.accordion-title { font-family: Georgia, serif; color: var(--text); font-size: 16px; }
+.accordion-body { display: none; padding: 0 1.25rem 1.25rem; color: var(--muted); font-size: 13px; line-height: 1.7; }
+.accordion-item.open .accordion-body { display: block; }
+.accordion-item.open .accordion-head { border-bottom: 1px solid var(--border); }
+.calc-panel { background: var(--white); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 1rem; overflow: hidden; }
+.calc-head { padding: 1rem 1.25rem; background: var(--bg); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; gap: 1rem; align-items: center; }
+.calc-head h3 { font-family: Georgia, serif; font-size: 20px; font-weight: 400; color: var(--text); }
+.calc-head p { font-size: 12px; color: var(--muted); margin-top: 0.2rem; }
+.calc-body { padding: 1.25rem; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; align-content: start; }
+.form-field label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); margin-bottom: 0.35rem; }
+.form-field input, .form-field select, .form-field textarea {
+  width: 100%; border: 1px solid var(--border); border-radius: 8px; padding: 0.65rem 0.75rem;
+  font-size: 13px; color: var(--text); outline: none; background: var(--white);
+}
+.form-field textarea { min-height: 92px; resize: vertical; }
+.form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.result-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.result-card { border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--bg); min-height: 92px; }
+.result-label { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.07em; color: var(--faint); margin-bottom: 0.35rem; }
+.result-value { font-family: Georgia, serif; font-size: 23px; color: var(--text); line-height: 1.1; }
+.result-sub { font-size: 11px; color: var(--muted); margin-top: 0.35rem; line-height: 1.45; }
+.status { display: inline-block; border-radius: 999px; padding: 0.2rem 0.55rem; font-size: 11px; font-weight: 800; margin-top: 0.5rem; }
+.status.green { color: var(--green); background: var(--green-soft); border: 1px solid rgba(57,169,73,0.28); }
+.status.amber { color: var(--accent); background: var(--accent-soft); border: 1px solid rgba(200,146,58,0.28); }
+.status.red { color: var(--red); background: var(--red-soft); border: 1px solid rgba(155,35,53,0.25); }
+.formula-box { margin-top: 1rem; background: #fff; border: 1px dashed var(--border); border-radius: 8px; padding: 0.85rem; font-size: 12px; color: var(--muted); line-height: 1.6; }
+.small-note { font-size: 11px; color: var(--faint); margin-top: 0.5rem; line-height: 1.5; }
+.full { grid-column: 1 / -1; }
+footer { border-top: 1px solid var(--border); padding: 2rem 1.5rem; margin-top: 3rem; text-align: center; }
+footer p { font-size: 12px; color: var(--muted); margin: 0.25rem 0; }
+.hidden { display: none !important; }
+mark { background: rgba(200,146,58,0.22); color: inherit; padding: 0 2px; border-radius: 2px; }
+@media (max-width: 980px) {
+  .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .policy-flow { grid-template-columns: repeat(2, 1fr); }
+  .callout-grid, .calc-body { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .grid-2, .grid-3, .grid-4, .checklist, .form-grid, .result-grid { grid-template-columns: 1fr; }
+  .policy-flow { grid-template-columns: 1fr; }
+  .page-title { font-size: 26px; }
+  .section-title { font-size: 22px; }
+  .header-actions { display: none; }
+}
+@media print {
+  .site-header, .search-row, .quick-nav, .alert-close, .btn { display: none !important; }
+  body { font-size: 12px; }
+  .container { max-width: 100%; }
+  .card, .flow-step, .table-wrap, .verdict, .callout, .check-item, .calc-panel { break-inside: avoid; }
+  .calc-body { grid-template-columns: 1fr 1fr; }
+}
+
+/* === NCGCL Brand Utility Bar === */
+.ncgcl-utility-bar {
+  background: #0E1A24;
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
+.ncgcl-utility-inner {
+  max-width: 1280px; margin: 0 auto; padding: 0 1.5rem;
+  height: 36px; display: flex; align-items: center; justify-content: space-between;
+}
+.ncgcl-utility-left { display: flex; gap: 1rem; align-items: center; }
+.ncgcl-utility-left span { color: rgba(255,255,255,0.7); }
+.ncgcl-utility-left strong { color: #fff; font-weight: 600; }
+.ncgcl-utility-right { display: flex; gap: 1.25rem; align-items: center; }
+.ncgcl-utility-right a {
+  color: rgba(255,255,255,0.75); font-size: 12px; text-decoration: none;
+  transition: color 0.15s ease;
+}
+.ncgcl-utility-right a:hover { color: #fff; }
+.ncgcl-utility-divider { width: 1px; height: 14px; background: rgba(255,255,255,0.15); }
+
+/* === Brand logo override === */
+.brand-logo {
+  display: flex; align-items: center; gap: 14px; text-decoration: none;
+}
+.brand-logo img { height: 34px; width: auto; }
+.brand-logo .brand-meta {
+  border-left: 1px solid #D9DDE2; padding-left: 14px;
+}
+.brand-logo .brand-meta .ml1 {
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #8A95A0; font-weight: 600;
+}
+.brand-logo .brand-meta .ml2 {
+  font-size: 13px; color: var(--cerulean); font-weight: 600;
+  letter-spacing: -0.005em; margin-top: 2px;
+}
+
+/* === Mobile utility bar === */
+@media (max-width: 640px) {
+  .ncgcl-utility-inner { padding: 0 1rem; height: 32px; }
+  .ncgcl-utility-left { gap: 0.6rem; font-size: 11px; }
+  .ncgcl-utility-right { gap: 0.85rem; }
+  .ncgcl-utility-left span { display: none; }
+}
+
+/* === NCGCL Brand Footer === */
+footer.ncgcl-footer {
+  background: #013E5C; color: rgba(255,255,255,0.7);
+  margin-top: 4rem; padding: 3rem 0 1.5rem;
+  text-align: left;  /* override generic footer rule */
+  border-top: none;
+}
+.ncgcl-footer-inner { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+.ncgcl-footer-top {
+  display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
+  padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+.ncgcl-footer-brand img { height: 40px; margin-bottom: 1rem; }
+.ncgcl-footer-brand p {
+  font-size: 13px; color: rgba(255,255,255,0.7);
+  line-height: 1.6; max-width: 320px; font-weight: 300;
+}
+.ncgcl-footer-col h4 {
+  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--green); font-weight: 600; margin-bottom: 0.75rem;
+}
+.ncgcl-footer-col a {
+  display: block; font-size: 13px; color: rgba(255,255,255,0.7);
+  padding: 4px 0; text-decoration: none; font-weight: 300;
+  transition: color 0.15s ease;
+}
+.ncgcl-footer-col a:hover { color: #fff; }
+.ncgcl-footer-bottom {
+  padding-top: 1.5rem; font-size: 12px; color: rgba(255,255,255,0.5);
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;
+}
+@media (max-width: 720px) {
+  .ncgcl-footer-top { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ==================== UTILITY BAR (NCGCL brand) ==================== -->
+<div class="ncgcl-utility-bar">
+  <div class="ncgcl-utility-inner">
+    <div class="ncgcl-utility-left">
+      <strong>NCGCL</strong>
+      <span>National Credit Guarantee Company Limited</span>
+    </div>
+    <div class="ncgcl-utility-right">
+      <a href="index.html">Hub</a>
+      <span class="ncgcl-utility-divider"></span>
+      <a href="#">Staff Directory</a>
+      <a href="mailto:it@ncgcl.pk">IT Support</a>
+    </div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="index.html" class="brand-logo">
+        <img src="Company_Logo_transparent.png" alt="NCGCL">
+        <div class="brand-meta">
+          <div class="ml1">Policy Document</div>
+          <div class="ml2">Credit Risk & Capital Management Framework</div>
+        </div>
+      </a>
+      <div class="header-actions">
+        <a class="btn" href="index.html">← Hub</a>
+        <button class="btn" onclick="window.print()">Print / Save PDF</button>
+        <a class="btn" href="#dynamic-calculators">Dynamic Calculators</a>
+        <a class="btn" href="#quick-checklists">Quick Checklists</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="alert-banner" id="alertBanner">
+    <div class="alert-icon">⚠️</div>
+    <div class="alert-content">
+      <strong>Internal quick guide</strong>
+      <p>This page summarizes the Board-approved Credit Risk & Capital Management Policy for quick reference. The embedded calculators are management tools for screening and education; final approvals must use formally approved models, data, delegated authorities and committee minutes.</p>
+    </div>
+    <button class="alert-close" onclick="this.parentElement.style.display='none'">×</button>
+  </div>
+
+  <section class="page-hero" data-search="credit risk capital management framework policy risk sharing not transfer internal car economic capital expected loss unexpected loss raroc pricing">
+    <div class="section-label">Credit Risk & Capital Management</div>
+    <h1 class="page-title">NCGCL Credit Risk & Capital Management Framework</h1>
+    <p class="page-desc">A practical intranet guide for risk-taking, capital allocation, pricing, portfolio monitoring, stress testing and Board reporting. The framework operationalizes NCGCL’s core principle: unlock credit through controlled risk-sharing while preserving capital, maintaining AAA resilience and ensuring every guarantee is priced and governed by risk.</p>
+    <div class="search-row">
+      <input class="search-box" id="searchBox" type="search" placeholder="Search this guide: CAR, RAROC, HHI, first-loss, Stage 2, PFI scorecard, stress testing..." oninput="searchPage()">
+      <button class="btn" onclick="clearSearch()">Clear</button>
+    </div>
+  </section>
+
+  <nav class="quick-nav">
+    <a href="#policy-at-glance">At a Glance</a>
+    <a href="#framework-flow">Lifecycle</a>
+    <a href="#dynamic-calculators">Calculators</a>
+    <a href="#capital-framework">Capital</a>
+    <a href="#structures">Structures</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#portfolio">Portfolio Risk</a>
+    <a href="#ifrs9">IFRS 9</a>
+    <a href="#quick-checklists">Checklists</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+
+  <section id="policy-at-glance" data-search="at a glance maximum coverage pfi skin internal car leverage hhi aaa solvency risk capital core capital">
+    <div class="kpi-strip">
+      <div class="kpi-card"><div class="kpi-label">Max Guarantee Cover</div><div class="kpi-val">75%</div><div class="kpi-sub">100% guarantees prohibited</div></div>
+      <div class="kpi-card"><div class="kpi-label">Minimum PFI Skin</div><div class="kpi-val">25%</div><div class="kpi-sub">Moral hazard control</div></div>
+      <div class="kpi-card"><div class="kpi-label">Internal CAR Floor</div><div class="kpi-val">≥20%</div><div class="kpi-sub">Risk Capital / Internal RWA</div></div>
+      <div class="kpi-card"><div class="kpi-label">Gross Leverage Cap</div><div class="kpi-val">2×</div><div class="kpi-sub">Nominal guarantees / equity</div></div>
+      <div class="kpi-card"><div class="kpi-label">Core Capital</div><div class="kpi-val">Ring-fenced</div><div class="kpi-sub">Strategic solvency reserve</div></div>
+      <div class="kpi-card"><div class="kpi-label">HHI Red Zone</div><div class="kpi-val">&gt;2,500</div><div class="kpi-sub">Requires GC action plan</div></div>
+    </div>
+
+    <div class="section-label">Policy Intent</div>
+    <h2 class="section-title">What the Framework Does</h2>
+    <div class="grid-4">
+      <div class="card" data-search="risk sharing not risk transfer pfi retains risk moral hazard">
+        <div class="card-icon">🤝</div><span class="badge gold">Principle</span>
+        <h3 class="card-title">Risk-sharing, not risk transfer</h3>
+        <p class="card-desc">NCGCL catalyzes credit by sharing a defined part of credit risk with PFIs. PFIs must retain meaningful exposure in every transaction to preserve underwriting discipline, monitoring effort and recovery incentives.</p>
+        <div class="card-meta">Use this as the first test for every product design.</div>
+      </div>
+      <div class="card" data-search="aaa rating solvency standard confidence capital preservation regulatory capital relief">
+        <div class="card-icon">🏛️</div><span class="badge blue">Solvency</span>
+        <h3 class="card-title">AAA resilience as product value</h3>
+        <p class="card-desc">The framework treats NCGCL’s credit standing as central to its guarantee value proposition. Risk decisions must therefore be evaluated through their effect on solvency, capital adequacy and stakeholder confidence.</p>
+        <div class="card-meta">Economic capital should be aligned with a high-confidence solvency posture.</div>
+      </div>
+      <div class="card" data-search="core capital risk capital strategic reserve internal tier one underwriting capacity">
+        <div class="card-icon">💰</div><span class="badge green">Capital</span>
+        <h3 class="card-title">Core vs. Risk Capital</h3>
+        <p class="card-desc">Core Capital is ring-fenced to absorb unexpected losses. Risk Capital is the deployable surplus that supports guarantee issuance, subject to Internal CAR, leverage and exposure limits.</p>
+        <div class="card-meta">Guarantee capacity is based on Risk Capital, not total capital.</div>
+      </div>
+      <div class="card" data-search="systemic political risk overlay macroeconomic sovereign banking sector currency volatility">
+        <div class="card-icon">🌐</div><span class="badge red">Overlay</span>
+        <h3 class="card-title">Systemic risk overlay</h3>
+        <p class="card-desc">Quarterly overlays allow management and the GC to tighten limits, impose pricing surcharges, or pause high-risk segments when macro, political, sovereign, currency or banking-sector risk deteriorates.</p>
+        <div class="card-meta">Designed to make risk appetite forward-looking.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="framework-flow" data-search="risk lifecycle risk appetite pd lgd ead structuring capital pricing monitoring">
+    <div class="section-label">Operating Model</div>
+    <h2 class="section-title">Credit Risk Lifecycle</h2>
+    <div class="policy-flow">
+      <div class="flow-step"><div class="flow-no">1</div><div class="flow-title">Set Appetite</div><div class="flow-desc">Board-approved risk appetite defines leverage, concentration, RAROC and Internal CAR thresholds.</div></div>
+      <div class="flow-step"><div class="flow-no">2</div><div class="flow-title">Estimate PD/LGD/EAD</div><div class="flow-desc">Assign probability of default, loss given default and exposure at default to every obligor, pool or instrument.</div></div>
+      <div class="flow-step"><div class="flow-no">3</div><div class="flow-title">Choose Structure</div><div class="flow-desc">Select pari passu, first-loss or second-loss structure based on risk-sharing, capital intensity and development objective.</div></div>
+      <div class="flow-step"><div class="flow-no">4</div><div class="flow-title">Allocate Capital</div><div class="flow-desc">Calculate expected loss, unexpected loss, economic capital and impact on Internal CAR and leverage capacity.</div></div>
+      <div class="flow-step"><div class="flow-no">5</div><div class="flow-title">Price Risk</div><div class="flow-desc">Guarantee fee = Expected Loss + Capital Charge + Admin Cost Load, calibrated through target RAROC.</div></div>
+      <div class="flow-step"><div class="flow-no">6</div><div class="flow-title">Monitor & Stress</div><div class="flow-desc">Track KRIs, HHI, watchlists, RAROC, ECL staging, stress losses and GC/Board actions.</div></div>
+    </div>
+  </section>
+
+  <section id="dynamic-calculators" data-search="dynamic calculators internal car expected loss economic capital raroc guarantee fee hhi stress testing basel irb calculation">
+    <div class="section-label">Interactive Tools</div>
+    <h2 class="section-title">Dynamic Calculators</h2>
+    <p class="section-intro">These calculators translate the policy into practical screening logic. Inputs can be changed live for management discussion, policy training, product design and early-stage deal screening. All values are in PKR million unless stated otherwise.</p>
+
+    <div class="calc-panel">
+      <div class="calc-head">
+        <div><h3>1. Capital Capacity & Internal CAR Calculator</h3><p>Tests deployable Risk Capital, Internal CAR, RWA headroom and nominal guarantee headroom.</p></div>
+        <button class="btn" onclick="resetCapital()">Reset</button>
+      </div>
+      <div class="calc-body">
+        <div class="form-grid">
+          <div class="form-field"><label>Paid-up capital</label><input id="paidUp" type="number" value="8000" step="100" oninput="calculateAll()"></div>
+          <div class="form-field"><label>Retained earnings</label><input id="retained" type="number" value="0" step="100" oninput="calculateAll()"></div>
+          <div class="form-field"><label>Core capital / strategic reserve</label><input id="coreCapital" type="number" value="2000" step="100" oninput="calculateAll()"></div>
+          <div class="form-field"><label>Existing nominal guarantees</label><input id="existingNominal" type="number" value="0" step="100" oninput="calculateAll()"></div>
+          <div class="form-field"><label>Existing internal RWA / EC</label><input id="existingRWA" type="number" value="0" step="50" oninput="calculateAll()"></div>
+          <div class="form-field"><label>Target CAR floor (%)</label><input id="targetCAR" type="number" value="20" step="1" oninput="calculateAll()"></div>
+          <div class="form-field"><label>Nominal leverage cap (× equity)</label><input id="leverageMultiple" type="number" value="2" step="0.1" oninput="calculateAll()"></div>
+          <div class="form-field"><label>Portfolio DBF (%)</label><input id="dbf" type="number" value="15" step="1" oninput="calculateAll()"></div>
+          <div class="formula-box full"><strong>Logic:</strong> Equity = paid-up capital + retained earnings. Risk Capital = Equity − Core Capital. Max Internal RWA = Risk Capital ÷ Target CAR. Nominal Leverage Cap = Equity × leverage multiple. Portfolio DBF is shown as a stress/aggregation assumption and can be used by Risk Management for portfolio-level aggregation.</div>
+        </div>
+        <div class="result-grid">
+          <div class="result-card"><div class="result-label">Total Equity</div><div class="result-value" id="outEquity">—</div><div class="result-sub">Paid-up + retained earnings</div></div>
+          <div class="result-card"><div class="result-label">Risk Capital</div><div class="result-value" id="outRiskCapital">—</div><div class="result-sub">Deployable capital after Core Capital reserve</div></div>
+          <div class="result-card"><div class="result-label">Current Internal CAR</div><div class="result-value" id="outCAR">—</div><div class="result-sub" id="outCARSub">Based on existing RWA</div></div>
+          <div class="result-card"><div class="result-label">Max Internal RWA</div><div class="result-value" id="outMaxRWA">—</div><div class="result-sub">CAR-bound guarantee risk capacity</div></div>
+          <div class="result-card"><div class="result-label">RWA Headroom</div><div class="result-value" id="outRWAHeadroom">—</div><div class="result-sub">Max RWA minus existing RWA</div></div>
+          <div class="result-card"><div class="result-label">Nominal Headroom</div><div class="result-value" id="outNomHeadroom">—</div><div class="result-sub">Leverage cap minus existing nominal guarantees</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="calc-panel">
+      <div class="calc-head">
+        <div><h3>2. Deal Capital, Expected Loss & RAROC Pricing Calculator</h3><p>Estimates guaranteed exposure, EL, EC, annual guarantee fee and effect on Internal CAR.</p></div>
+        <button class="btn" onclick="resetDeal()">Reset</button>
+      </div>
+      <div class="calc-body">
+        <div class="form-grid">
+          <div class="form-field"><label>Underlying loan / pool amount</label><input id="loanAmount" type="number" value="1000" step="50" oninput="calculateAll()"></div>
+          <div class="form-field"><label>Guarantee coverage (%)</label><input id="coverage" type="number" value="50" min="0" max="75" step="1" oninput="calculateAll()"></div>
+          <div class="form-field"><label>Structure</label><select id="structure" onchange="calculateAll()"><option value="PP">Pari Passu</option><option value="FL">First-Loss</option><option value="SL">Second-Loss / Mezzanine</option></select></div>
+          <div class="form-field"><label>One-year PD (%)</label><input id="pd" type="number" value="3" min="0.01" max="99" step="0.1" oninput="calculateAll()"></div>
+          <div class="form-field"><label>LGD (%)</label><input id="lgd" type="number" value="45" min="0" max="100" step="1" oninput="calculateAll()"></div>
+          <div class="form-field"><label>Maturity (years)</label><input id="maturity" type="number" value="2.5" min="0.25" max="10" step="0.25" oninput="calculateAll()"></div>
+          <div class="form-field"><label>Target RAROC (%)</label><input id="targetRAROC" type="number" value="15" min="0" step="0.5" oninput="calculateAll()"></div>
+          <div class="form-field"><label>Admin cost load (bps)</label><input id="adminBps" type="number" value="30" min="0" step="5" oninput="calculateAll()"></div>
+          <div class="form-field"><label>First-loss attachment (%) for SL</label><input id="slAttach" type="number" value="5" min="0" max="100" step="1" oninput="calculateAll()"></div>
+          <div class="form-field"><label>SL capital factor (%)</label><input id="slCapitalFactor" type="number" value="25" min="15" max="40" step="1" oninput="calculateAll()"></div>
+          <div class="form-field"><label>Confidence level (%)</label><input id="confidence" type="number" value="99.9" min="90" max="99.99" step="0.01" oninput="calculateAll()"></div>
+          <div class="form-field"><label>Overlay multiplier</label><input id="overlay" type="number" value="1.00" min="1" step="0.01" oninput="calculateAll()"></div>
+          <div class="formula-box full"><strong>Deal logic:</strong> Guaranteed Amount = Loan × coverage. PP EL = Guaranteed Amount × PD × LGD. FL EL = min(guarantee cap, whole-loan expected loss). SL EL = min(guarantee cap, max(whole-loan expected loss − first-loss attachment, 0)). PP EC uses an IRB-style capital intensity; FL EC uses 100% of guaranteed cap; SL EC uses a configurable mezzanine factor, default 25%.</div>
+        </div>
+        <div class="result-grid">
+          <div class="result-card"><div class="result-label">Guaranteed Amount</div><div class="result-value" id="outGuarantee">—</div><div class="result-sub">Nominal contingent exposure</div></div>
+          <div class="result-card"><div class="result-label">Base IRB K</div><div class="result-value" id="outBaseK">—</div><div class="result-sub">Before structure-specific capital treatment</div></div>
+          <div class="result-card"><div class="result-label">Expected Loss</div><div class="result-value" id="outEL">—</div><div class="result-sub" id="outELSub">Annual cost of risk</div></div>
+          <div class="result-card"><div class="result-label">Economic Capital</div><div class="result-value" id="outEC">—</div><div class="result-sub" id="outECSub">Unexpected-loss capital allocation</div></div>
+          <div class="result-card"><div class="result-label">Capital Charge</div><div class="result-value" id="outCapCharge">—</div><div class="result-sub">EC × target RAROC</div></div>
+          <div class="result-card"><div class="result-label">Target Annual Fee</div><div class="result-value" id="outFee">—</div><div class="result-sub" id="outFeeRate">EL + capital charge + admin cost</div></div>
+          <div class="result-card"><div class="result-label">Post-deal CAR</div><div class="result-value" id="outPostCAR">—</div><div class="result-sub" id="outPostCARSub">After adding deal EC to existing Internal RWA</div></div>
+          <div class="result-card"><div class="result-label">Decision Flag</div><div class="result-value" id="outDecision">—</div><div class="result-sub" id="outDecisionSub">Policy capacity screen</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="calc-panel">
+      <div class="calc-head">
+        <div><h3>3. Stress Test Overlay</h3><p>Applies adverse PD/LGD shocks to the deal and estimates impact on EL, fee adequacy and post-deal CAR.</p></div>
+        <button class="btn" onclick="resetStress()">Reset</button>
+      </div>
+      <div class="calc-body">
+        <div class="form-grid">
+          <div class="form-field"><label>PD stress multiplier</label><input id="pdStress" type="number" value="2.0" min="1" step="0.1" oninput="calculateAll()"></div>
+          <div class="form-field"><label>LGD uplift percentage points</label><input id="lgdStress" type="number" value="10" min="0" max="100" step="1" oninput="calculateAll()"></div>
+          <div class="form-field"><label>Capital overlay under stress</label><input id="stressCapitalOverlay" type="number" value="1.25" min="1" step="0.05" oninput="calculateAll()"></div>
+          <div class="form-field"><label>Pricing surcharge under high uncertainty (bps)</label><input id="surchargeBps" type="number" value="25" min="0" step="5" oninput="calculateAll()"></div>
+          <div class="formula-box full"><strong>Stress logic:</strong> Stressed PD = PD × multiplier, capped at 100%. Stressed LGD = LGD + uplift, capped at 100%. Stressed EC = base deal EC × capital overlay. The surcharge illustrates the policy lever available during high-uncertainty conditions.</div>
+        </div>
+        <div class="result-grid">
+          <div class="result-card"><div class="result-label">Stressed PD / LGD</div><div class="result-value" id="outStressPDLGD">—</div><div class="result-sub">After applying scenario shock</div></div>
+          <div class="result-card"><div class="result-label">Stressed Expected Loss</div><div class="result-value" id="outStressEL">—</div><div class="result-sub">Scenario cost of risk</div></div>
+          <div class="result-card"><div class="result-label">Stressed Economic Capital</div><div class="result-value" id="outStressEC">—</div><div class="result-sub">Deal EC × stress overlay</div></div>
+          <div class="result-card"><div class="result-label">Stressed Fee Rate</div><div class="result-value" id="outStressFeeRate">—</div><div class="result-sub">Includes uncertainty surcharge</div></div>
+          <div class="result-card"><div class="result-label">Stressed Post-deal CAR</div><div class="result-value" id="outStressCAR">—</div><div class="result-sub" id="outStressCARSub">After stressed EC</div></div>
+          <div class="result-card"><div class="result-label">Stress Action</div><div class="result-value" id="outStressAction">—</div><div class="result-sub" id="outStressActionSub">Management action trigger</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="calc-panel">
+      <div class="calc-head">
+        <div><h3>4. HHI Concentration Calculator</h3><p>Measures sector, PFI, region or program concentration using share percentages.</p></div>
+        <button class="btn" onclick="resetHHI()">Reset</button>
+      </div>
+      <div class="calc-body">
+        <div class="form-grid">
+          <div class="form-field full"><label>Exposure shares (%) — comma-separated</label><textarea id="hhiShares" oninput="calculateAll()">25, 20, 15, 12, 10, 8, 5, 5</textarea></div>
+          <div class="formula-box full"><strong>HHI logic:</strong> HHI = Σ share². A perfectly diversified portfolio has a lower HHI; concentration increases as exposure is dominated by fewer sectors, PFIs, regions or programs. Thresholds: &lt;1,500 Green; 1,500–2,500 Amber; &gt;2,500 Red.</div>
+        </div>
+        <div class="result-grid">
+          <div class="result-card"><div class="result-label">Total Shares Entered</div><div class="result-value" id="outHHITotal">—</div><div class="result-sub">Should approximate 100%</div></div>
+          <div class="result-card"><div class="result-label">HHI</div><div class="result-value" id="outHHI">—</div><div class="result-sub" id="outHHIStatus">Concentration status</div></div>
+          <div class="result-card"><div class="result-label">Largest Share</div><div class="result-value" id="outHHILargest">—</div><div class="result-sub">Single exposure concentration</div></div>
+          <div class="result-card"><div class="result-label">GC Trigger</div><div class="result-value" id="outHHITrigger">—</div><div class="result-sub" id="outHHITriggerSub">Monthly monitoring trigger</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="capital-framework" data-search="capital framework core capital risk capital internal car rwas leverage cap core reserve maximum rwa">
+    <div class="section-label">Capital Management</div>
+    <h2 class="section-title">Capital Rules & Capacity Constraints</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Element</th><th>Policy Meaning</th><th>Formula / Threshold</th><th>Management Use</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Capital Base</strong></td><td>Paid-up capital plus retained earnings.</td><td>Capital Base = Paid-up Capital + Retained Earnings</td><td>Starting point for solvency, leverage and strategic reserve calculations.</td></tr>
+          <tr><td><strong>Core Capital</strong></td><td>Ring-fenced strategic reserve to absorb unexpected loss and support AAA-style resilience.</td><td>Initially referenced as approximately PKR 2 billion; recalculated at least annually.</td><td>Not available for growth or new underwriting capacity.</td></tr>
+          <tr><td><strong>Risk Capital</strong></td><td>Deployable capital after deducting Core Capital.</td><td>Risk Capital = Total Equity − Core Capital</td><td>Main capital pool used to support guarantee issuance.</td></tr>
+          <tr><td><strong>Internal CAR</strong></td><td>Bespoke capital adequacy ratio for guarantee risk.</td><td>Risk Capital / Internal RWA; floor ≥20%.</td><td>Primary stop/go metric for growth and portfolio expansion.</td></tr>
+          <tr><td><strong>Max Internal RWA</strong></td><td>CAR-bound risk-taking capacity.</td><td>Risk Capital / Target CAR; at 20%, ≈ 5× Risk Capital.</td><td>Shows maximum economic-capital-equivalent risk capacity.</td></tr>
+          <tr><td><strong>Gross Leverage Cap</strong></td><td>Secondary balance-sheet constraint on nominal guarantees.</td><td>Total nominal guarantees ≤ 2× total equity.</td><td>Prevents excessive headline contingent liability growth even if modelled capital is low.</td></tr>
+          <tr><td><strong>Fallback RWA</strong></td><td>Conservative treatment where model-based risk weight is unavailable.</td><td>100% risk weight on guaranteed amount.</td><td>Prevents under-capitalization where data/model confidence is weak.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="structures" data-search="guarantee structures pari passu first loss second loss mezzanine capital efficiency moral hazard">
+    <div class="section-label">Risk Structuring</div>
+    <h2 class="section-title">Guarantee Structures & Capital Treatment</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Feature</th><th>Pari Passu</th><th>First-Loss</th><th>Second-Loss / Mezzanine</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Structure</strong></td><td>NCGCL and PFI share every rupee of loss pro-rata.</td><td>NCGCL absorbs initial losses up to a defined cap.</td><td>NCGCL pays only after a first-loss tranche is absorbed by the PFI/third party.</td></tr>
+          <tr><td><strong>Risk Exposure</strong></td><td>Linear and proportional to underlying borrower risk.</td><td>Concentrated in the most frequent and probable losses.</td><td>Remote exposure to more severe losses beyond attachment point.</td></tr>
+          <tr><td><strong>Capital Allocation</strong></td><td>Proportional to guarantee share and underlying EC.</td><td>100% of the guaranteed cap unless strong simulation evidence supports lower capital.</td><td>Fraction of guaranteed amount, model-dependent and typically lower than first-loss.</td></tr>
+          <tr><td><strong>Capital Efficiency</strong></td><td>Moderate.</td><td>Very low.</td><td>Very high.</td></tr>
+          <tr><td><strong>Moral Hazard Control</strong></td><td>High because PFI shares every loss.</td><td>Low unless strong covenants, pricing and monitoring are embedded.</td><td>Very high because PFI has first-dollar exposure.</td></tr>
+          <tr><td><strong>Best Use Case</strong></td><td>Standard SME working capital, term lending and scalable programs.</td><td>New, high-development-impact segments where catalytic risk absorption is required.</td><td>Seasoned portfolios, pooled risk and structured finance applications.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="verdict"><div class="verdict-label">Capital efficiency principle</div><div class="verdict-text">Pari passu structures are the default scalable risk-sharing product; second-loss structures are most capital-efficient where PFIs can absorb first loss; first-loss structures should be capped, priced materially higher and reserved for strategically important inclusion or pilot programs.</div></div>
+  </section>
+
+  <section id="pricing" data-search="risk based pricing raroc fee expected loss capital charge administrative cost pricing matrix pd lgd">
+    <div class="section-label">Pricing</div>
+    <h2 class="section-title">Risk-Based Pricing Model</h2>
+    <div class="callout-grid">
+      <div class="callout">
+        <h3>Annual Guarantee Fee</h3>
+        <p><strong>Annual Guarantee Fee = Expected Loss + Capital Charge + Administrative Cost Load</strong></p>
+        <ul class="clean">
+          <li><strong>Expected Loss:</strong> the actuarial cost of risk based on PD, LGD and EAD.</li>
+          <li><strong>Capital Charge:</strong> Economic Capital × target RAROC.</li>
+          <li><strong>Admin Cost Load:</strong> underwriting, monitoring, legal, operations and portfolio management cost recovery.</li>
+        </ul>
+      </div>
+      <div class="callout gold">
+        <h3>Dynamic Recalibration</h3>
+        <p>Pricing assumptions should be reviewed annually against actual loss experience. Underperforming sectors, PFIs or products should receive upward PD/LGD recalibration or pricing surcharge; outperforming segments may be moderated subject to development impact and Board risk appetite.</p>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>PD / Internal Rating</th><th>LGD &lt;25% Well-Secured</th><th>LGD 25–55% Partially Secured</th><th>LGD &gt;55% Unsecured</th></tr></thead>
+        <tbody>
+          <tr><td><strong>IRR 1 (&lt;1% PD)</strong></td><td>~120 bps</td><td>~170 bps</td><td>~220 bps</td></tr>
+          <tr><td><strong>IRR 2 (1–3% PD)</strong></td><td>~210 bps</td><td>~285 bps</td><td>~380 bps</td></tr>
+          <tr><td><strong>IRR 3 (3–6% PD)</strong></td><td>~250 bps</td><td>~400 bps</td><td>~550 bps</td></tr>
+          <tr><td><strong>IRR 4 (&gt;6% PD)</strong></td><td>~350 bps</td><td>~550 bps</td><td>&gt;700 bps</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small-note">Indicative annual fee rates on guaranteed amount, assuming a 50% pari passu structure, 15% target RAROC and 30 bps administrative cost load. First-loss structures should be materially higher due to 100% capital allocation.</p>
+  </section>
+
+  <section id="portfolio" data-search="portfolio risk management concentration limits stress testing hhi sector pfi program geographic unrated partner">
+    <div class="section-label">Portfolio Risk</div>
+    <h2 class="section-title">Concentration Limits & Stress Testing</h2>
+    <div class="grid-3">
+      <div class="card"><div class="card-icon">🏭</div><span class="badge blue">Sector</span><h3 class="card-title">Single Sector</h3><p class="card-desc">Exposure to any single economic sector is capped at 20% of the outstanding guarantee portfolio.</p><div class="card-meta">High-risk sectors such as speculative real estate are capped at 5% unless approved mitigants exist.</div></div>
+      <div class="card"><div class="card-icon">🏦</div><span class="badge blue">PFI</span><h3 class="card-title">Single PFI</h3><p class="card-desc">Exposure to any single PFI or related group is capped at 25% of total contingent guarantee portfolio.</p><div class="card-meta">Unrated PFI exposure capped at 10% of total equity.</div></div>
+      <div class="card"><div class="card-icon">📦</div><span class="badge blue">Program</span><h3 class="card-title">Single Program</h3><p class="card-desc">Any single guarantee program is capped at 20% of NCGCL total equity.</p><div class="card-meta">Prevents mission-critical damage from failure of a single scheme.</div></div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Metric</th><th>Green</th><th>Amber</th><th>Red</th><th>Required Action</th></tr></thead>
+        <tbody>
+          <tr><td><strong>HHI concentration</strong></td><td>&lt;1,500</td><td>1,500–2,500</td><td>&gt;2,500</td><td>Monthly calculation for PFI, sector and region; Red requires GC review and action plan.</td></tr>
+          <tr><td><strong>Internal CAR</strong></td><td>&gt;25%</td><td>20–25%</td><td>&lt;20%</td><td>Red requires halt/slowdown of new issuance until capital position restored.</td></tr>
+          <tr><td><strong>Past-due trend</strong></td><td>Stable/declining</td><td>Two-period upward trend</td><td>Sharp increase or watchlist migration</td><td>Enhanced monitoring, PFI action plan and tightened underwriting.</td></tr>
+          <tr><td><strong>Stress test breach</strong></td><td>No breach</td><td>Near threshold</td><td>CAR/leverage breach under severe scenario</td><td>Pre-agreed management actions, pricing surcharge, sector pause or capital plan.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="ifrs9" data-search="ifrs 9 expected credit loss ecl staging stage 1 stage 2 stage 3 sicr triggers provisioning">
+    <div class="section-label">Provisioning</div>
+    <h2 class="section-title">IFRS 9 Expected Credit Loss Alignment</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Stage</th><th>Risk Status</th><th>ECL Basis</th><th>Indicative Triggers</th><th>Management Response</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Stage 1</strong></td><td>No significant increase in credit risk since inception.</td><td>12-month PD.</td><td>New or performing guarantees with stable risk profile.</td><td>Routine monitoring and standard reporting.</td></tr>
+          <tr><td><strong>Stage 2</strong></td><td>Significant increase in credit risk.</td><td>Lifetime PD.</td><td>&gt;30 days past due, downgrade, adverse watchlist event, covenant stress or material deterioration.</td><td>Watchlist, enhanced monitoring, revised ECL, possible PFI remediation plan.</td></tr>
+          <tr><td><strong>Stage 3</strong></td><td>Credit-impaired/defaulted exposure.</td><td>Lifetime PD and recovery-adjusted LGD.</td><td>Default event, non-performing status, restructuring distress or claim likelihood.</td><td>Claim review, recovery strategy, provision validation and Board reporting.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="mitigation" data-search="risk mitigation pfi scorecard collateral funded reserve reinsurance climate risk moral hazard liquidity claims">
+    <div class="section-label">Risk Mitigation</div>
+    <h2 class="section-title">Mitigation Tools Embedded in the Framework</h2>
+    <div class="grid-3">
+      <div class="card"><div class="card-icon">🧾</div><span class="badge gold">PFI</span><h3 class="card-title">PFI Counterparty Scorecard</h3><p class="card-desc">Weighted assessment across financial strength, governance and operational capacity. Active PFIs should be re-scored annually and linked to exposure limits and monitoring intensity.</p><div class="card-meta">Weights: Financial Strength 40%, Governance 30%, Operational Capacity 30%.</div></div>
+      <div class="card"><div class="card-icon">🏗️</div><span class="badge green">Security</span><h3 class="card-title">Collateral & Funded Reserves</h3><p class="card-desc">Collateral quality reduces LGD. For high-risk pilots, funded first-loss reserves from PFIs or development partners can materially reduce NCGCL capital consumption.</p><div class="card-meta">Focus: enforceability, valuation, control and claim timing.</div></div>
+      <div class="card"><div class="card-icon">🛡️</div><span class="badge blue">Tail Risk</span><h3 class="card-title">Counter-guarantees & Reinsurance</h3><p class="card-desc">As the book grows, counter-guarantees or reinsurance can transfer part of tail risk and create additional capital relief.</p><div class="card-meta">Best suited for high-correlation or catastrophe-like exposures.</div></div>
+      <div class="card"><div class="card-icon">🌦️</div><span class="badge red">Emerging</span><h3 class="card-title">Climate Risk Integration</h3><p class="card-desc">Develop sectoral heatmaps for transition risk and geographic maps for physical risk hotspots. Integrate climate due diligence into PFI and portfolio monitoring.</p><div class="card-meta">Future state: climate scenarios in stress testing.</div></div>
+      <div class="card"><div class="card-icon">🔍</div><span class="badge gold">Monitoring</span><h3 class="card-title">Early Intervention</h3><p class="card-desc">Pre-defined triggers should prompt enhanced PFI reporting, tightened underwriting, remedial action plans or temporary suspension of new guarantees in stressed segments.</p><div class="card-meta">Monthly management reporting; quarterly GC reporting.</div></div>
+      <div class="card"><div class="card-icon">💧</div><span class="badge green">Liquidity</span><h3 class="card-title">Liquidity & Claims Readiness</h3><p class="card-desc">Capital must be invested prudently so that legitimate claims can be paid promptly, maintaining trust with PFIs while preserving solvency.</p><div class="card-meta">Claims process should be transparent, documented and auditable.</div></div>
+    </div>
+  </section>
+
+  <section id="governance" data-search="governance board guarantee committee risk management monthly quarterly annual review internal audit">
+    <div class="section-label">Governance & Reporting</div>
+    <h2 class="section-title">Governance, Reporting and Review Cycle</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Forum / Function</th><th>Role</th><th>Cadence</th><th>Minimum Output</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Board of Directors</strong></td><td>Ultimate owner of risk framework, policy approval, risk appetite, capital allocation and AAA-preservation oversight.</td><td>At least annual policy approval; quarterly risk updates through committees.</td><td>Approved risk appetite, capital limits and policy amendments.</td></tr>
+          <tr><td><strong>Guarantee Committee</strong></td><td>Oversees guarantee risk profile, approvals within delegated limits, overlays and sector/PFI risk constraints.</td><td>Quarterly or more frequently if risk conditions warrant.</td><td>Portfolio risk dashboard, limit breaches, stress test results, policy levers.</td></tr>
+          <tr><td><strong>Risk Management</strong></td><td>Owns PD/LGD/EAD estimation, capital model, pricing analysis, HHI, stress testing and watchlist analytics.</td><td>Monthly management reporting; quarterly committee reporting.</td><td>KRI pack, risk report, watchlist, RAROC by program, limit utilization.</td></tr>
+          <tr><td><strong>Internal Audit</strong></td><td>Independent review of compliance with policy, correctness of calculations and accuracy/timeliness of reporting.</td><td>Periodic, risk-based.</td><td>Audit report, findings, management action tracker.</td></tr>
+          <tr><td><strong>Policy Review</strong></td><td>Update policy as portfolio performance data, macro conditions and lessons learned emerge.</td><td>Annual; semi-annual during initial operating years.</td><td>Board-approved updated policy and model recalibration memo.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="quick-checklists" data-search="quick checklist underwriting portfolio board management pfi deal approval">
+    <div class="section-label">Desk Reference</div>
+    <h2 class="section-title">Quick Checklists</h2>
+    <div class="checklist">
+      <div class="check-item"><h4>Before approving a guarantee</h4><p>Confirm PFI eligibility, borrower/program PD and LGD, sector/PFI/program headroom, guarantee structure, PFI retained risk, pricing adequacy, legal enforceability and post-deal CAR/leverage impact.</p></div>
+      <div class="check-item"><h4>Before recommending a first-loss structure</h4><p>Confirm development rationale, why pari passu or second-loss is insufficient, funded reserve availability, 100% capital treatment, higher fee, tighter covenants and explicit GC/Board visibility.</p></div>
+      <div class="check-item"><h4>Monthly risk pack</h4><p>Include exposure vs limits, Internal CAR, leverage, HHI by sector/PFI/region, watchlist migration, past-due trend, claims/recoveries, RAROC by product and PFI reporting quality.</p></div>
+      <div class="check-item"><h4>Quarterly GC / Board pack</h4><p>Include systemic risk overlay, stress scenarios, limit breaches, pricing recalibration issues, top concentrations, Stage 2/Stage 3 movements, emerging climate/geographic risks and required policy actions.</p></div>
+      <div class="check-item"><h4>Annual model review</h4><p>Back-test PD/LGD assumptions, loss experience, admin cost load, capital intensity by structure, ECL staging triggers, pricing matrix and portfolio diversification assumptions.</p></div>
+      <div class="check-item"><h4>Data quality checks</h4><p>Validate obligor ID, PFI ID, sector, region, guarantee amount, outstanding principal, arrears status, collateral, recoveries, claim status and all fields used in ECL and capital calculations.</p></div>
+    </div>
+  </section>
+
+  <section id="faq" data-search="faq frequently asked questions credit risk capital management policy">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <div class="accordion">
+      <div class="accordion-item open"><button class="accordion-head" onclick="toggleAccordion(this)"><span class="accordion-title">Why does the policy prohibit 100% guarantees?</span><span>＋</span></button><div class="accordion-body">Because NCGCL is designed as a risk-sharing institution, not a risk-transfer vehicle. If PFIs do not retain meaningful exposure, they may have weaker incentives to underwrite, monitor and recover loans properly. The 75% maximum cover preserves at least 25% PFI skin-in-the-game.</div></div>
+      <div class="accordion-item"><button class="accordion-head" onclick="toggleAccordion(this)"><span class="accordion-title">Why is Core Capital ring-fenced?</span><span>＋</span></button><div class="accordion-body">Core Capital is a strategic reserve for unexpected losses and claims under severe stress. It protects NCGCL’s solvency and AAA-style resilience, so it is not available for routine growth or new guarantee issuance.</div></div>
+      <div class="accordion-item"><button class="accordion-head" onclick="toggleAccordion(this)"><span class="accordion-title">What is the difference between Expected Loss and Economic Capital?</span><span>＋</span></button><div class="accordion-body">Expected Loss is the average predictable credit loss and should be covered through guarantee fees and provisions. Economic Capital covers unexpected loss volatility and therefore determines how much Risk Capital is consumed by the transaction.</div></div>
+      <div class="accordion-item"><button class="accordion-head" onclick="toggleAccordion(this)"><span class="accordion-title">Why are first-loss guarantees expensive?</span><span>＋</span></button><div class="accordion-body">First-loss guarantees absorb the earliest and most probable losses. The policy therefore treats them as highly capital-intensive, generally requiring capital equal to 100% of the guaranteed cap. This makes the capital charge and required fee materially higher than pari passu or second-loss structures.</div></div>
+      <div class="accordion-item"><button class="accordion-head" onclick="toggleAccordion(this)"><span class="accordion-title">How should HHI be used?</span><span>＋</span></button><div class="accordion-body">HHI should be calculated monthly for PFI, sector and regional concentration. It is not a replacement for hard exposure caps; it supplements them by detecting whether portfolio exposure is becoming concentrated even before a single hard limit is breached.</div></div>
+      <div class="accordion-item"><button class="accordion-head" onclick="toggleAccordion(this)"><span class="accordion-title">When should systemic overlays be activated?</span><span>＋</span></button><div class="accordion-body">Overlays should be considered when macroeconomic, sovereign, political, currency, banking-sector or sector-specific conditions deteriorate. Possible actions include pricing surcharges, tighter limits, lower coverage, higher collateral requirements or a temporary pause in new guarantees.</div></div>
+    </div>
+  </section>
+
+  <div class="verdict" data-search="bottom line conclusion controlled risk sharing capital discipline board quick access intranet">
+    <div class="verdict-label">Bottom line</div>
+    <div class="verdict-text">The Credit Risk & Capital Management Framework is the engine that converts NCGCL’s development mandate into disciplined, measurable and Board-governed risk-taking. The operating discipline is simple: identify risk, quantify PD/LGD/EAD, choose the right structure, allocate capital, price through RAROC, monitor concentration and intervene early when portfolio signals deteriorate.</div>
+  </div>
+</div>
+<script>
+function num(id) {
+  const v = parseFloat(document.getElementById(id).value);
+  return Number.isFinite(v) ? v : 0;
+}
+function pct(id) { return num(id) / 100; }
+function fmtMoney(x) {
+  if (!Number.isFinite(x)) return '—';
+  const sign = x < 0 ? '-' : '';
+  x = Math.abs(x);
+  if (x >= 1000) return sign + x.toLocaleString(undefined, {maximumFractionDigits: 0});
+  if (x >= 10) return sign + x.toLocaleString(undefined, {maximumFractionDigits: 1});
+  return sign + x.toLocaleString(undefined, {maximumFractionDigits: 2});
+}
+function fmtPct(x, digits=1) {
+  if (!Number.isFinite(x)) return '—';
+  return (x * 100).toLocaleString(undefined, {maximumFractionDigits: digits}) + '%';
+}
+function fmtBps(x) {
+  if (!Number.isFinite(x)) return '—';
+  return Math.round(x * 10000).toLocaleString() + ' bps';
+}
+function setText(id, text) { document.getElementById(id).textContent = text; }
+function statusSpan(label, cls) { return `<span class="status ${cls}">${label}</span>`; }
+
+// Error function approximation for normal CDF
+function erf(x) {
+  const sign = x >= 0 ? 1 : -1;
+  x = Math.abs(x);
+  const a1 = 0.254829592, a2 = -0.284496736, a3 = 1.421413741, a4 = -1.453152027, a5 = 1.061405429;
+  const p = 0.3275911;
+  const t = 1 / (1 + p * x);
+  const y = 1 - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Math.exp(-x * x);
+  return sign * y;
+}
+function normCDF(x) { return 0.5 * (1 + erf(x / Math.SQRT2)); }
+
+// Acklam inverse normal approximation
+function normInv(p) {
+  if (p <= 0 || p >= 1) return NaN;
+  const a = [-39.6968302866538, 220.946098424521, -275.928510446969, 138.357751867269, -30.6647980661472, 2.50662827745924];
+  const b = [-54.4760987982241, 161.585836858041, -155.698979859887, 66.8013118877197, -13.2806815528857];
+  const c = [-0.00778489400243029, -0.322396458041136, -2.40075827716184, -2.54973253934373, 4.37466414146497, 2.93816398269878];
+  const d = [0.00778469570904146, 0.32246712907004, 2.445134137143, 3.75440866190742];
+  const plow = 0.02425;
+  const phigh = 1 - plow;
+  let q, r;
+  if (p < plow) {
+    q = Math.sqrt(-2 * Math.log(p));
+    return (((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) / ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1);
+  }
+  if (p > phigh) {
+    q = Math.sqrt(-2 * Math.log(1 - p));
+    return -(((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) / ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1);
+  }
+  q = p - 0.5;
+  r = q * q;
+  return (((((a[0] * r + a[1]) * r + a[2]) * r + a[3]) * r + a[4]) * r + a[5]) * q / (((((b[0] * r + b[1]) * r + b[2]) * r + b[3]) * r + b[4]) * r + 1);
+}
+
+function baseIRBK(pd, lgd, m, confidence) {
+  pd = Math.min(Math.max(pd, 0.0001), 0.9999);
+  lgd = Math.min(Math.max(lgd, 0), 1);
+  m = Math.max(0.25, Math.min(m, 10));
+  const expTerm = (1 - Math.exp(-50 * pd)) / (1 - Math.exp(-50));
+  const R = 0.12 * expTerm + 0.24 * (1 - expTerm);
+  const b = Math.pow(0.11852 - 0.05478 * Math.log(pd), 2);
+  const asset = (1 / Math.sqrt(1 - R)) * normInv(pd) + Math.sqrt(R / (1 - R)) * normInv(confidence);
+  const kRaw = lgd * normCDF(asset) - pd * lgd;
+  const maturityAdj = (1 + (m - 2.5) * b) / (1 - 1.5 * b);
+  return Math.max(0, kRaw * maturityAdj);
+}
+
+function getDealOutputs(pdOverride=null, lgdOverride=null, ecOverlayOverride=null) {
+  const loan = num('loanAmount');
+  const coverage = Math.min(Math.max(pct('coverage'), 0), 0.75);
+  const structure = document.getElementById('structure').value;
+  const pd = pdOverride === null ? pct('pd') : pdOverride;
+  const lgd = lgdOverride === null ? pct('lgd') : lgdOverride;
+  const maturity = num('maturity');
+  const raroc = pct('targetRAROC');
+  const admin = num('adminBps') / 10000;
+  const attach = pct('slAttach');
+  const slCapFactor = pct('slCapitalFactor');
+  const confidence = Math.min(Math.max(pct('confidence'), 0.90), 0.9999);
+  const overlay = ecOverlayOverride === null ? num('overlay') : num('overlay') * ecOverlayOverride;
+  const guarantee = loan * coverage;
+  const wholeLoanEL = loan * pd * lgd;
+  let el, ec, ecNote, elNote;
+  const baseK = baseIRBK(pd, lgd, maturity, confidence);
+  if (structure === 'PP') {
+    el = guarantee * pd * lgd;
+    ec = guarantee * baseK * overlay;
+    elNote = 'PP: guarantee × PD × LGD';
+    ecNote = 'PP: guarantee × IRB-style K × overlay';
+  } else if (structure === 'FL') {
+    el = Math.min(guarantee, wholeLoanEL);
+    ec = guarantee; // Policy conservative treatment
+    elNote = 'FL: min(cap, whole-loan EL)';
+    ecNote = 'FL: 100% of guaranteed cap';
+  } else {
+    const firstLossAttachmentAmount = loan * attach;
+    el = Math.min(guarantee, Math.max(wholeLoanEL - firstLossAttachmentAmount, 0));
+    ec = guarantee * slCapFactor * overlay;
+    elNote = 'SL: losses after first-loss attachment';
+    ecNote = 'SL: guarantee × mezzanine capital factor × overlay';
+  }
+  const capCharge = ec * raroc;
+  const adminCost = guarantee * admin;
+  const fee = el + capCharge + adminCost;
+  const feeRate = guarantee > 0 ? fee / guarantee : 0;
+  return {loan, coverage, guarantee, pd, lgd, structure, baseK, el, ec, capCharge, adminCost, fee, feeRate, elNote, ecNote};
+}
+
+function calculateAll() {
+  const paidUp = num('paidUp');
+  const retained = num('retained');
+  const coreCapital = num('coreCapital');
+  const existingNominal = num('existingNominal');
+  const existingRWA = num('existingRWA');
+  const targetCAR = pct('targetCAR');
+  const levMultiple = num('leverageMultiple');
+  const equity = paidUp + retained;
+  const riskCapital = Math.max(0, equity - coreCapital);
+  const currentCAR = existingRWA > 0 ? riskCapital / existingRWA : Infinity;
+  const maxRWA = targetCAR > 0 ? riskCapital / targetCAR : 0;
+  const rwaHeadroom = maxRWA - existingRWA;
+  const nominalCap = equity * levMultiple;
+  const nominalHeadroom = nominalCap - existingNominal;
+  setText('outEquity', fmtMoney(equity));
+  setText('outRiskCapital', fmtMoney(riskCapital));
+  setText('outCAR', currentCAR === Infinity ? '∞' : fmtPct(currentCAR));
+  document.getElementById('outCARSub').innerHTML = currentCAR === Infinity ? 'No existing Internal RWA entered' : (currentCAR >= targetCAR ? statusSpan('Above floor', 'green') : statusSpan('Below floor', 'red'));
+  setText('outMaxRWA', fmtMoney(maxRWA));
+  setText('outRWAHeadroom', fmtMoney(rwaHeadroom));
+  setText('outNomHeadroom', fmtMoney(nominalHeadroom));
+
+  const d = getDealOutputs();
+  setText('outGuarantee', fmtMoney(d.guarantee));
+  setText('outBaseK', fmtPct(d.baseK));
+  setText('outEL', fmtMoney(d.el));
+  setText('outELSub', d.elNote);
+  setText('outEC', fmtMoney(d.ec));
+  setText('outECSub', d.ecNote);
+  setText('outCapCharge', fmtMoney(d.capCharge));
+  setText('outFee', fmtMoney(d.fee));
+  setText('outFeeRate', `${fmtPct(d.feeRate,2)} of guaranteed amount`);
+
+  const postRWA = existingRWA + d.ec;
+  const postCAR = postRWA > 0 ? riskCapital / postRWA : Infinity;
+  const postNominal = existingNominal + d.guarantee;
+  const passCAR = postCAR >= targetCAR;
+  const passLev = postNominal <= nominalCap;
+  const passCoverage = d.coverage <= 0.75;
+  setText('outPostCAR', postCAR === Infinity ? '∞' : fmtPct(postCAR));
+  document.getElementById('outPostCARSub').innerHTML = passCAR ? statusSpan('CAR OK', 'green') : statusSpan('CAR breach', 'red');
+  let flag = 'Proceed'; let cls = 'green'; let sub = 'Within screening capacity';
+  if (!passCoverage) { flag = 'Stop'; cls = 'red'; sub = 'Coverage exceeds 75% policy maximum'; }
+  else if (!passCAR || !passLev) { flag = 'Escalate'; cls = 'red'; sub = !passCAR ? 'Post-deal CAR below floor' : 'Nominal leverage cap breached'; }
+  else if (postCAR < 0.25 || (nominalCap > 0 && postNominal / nominalCap > 0.85)) { flag = 'Review'; cls = 'amber'; sub = 'Approaching capacity threshold'; }
+  setText('outDecision', flag);
+  document.getElementById('outDecisionSub').innerHTML = statusSpan(sub, cls);
+
+  const stressedPD = Math.min(d.pd * num('pdStress'), 1);
+  const stressedLGD = Math.min(d.lgd + pct('lgdStress'), 1);
+  const stressOverlay = num('stressCapitalOverlay');
+  const s = getDealOutputs(stressedPD, stressedLGD, stressOverlay);
+  const surcharge = num('surchargeBps') / 10000;
+  const stressFee = s.el + s.ec * pct('targetRAROC') + s.guarantee * (num('adminBps') / 10000) + s.guarantee * surcharge;
+  const stressFeeRate = s.guarantee > 0 ? stressFee / s.guarantee : 0;
+  const stressPostRWA = existingRWA + s.ec;
+  const stressCAR = stressPostRWA > 0 ? riskCapital / stressPostRWA : Infinity;
+  setText('outStressPDLGD', `${fmtPct(stressedPD)} / ${fmtPct(stressedLGD)}`);
+  setText('outStressEL', fmtMoney(s.el));
+  setText('outStressEC', fmtMoney(s.ec));
+  setText('outStressFeeRate', fmtPct(stressFeeRate,2));
+  setText('outStressCAR', stressCAR === Infinity ? '∞' : fmtPct(stressCAR));
+  document.getElementById('outStressCARSub').innerHTML = stressCAR >= targetCAR ? statusSpan('Stress CAR OK', 'green') : statusSpan('Stress breach', 'red');
+  let action = 'Monitor'; let actionCls = 'green'; let actionSub = 'No immediate policy action';
+  if (stressCAR < targetCAR) { action = 'Action'; actionCls = 'red'; actionSub = 'Slow issuance, reprice, reduce coverage or seek capital relief'; }
+  else if (stressCAR < 0.25) { action = 'Caution'; actionCls = 'amber'; actionSub = 'Enhanced monitoring and GC visibility recommended'; }
+  setText('outStressAction', action);
+  document.getElementById('outStressActionSub').innerHTML = statusSpan(actionSub, actionCls);
+
+  const sharesText = document.getElementById('hhiShares').value;
+  const shares = sharesText.split(',').map(x => parseFloat(x.trim())).filter(x => Number.isFinite(x) && x >= 0);
+  const totalShares = shares.reduce((a,b)=>a+b,0);
+  const hhi = shares.reduce((a,b)=>a + b*b,0);
+  const largest = shares.length ? Math.max(...shares) : 0;
+  let hhiCls = 'green', hhiLabel = 'Diversified', trigger = 'No';
+  if (hhi > 2500) { hhiCls = 'red'; hhiLabel = 'Highly concentrated'; trigger = 'Yes'; }
+  else if (hhi >= 1500) { hhiCls = 'amber'; hhiLabel = 'Moderately concentrated'; trigger = 'Monitor'; }
+  setText('outHHITotal', totalShares.toLocaleString(undefined, {maximumFractionDigits: 1}) + '%');
+  setText('outHHI', Math.round(hhi).toLocaleString());
+  document.getElementById('outHHIStatus').innerHTML = statusSpan(hhiLabel, hhiCls);
+  setText('outHHILargest', largest.toLocaleString(undefined, {maximumFractionDigits: 1}) + '%');
+  setText('outHHITrigger', trigger);
+  document.getElementById('outHHITriggerSub').innerHTML = trigger === 'Yes' ? statusSpan('GC action plan required', 'red') : (trigger === 'Monitor' ? statusSpan('Enhanced monitoring', 'amber') : statusSpan('Within green zone', 'green'));
+}
+
+function resetCapital() {
+  document.getElementById('paidUp').value = 8000;
+  document.getElementById('retained').value = 0;
+  document.getElementById('coreCapital').value = 2000;
+  document.getElementById('existingNominal').value = 0;
+  document.getElementById('existingRWA').value = 0;
+  document.getElementById('targetCAR').value = 20;
+  document.getElementById('leverageMultiple').value = 2;
+  document.getElementById('dbf').value = 15;
+  calculateAll();
+}
+function resetDeal() {
+  document.getElementById('loanAmount').value = 1000;
+  document.getElementById('coverage').value = 50;
+  document.getElementById('structure').value = 'PP';
+  document.getElementById('pd').value = 3;
+  document.getElementById('lgd').value = 45;
+  document.getElementById('maturity').value = 2.5;
+  document.getElementById('targetRAROC').value = 15;
+  document.getElementById('adminBps').value = 30;
+  document.getElementById('slAttach').value = 5;
+  document.getElementById('slCapitalFactor').value = 25;
+  document.getElementById('confidence').value = 99.9;
+  document.getElementById('overlay').value = 1.00;
+  calculateAll();
+}
+function resetStress() {
+  document.getElementById('pdStress').value = 2.0;
+  document.getElementById('lgdStress').value = 10;
+  document.getElementById('stressCapitalOverlay').value = 1.25;
+  document.getElementById('surchargeBps').value = 25;
+  calculateAll();
+}
+function resetHHI() {
+  document.getElementById('hhiShares').value = '25, 20, 15, 12, 10, 8, 5, 5';
+  calculateAll();
+}
+function toggleAccordion(btn) {
+  const item = btn.closest('.accordion-item');
+  item.classList.toggle('open');
+}
+function clearSearch() {
+  document.getElementById('searchBox').value = '';
+  searchPage();
+}
+function searchPage() {
+  const q = document.getElementById('searchBox').value.trim().toLowerCase();
+  const blocks = document.querySelectorAll('[data-search], .card, .check-item, .accordion-item, .calc-panel');
+  if (!q) { blocks.forEach(b => b.classList.remove('hidden')); return; }
+  blocks.forEach(b => {
+    const text = (b.getAttribute('data-search') || '') + ' ' + b.textContent.toLowerCase();
+    b.classList.toggle('hidden', !text.includes(q));
+  });
+}
+window.addEventListener('DOMContentLoaded', calculateAll);
+</script>
+
+<!-- ==================== NCGCL BRAND FOOTER ==================== -->
+<footer class="ncgcl-footer">
+  <div class="ncgcl-footer-inner">
+    <div class="ncgcl-footer-top">
+      <div class="ncgcl-footer-brand">
+        <img src="Company_Logo_dark_bg.png" alt="NCGCL">
+        <p>National Credit Guarantee Company Limited — enabling catalytic finance for SME, agriculture, and climate growth across Pakistan.</p>
+      </div>
+      <div class="ncgcl-footer-col">
+        <h4>Navigate</h4>
+        <a href="index.html">Operational Hub</a>
+        <a href="index.html#policies">All Policies</a>
+        <a href="index.html#governance">Governance</a>
+        <a href="index.html#risk">Risk &amp; Compliance</a>
+      </div>
+      <div class="ncgcl-footer-col">
+        <h4>Support</h4>
+        <a href="mailto:it@ncgcl.pk">IT Support</a>
+        <a href="#">Staff Directory</a>
+        <a href="mailto:operations@ncgcl.pk">operations@ncgcl.pk</a>
+      </div>
+    </div>
+    <div class="ncgcl-footer-bottom">
+      <div>© 2025 National Credit Guarantee Company Limited · AAA Rated · SBP Regulated</div>
+      <div>Privacy · Terms of Use · Accessibility</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

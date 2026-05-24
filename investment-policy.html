@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="192x192" href="favicon-192.png">
+<title>NCGCL Investment Policy | Intranet Quick Guide</title>
+<style>
+:root {
+  --white: #FFFFFF;
+  --bg: #FAFAFA;
+  --soft: #F7F4EF;
+  --border: #E5E5E5;
+  --accent: #39A949;
+  --accent-soft: rgba(57, 169, 73, 0.10);
+  --cerulean: #035076;
+  --cerulean-soft: rgba(3, 80, 118, 0.08);
+  --green: #39A949;
+  --green-soft: rgba(57, 169, 73, 0.10);
+  --red: #9B2335;
+  --red-soft: rgba(155, 35, 53, 0.08);
+  --text: #1A1A1A;
+  --muted: #666666;
+  --faint: #999999;
+  --warn-bg: #FEF6ED;
+  --warn-border: #F5CBA7;
+/* === NCGCL Brand Type System === */
+:root {
+  --sans: 'Inter', 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --serif: 'Source Serif Pro', 'Georgia', 'Times New Roman', serif;
+}
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--white);
+  color: #2D2D2D;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.container { max-width: 1120px; margin: 0 auto; padding: 0 1.5rem; }
+
+.site-header {
+  border-bottom: 1px solid var(--border);
+  padding: 1.25rem 0;
+  margin-bottom: 1.25rem;
+  background: rgba(255,255,255,0.96);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(8px);
+}
+
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.logo-block { display: flex; align-items: center; gap: 12px; }
+.logo-box {
+  width: 40px; height: 40px; background: var(--cerulean); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  font-weight: 700; color: white; font-size: 16px;
+}
+.logo-text { font-family: var(--serif); font-size: 18px; color: var(--text); font-weight: 400; }
+.logo-sub { font-size: 12px; color: var(--faint); letter-spacing: 0.04em; }
+.header-actions { display: flex; gap: 8px; align-items: center; }
+.btn {
+  border: 1px solid var(--border); background: var(--white); color: var(--cerulean);
+  border-radius: 999px; padding: 0.45rem 0.8rem; font-size: 12px; font-weight: 700;
+  text-decoration: none; cursor: pointer; transition: all 0.2s;
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+
+.alert-banner {
+  background: var(--warn-bg); border: 1px solid var(--warn-border); border-top: 3px solid var(--accent);
+  padding: 1rem 1.5rem; margin-bottom: 1.5rem; border-radius: 4px;
+  display: flex; gap: 1rem; align-items: flex-start;
+}
+.alert-icon { font-size: 20px; flex-shrink: 0; }
+.alert-content strong { color: var(--text); }
+.alert-content p { font-size: 13px; color: var(--muted); margin-top: 0.25rem; }
+.alert-close { background: none; border: none; cursor: pointer; font-size: 18px; color: var(--faint); margin-left: auto; flex-shrink: 0; }
+
+.page-hero { padding: 2.5rem 0 1.5rem; border-bottom: 1px solid var(--border); margin-bottom: 2.25rem; }
+.section-label { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: var(--faint); text-transform: uppercase; margin-bottom: 0.5rem; }
+.page-title { font-family: var(--serif); font-size: 36px; font-weight: 400; color: var(--text); line-height: 1.2; margin-bottom: 0.75rem; }
+.page-desc { font-size: 14px; color: var(--muted); line-height: 1.75; max-width: 820px; }
+
+.search-row { display: flex; gap: 12px; align-items: center; margin: 1.25rem 0 0; flex-wrap: wrap; }
+.search-box {
+  flex: 1; min-width: 250px; border: 1px solid var(--border); border-radius: 999px;
+  padding: 0.75rem 1rem; font-size: 13px; color: var(--text); outline: none;
+}
+.search-box:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+
+.quick-nav {
+  display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 2rem;
+}
+.quick-nav a {
+  font-size: 12px; font-weight: 700; color: var(--cerulean); text-decoration: none;
+  border: 1px solid var(--border); border-radius: 999px; padding: 0.45rem 0.75rem; background: var(--white);
+}
+.quick-nav a:hover { color: var(--accent); border-color: var(--accent); }
+
+.kpi-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 2.5rem; }
+.kpi-card {
+  background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 1.15rem;
+  transition: border-color 0.2s; text-align: center; min-height: 104px; display: flex; flex-direction: column; justify-content: center;
+}
+.kpi-card:hover { border-color: var(--accent); }
+.kpi-label { font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--faint); margin-bottom: 0.5rem; }
+.kpi-val { font-family: Georgia, serif; font-size: 25px; color: var(--text); line-height: 1.15; }
+.kpi-sub { font-size: 11px; color: var(--muted); margin-top: 0.35rem; }
+
+.section-title {
+  font-family: Georgia, serif; font-size: 28px; font-weight: 400; color: var(--text);
+  line-height: 1.2; margin-bottom: 1.35rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+}
+.section-intro { font-size: 13px; color: var(--muted); margin-bottom: 1.25rem; max-width: 900px; }
+
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 2.5rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 2.5rem; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 2.5rem; }
+
+.card {
+  background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem;
+  transition: all 0.2s; display: flex; flex-direction: column; position: relative;
+}
+.card:hover { border-color: var(--accent); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08); }
+.card-icon { font-size: 28px; margin-bottom: 0.75rem; display: inline-block; }
+.card-title { font-family: Georgia, serif; font-size: 17px; font-weight: 400; color: var(--text); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+.card-desc { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 1rem; flex-grow: 1; }
+.card-meta { font-size: 11px; color: var(--faint); border-top: 1px solid var(--border); padding-top: 0.7rem; margin-top: auto; }
+
+.badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--faint); background: var(--bg); border: 1px solid var(--border); padding: 3px 10px; border-radius: 12px; margin-bottom: 0.75rem; }
+.badge.gold { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
+.badge.blue { background: var(--cerulean-soft); color: var(--cerulean); border-color: rgba(3,80,118,0.25); }
+.badge.green { background: var(--green-soft); color: var(--green); border-color: rgba(57,169,73,0.3); }
+.badge.red { background: var(--red-soft); color: var(--red); border-color: rgba(155,35,53,0.25); }
+
+.verdict { background: var(--bg); border: 1px solid var(--border); border-left: 4px solid var(--accent); padding: 1.25rem; border-radius: 4px; margin: 1.5rem 0 2.5rem; }
+.verdict-label { font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--faint); margin-bottom: 0.4rem; }
+.verdict-text { font-size: 13px; color: #2D2D2D; line-height: 1.7; }
+
+.policy-flow { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin: 0 0 2.5rem; }
+.flow-step { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; position: relative; min-height: 132px; }
+.flow-no { width: 26px; height: 26px; border-radius: 50%; background: var(--cerulean); color: white; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; margin-bottom: 0.7rem; }
+.flow-title { font-family: Georgia, serif; color: var(--text); font-size: 15px; margin-bottom: 0.4rem; }
+.flow-desc { font-size: 12px; color: var(--muted); line-height: 1.55; }
+
+.table-wrap { overflow-x: auto; margin: 0 0 2.5rem; border: 1px solid var(--border); border-radius: 8px; background: white; }
+table { width: 100%; border-collapse: collapse; min-width: 680px; }
+th { background: var(--bg); color: var(--text); font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; text-align: left; padding: 0.85rem; border-bottom: 1px solid var(--border); }
+td { padding: 0.8rem 0.85rem; border-bottom: 1px solid var(--border); font-size: 13px; color: #333; vertical-align: top; }
+tr:last-child td { border-bottom: none; }
+td strong { color: var(--text); }
+
+.callout-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 12px; margin-bottom: 2.5rem; }
+.callout {
+  background: linear-gradient(135deg, var(--cerulean-soft), rgba(255,255,255,0.85));
+  border: 1px solid rgba(3,80,118,0.18); border-radius: 8px; padding: 1.25rem;
+}
+.callout h3 { font-family: Georgia, serif; font-size: 20px; font-weight: 400; color: var(--text); margin-bottom: 0.75rem; }
+.callout p, .callout li { font-size: 13px; color: var(--muted); line-height: 1.7; }
+ul.clean { list-style: none; margin-top: 0.5rem; }
+ul.clean li { padding-left: 1.2rem; position: relative; margin: 0.4rem 0; }
+ul.clean li:before { content: "•"; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
+
+.checklist { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 2.5rem; }
+.check-item { border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: var(--white); }
+.check-item h4 { font-family: Georgia, serif; font-size: 15px; font-weight: 400; color: var(--text); margin-bottom: 0.35rem; }
+.check-item p { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+.accordion { margin-bottom: 2.5rem; }
+.accordion-item { border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; background: white; overflow: hidden; }
+.accordion-head { width: 100%; background: var(--white); border: 0; padding: 1rem 1.25rem; text-align: left; display: flex; justify-content: space-between; gap: 1rem; align-items: center; cursor: pointer; }
+.accordion-title { font-family: Georgia, serif; color: var(--text); font-size: 16px; }
+.accordion-body { display: none; padding: 0 1.25rem 1.25rem; color: var(--muted); font-size: 13px; line-height: 1.7; }
+.accordion-item.open .accordion-body { display: block; }
+.accordion-item.open .accordion-head { border-bottom: 1px solid var(--border); }
+
+footer { border-top: 1px solid var(--border); padding: 2rem 1.5rem; margin-top: 3rem; text-align: center; }
+footer p { font-size: 12px; color: var(--muted); margin: 0.25rem 0; }
+
+.hidden { display: none !important; }
+mark { background: rgba(200,146,58,0.22); color: inherit; padding: 0 2px; border-radius: 2px; }
+
+@media (max-width: 980px) {
+  .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .policy-flow { grid-template-columns: repeat(2, 1fr); }
+  .callout-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .grid-2, .grid-3, .grid-4, .checklist { grid-template-columns: 1fr; }
+  .policy-flow { grid-template-columns: 1fr; }
+  .page-title { font-size: 26px; }
+  .section-title { font-size: 22px; }
+  .header-actions { display: none; }
+}
+@media print {
+  .site-header, .search-row, .quick-nav, .alert-close, .btn { display: none !important; }
+  body { font-size: 12px; }
+  .container { max-width: 100%; }
+  .card, .flow-step, .table-wrap, .verdict, .callout, .check-item { break-inside: avoid; }
+}
+
+/* === NCGCL Brand Utility Bar === */
+.ncgcl-utility-bar {
+  background: #0E1A24;
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
+.ncgcl-utility-inner {
+  max-width: 1280px; margin: 0 auto; padding: 0 1.5rem;
+  height: 36px; display: flex; align-items: center; justify-content: space-between;
+}
+.ncgcl-utility-left { display: flex; gap: 1rem; align-items: center; }
+.ncgcl-utility-left span { color: rgba(255,255,255,0.7); }
+.ncgcl-utility-left strong { color: #fff; font-weight: 600; }
+.ncgcl-utility-right { display: flex; gap: 1.25rem; align-items: center; }
+.ncgcl-utility-right a {
+  color: rgba(255,255,255,0.75); font-size: 12px; text-decoration: none;
+  transition: color 0.15s ease;
+}
+.ncgcl-utility-right a:hover { color: #fff; }
+.ncgcl-utility-divider { width: 1px; height: 14px; background: rgba(255,255,255,0.15); }
+
+/* === Brand logo override === */
+.brand-logo {
+  display: flex; align-items: center; gap: 14px; text-decoration: none;
+}
+.brand-logo img { height: 34px; width: auto; }
+.brand-logo .brand-meta {
+  border-left: 1px solid #D9DDE2; padding-left: 14px;
+}
+.brand-logo .brand-meta .ml1 {
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #8A95A0; font-weight: 600;
+}
+.brand-logo .brand-meta .ml2 {
+  font-size: 13px; color: var(--cerulean); font-weight: 600;
+  letter-spacing: -0.005em; margin-top: 2px;
+}
+
+/* === Mobile utility bar === */
+@media (max-width: 640px) {
+  .ncgcl-utility-inner { padding: 0 1rem; height: 32px; }
+  .ncgcl-utility-left { gap: 0.6rem; font-size: 11px; }
+  .ncgcl-utility-right { gap: 0.85rem; }
+  .ncgcl-utility-left span { display: none; }
+}
+
+/* === NCGCL Brand Footer === */
+footer.ncgcl-footer {
+  background: #013E5C; color: rgba(255,255,255,0.7);
+  margin-top: 4rem; padding: 3rem 0 1.5rem;
+  text-align: left;  /* override generic footer rule */
+  border-top: none;
+}
+.ncgcl-footer-inner { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+.ncgcl-footer-top {
+  display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
+  padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+.ncgcl-footer-brand img { height: 40px; margin-bottom: 1rem; }
+.ncgcl-footer-brand p {
+  font-size: 13px; color: rgba(255,255,255,0.7);
+  line-height: 1.6; max-width: 320px; font-weight: 300;
+}
+.ncgcl-footer-col h4 {
+  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--green); font-weight: 600; margin-bottom: 0.75rem;
+}
+.ncgcl-footer-col a {
+  display: block; font-size: 13px; color: rgba(255,255,255,0.7);
+  padding: 4px 0; text-decoration: none; font-weight: 300;
+  transition: color 0.15s ease;
+}
+.ncgcl-footer-col a:hover { color: #fff; }
+.ncgcl-footer-bottom {
+  padding-top: 1.5rem; font-size: 12px; color: rgba(255,255,255,0.5);
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;
+}
+@media (max-width: 720px) {
+  .ncgcl-footer-top { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ==================== UTILITY BAR (NCGCL brand) ==================== -->
+<div class="ncgcl-utility-bar">
+  <div class="ncgcl-utility-inner">
+    <div class="ncgcl-utility-left">
+      <strong>NCGCL</strong>
+      <span>National Credit Guarantee Company Limited</span>
+    </div>
+    <div class="ncgcl-utility-right">
+      <a href="index.html">Hub</a>
+      <span class="ncgcl-utility-divider"></span>
+      <a href="#">Staff Directory</a>
+      <a href="mailto:it@ncgcl.pk">IT Support</a>
+    </div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="index.html" class="brand-logo">
+        <img src="Company_Logo_transparent.png" alt="NCGCL">
+        <div class="brand-meta">
+          <div class="ml1">Policy Document</div>
+          <div class="ml2">Investment Policy</div>
+        </div>
+      </a>
+      <div class="header-actions">
+        <a class="btn" href="index.html">← Hub</a>
+        <button class="btn" onclick="window.print()">Print / Save PDF</button>
+        <a class="btn" href="#quick-checklists">Quick Checklists</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="alert-banner" id="alertBanner">
+    <div class="alert-icon">💼</div>
+    <div class="alert-content">
+      <strong>Investment Policy Quick Guide</strong>
+      <p>This intranet guide summarizes NCGCL's Board-approved Investment Policy Statement. Use it for quick reference; final investment decisions must follow the approved IPS, delegated authorities, MIC minutes, and Board directions.</p>
+    </div>
+    <button class="alert-close" onclick="this.parentElement.style.display='none'">×</button>
+  </div>
+
+  <div class="page-hero">
+    <div class="section-label">Policy Overview</div>
+    <h1 class="page-title">NCGCL Investment Policy Statement</h1>
+    <p class="page-desc">A practical intranet overview of how NCGCL invests its capital: preserve capital, maintain liquidity, protect the AAA rating, earn post-tax returns above inflation over the medium to long term, and manage portfolio risk through Board-approved limits, MIC oversight, monthly rebalancing, and disciplined reporting.</p>
+    <div class="search-row">
+      <input id="searchBox" class="search-box" type="search" placeholder="Search this guide: e.g., PVBP, duration, T-bills, MIC, AA+, mutual fund, liquidity..." oninput="filterCards()">
+      <button class="btn" onclick="clearSearch()">Clear</button>
+    </div>
+  </div>
+
+  <div class="quick-nav">
+    <a href="#policy-intent">Intent</a>
+    <a href="#key-metrics">Key Metrics</a>
+    <a href="#asset-allocation">Asset Allocation</a>
+    <a href="#fixed-income">Fixed Income Controls</a>
+    <a href="#placements">Bank / DFI / Funds</a>
+    <a href="#risk-liquidity-tax">Risk, Liquidity & Tax</a>
+    <a href="#governance">Governance</a>
+    <a href="#board-reporting">Board Reporting</a>
+    <a href="#quick-checklists">Checklists</a>
+    <a href="#faq">FAQ</a>
+  </div>
+
+  <section id="key-metrics" class="search-section" data-search="key metrics cpi benchmark kibor core capital treasury bills duration tenor pvbp liquidity board quarterly">
+    <div class="kpi-strip">
+      <div class="kpi-card">
+        <div class="kpi-label">Target Return</div>
+        <div class="kpi-val">CPI + 0.5%</div>
+        <div class="kpi-sub">Medium-to-long term objective</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Benchmark</div>
+        <div class="kpi-val">3M KIBOR − 1%</div>
+        <div class="kpi-sub">Performance comparison</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Core Capital</div>
+        <div class="kpi-val">≤90 days</div>
+        <div class="kpi-sub">Treasury Bills maturity</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Minimum Liquidity</div>
+        <div class="kpi-val">2%</div>
+        <div class="kpi-sub">Bank placements for operations</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Average Duration</div>
+        <div class="kpi-val">≤360 days</div>
+        <div class="kpi-sub">Portfolio-level cap</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Max Tenor</div>
+        <div class="kpi-val">≤3 years</div>
+        <div class="kpi-sub">Any single instrument</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">PVBP Limit</div>
+        <div class="kpi-val">≤3 bps</div>
+        <div class="kpi-sub">For every 1 bp rate move</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Board Review</div>
+        <div class="kpi-val">Quarterly</div>
+        <div class="kpi-sub">Performance & compliance</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="policy-intent" class="search-section" data-search="policy intent capital preservation aaa rating real return post tax liquidity strategic asset allocation">
+    <div class="section-label">Policy Intent</div>
+    <h2 class="section-title">What the IPS is designed to achieve</h2>
+    <div class="callout-grid">
+      <div class="callout">
+        <h3>Core principle: returns must never undermine capital safety.</h3>
+        <p>The IPS gives NCGCL an investment framework for managing institutional assets with a long-term horizon, but with capital preservation, liquidity, post-tax return optimization, and AAA-rating protection as non-negotiable constraints.</p>
+        <ul class="clean">
+          <li>Generate real growth of assets by targeting returns above inflation.</li>
+          <li>Preserve liquidity so guarantee obligations and operating needs can be met without stress.</li>
+          <li>Maintain conservative credit quality and avoid excessive duration, concentration or illiquidity.</li>
+          <li>Use tactical asset allocation only within approved limits and risk posture.</li>
+        </ul>
+      </div>
+      <div class="verdict" style="margin:0;">
+        <div class="verdict-label">Management takeaway</div>
+        <div class="verdict-text">NCGCL is not managing a return-maximization pool. It is managing institutional capital that supports its guarantee business, stakeholder confidence, and AAA rating. Investment yield is important, but only after capital preservation, liquidity and compliance gates are satisfied.</div>
+      </div>
+    </div>
+
+    <div class="grid-3">
+      <div class="card" data-search="capital preservation aaa rating solvency protect institutional capital">
+        <div class="card-icon">🛡️</div>
+        <span class="badge gold">Primary guardrail</span>
+        <h3 class="card-title">Capital preservation</h3>
+        <p class="card-desc">The portfolio must conserve capital and spending power over time, with risk taking aligned to NCGCL's AAA-rating objective and institutional mandate.</p>
+        <div class="card-meta">Use: First filter before return enhancement</div>
+      </div>
+      <div class="card" data-search="real return cpi plus inflation post tax return benchmark kibor">
+        <div class="card-icon">📈</div>
+        <span class="badge blue">Return objective</span>
+        <h3 class="card-title">Real return discipline</h3>
+        <p class="card-desc">The target is CPI + 0.5% over a medium-to-long term period, with performance also compared against 3-month KIBOR less 1%.</p>
+        <div class="card-meta">Use: Board performance lens</div>
+      </div>
+      <div class="card" data-search="liquidity operational cash minimum bank placement 2 percent claims cash needs">
+        <div class="card-icon">💧</div>
+        <span class="badge green">Liquidity</span>
+        <h3 class="card-title">Cash availability</h3>
+        <p class="card-desc">The IPS requires at least 2% in bank placements for operations and a staggered fixed income maturity profile to support liquidity.</p>
+        <div class="card-meta">Use: Operating resilience</div>
+      </div>
+      <div class="card" data-search="aaa rating credit quality aa plus aaa sovereign fixed income">
+        <div class="card-icon">🏦</div>
+        <span class="badge blue">Credit quality</span>
+        <h3 class="card-title">High-grade portfolio</h3>
+        <p class="card-desc">Core exposures are concentrated in sovereign, AAA and AA+ assets, with strict caps for corporate instruments, DFIs, AMCs and mutual funds.</p>
+        <div class="card-meta">Use: Rating protection</div>
+      </div>
+      <div class="card" data-search="post tax returns tax optimization corporate income tax super tax arbitrage">
+        <div class="card-icon">🧾</div>
+        <span class="badge gold">Net return</span>
+        <h3 class="card-title">Post-tax optimization</h3>
+        <p class="card-desc">Investment decisions must consider tax treatment and seek to maximize after-tax returns within IPS constraints and risk limits.</p>
+        <div class="card-meta">Use: Net income optimization</div>
+      </div>
+      <div class="card" data-search="tactical asset allocation taa market conditions valuations overweight underweight risk profile">
+        <div class="card-icon">🎛️</div>
+        <span class="badge">TAA</span>
+        <h3 class="card-title">Controlled flexibility</h3>
+        <p class="card-desc">Tactical asset allocation can respond to market conditions, but cannot breach the approved strategic allocation or risk profile.</p>
+        <div class="card-meta">Use: MIC decisioning</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="investment-process" class="search-section" data-search="investment process strategic allocation mic weekly monthly rebalancing board quarterly risk monitoring">
+    <div class="section-label">Operating Model</div>
+    <h2 class="section-title">How investment decisions should flow</h2>
+    <div class="policy-flow">
+      <div class="flow-step">
+        <div class="flow-no">1</div>
+        <div class="flow-title">Set guardrails</div>
+        <div class="flow-desc">Start with IPS limits: eligible instruments, credit quality, duration, liquidity, concentration and tax considerations.</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-no">2</div>
+        <div class="flow-title">Allocate capital</div>
+        <div class="flow-desc">Use Strategic Asset Allocation as the core portfolio framework, with monthly rebalancing.</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-no">3</div>
+        <div class="flow-title">MIC review</div>
+        <div class="flow-desc">Management Investment Committee reviews markets and portfolio positioning weekly.</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-no">4</div>
+        <div class="flow-title">Measure risk</div>
+        <div class="flow-desc">Track credit quality, duration, PVBP, VaR, stress scenarios, liquidity and counterparty exposure.</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-no">5</div>
+        <div class="flow-title">Rebalance</div>
+        <div class="flow-desc">Correct allocation drift, credit-quality misalignment or tolerance breaches within approved timelines.</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-no">6</div>
+        <div class="flow-title">Report</div>
+        <div class="flow-desc">Provide quarterly Board updates and escalate breaches, stress findings and deviations.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="asset-allocation" class="search-section" data-search="strategic asset allocation bank placements treasury bills pibs ijara sukuk money market mutual funds dfi commercial paper long term bonds income mutual funds">
+    <div class="section-label">Strategic Asset Allocation</div>
+    <h2 class="section-title">Eligible asset classes and allocation ranges</h2>
+    <p class="section-intro">The IPS structures the portfolio around Board-approved asset classes and ranges. Allocations should be rebalanced monthly, monitored at least weekly for credit quality, and assessed in light of the impact on capital preservation, liquidity, tax and AAA-rating preservation.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Asset Class</th>
+            <th>Minimum</th>
+            <th>Maximum</th>
+            <th>Minimum Credit Rating / Quality</th>
+            <th>Practical interpretation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Bank Placements</strong></td><td>2%</td><td>80%</td><td>AAA</td><td>Core liquidity and counterparty exposure; use remunerative savings/daily products.</td></tr>
+          <tr><td><strong>Bank Placements</strong></td><td>0%</td><td>80%</td><td>AA+</td><td>Permitted only with scheduled banks meeting bank-level exposure and CAR requirements.</td></tr>
+          <tr><td><strong>Money Market Mutual Funds</strong></td><td>0%</td><td>75%</td><td>High quality / sovereign focus</td><td>Money market funds investing in sovereign instruments are capped separately at 50% of portfolio.</td></tr>
+          <tr><td><strong>Treasury Bills &lt; 3 months</strong></td><td>20%</td><td>95%</td><td>AAA / Sovereign</td><td>Principal liquidity pool; Core Capital should be held in T-bills with maximum 90-day maturity.</td></tr>
+          <tr><td><strong>Treasury Bills &gt; 3 months and &lt; 12 months</strong></td><td>0%</td><td>90%</td><td>AAA / Sovereign</td><td>Short-term return enhancement while retaining low credit risk.</td></tr>
+          <tr><td><strong>PIBs / Ijara Sukuk</strong></td><td>0%</td><td>60%</td><td>AAA / Sovereign</td><td>Allowed but duration and PVBP limits must be actively monitored.</td></tr>
+          <tr><td><strong>Sovereign Mutual Funds / Fixed-Term Funds</strong></td><td>0%</td><td>40%</td><td>Sovereign strategy</td><td>Useful for treasury exposure through managed vehicles, subject to fund and AMC controls.</td></tr>
+          <tr><td><strong>DFI Placement</strong></td><td>0%</td><td>15%</td><td>AAA</td><td>Higher-quality DFI exposure within explicit cap.</td></tr>
+          <tr><td><strong>DFI Placement</strong></td><td>0%</td><td>10%</td><td>AA+</td><td>Permitted with tighter exposure cap and DFI equity concentration test.</td></tr>
+          <tr><td><strong>Commercial Paper</strong></td><td>0%</td><td>10%</td><td>AA+</td><td>Short tenor corporate credit exposure; avoid liquidity and concentration build-up.</td></tr>
+          <tr><td><strong>Long-Term Bonds / Sukuks</strong></td><td>0%</td><td>30%</td><td>AA+</td><td>Part of the 30% non-sovereign fixed income bucket; watch market liquidity and duration.</td></tr>
+          <tr><td><strong>Income Mutual Funds</strong></td><td>0%</td><td>30%</td><td>Policy-compliant funds</td><td>Subject to AMC rating, single AMC and single fund concentration controls.</td></tr>
+          <tr><td><strong>Equity Exposure</strong></td><td>0%</td><td>0%</td><td>Not permitted initially</td><td>Any future allocation requires Board approval and assessment of AAA-rating implications.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="fixed-income" class="search-section" data-search="fixed income duration management max tenor average duration 360 days credit quality 75 percent 30 percent pvbp sector diversification single instrument issue size">
+    <div class="section-label">Fixed Income Risk Controls</div>
+    <h2 class="section-title">Capital preservation controls for the portfolio</h2>
+    <div class="grid-4">
+      <div class="card" data-search="duration management maximum tenor three years average duration 360 days">
+        <div class="card-icon">⏱️</div>
+        <span class="badge blue">Duration</span>
+        <h3 class="card-title">Short-to-intermediate duration</h3>
+        <p class="card-desc">No instrument should exceed 3 years in tenor. Portfolio average duration should not exceed 360 days.</p>
+        <div class="card-meta">Monitor: duration by instrument and portfolio</div>
+      </div>
+      <div class="card" data-search="pvbp 3 basis points one basis point interest rate risk floating rate pib reset date breach">
+        <div class="card-icon">📉</div>
+        <span class="badge gold">Interest rate risk</span>
+        <h3 class="card-title">PVBP discipline</h3>
+        <p class="card-desc">Portfolio PVBP should not exceed 3 bps for every 1 bp movement in interest rates. Breaches require priority rectification and quarterly Board communication.</p>
+        <div class="card-meta">Monitor: PVBP and rate sensitivity</div>
+      </div>
+      <div class="card" data-search="credit quality 75 percent aaa sovereign aa plus money market mutual fund dfi">
+        <div class="card-icon">🏛️</div>
+        <span class="badge green">Credit quality</span>
+        <h3 class="card-title">75% high-grade anchor</h3>
+        <p class="card-desc">At least 75% of the portfolio, including Core Capital, must be allocated to government securities, AAA instruments, AA+ bank placements, sovereign-focused money market funds, or AAA DFI placements.</p>
+        <div class="card-meta">Monitor: quality mix weekly</div>
+      </div>
+      <div class="card" data-search="corporate bonds sukuks commercial paper dfi income mutual funds 30 percent aa plus">
+        <div class="card-icon">🏢</div>
+        <span class="badge">Corporate bucket</span>
+        <h3 class="card-title">30% risk bucket</h3>
+        <p class="card-desc">Up to 30% may be allocated to AA+ corporate fixed income, AA+ DFI placements within sub-limits, or income mutual funds.</p>
+        <div class="card-meta">Monitor: sector, issuer and liquidity</div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Control</th><th>Policy limit</th><th>Why it matters</th><th>Owner / forum</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Core Capital investment</strong></td><td>T-bills with max 90-day maturity</td><td>Ensures immediate access to the solvency buffer for expected or unexpected losses.</td><td>CFO / CIO / MIC</td></tr>
+          <tr><td><strong>Average portfolio duration</strong></td><td>≤360 days</td><td>Limits mark-to-market and reinvestment risk in volatile interest rate environments.</td><td>CIO / MIC</td></tr>
+          <tr><td><strong>Maximum tenor</strong></td><td>≤3 years per instrument</td><td>Prevents excessive lock-in and protects portfolio liquidity.</td><td>CIO / CFO</td></tr>
+          <tr><td><strong>Sector concentration</strong></td><td>≤20% of portfolio, excluding sovereign instruments and bank placements</td><td>Reduces non-sovereign credit risk concentration.</td><td>Risk / MIC</td></tr>
+          <tr><td><strong>Single instrument exposure</strong></td><td>≤10% of issue size and ≤20% of fixed income allocation, excluding sovereign and bank placements</td><td>Prevents illiquidity and issuer concentration in individual securities.</td><td>CIO / Risk</td></tr>
+          <tr><td><strong>Credit quality monitoring</strong></td><td>At least weekly</td><td>Misalignment with tolerance levels must be rectified within one quarter.</td><td>CIO / Risk / MIC</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="placements" class="search-section" data-search="bank placements dfi placements mutual funds amc rating current account non remunerative account microfinance banks concentration limits deposit base equity base fund size">
+    <div class="section-label">Counterparty & Fund Controls</div>
+    <h2 class="section-title">Bank, DFI and mutual fund requirements</h2>
+    <div class="grid-3">
+      <div class="card" data-search="bank placements scheduled banks aa plus microfinance banks prohibited savings daily product current account pkr 10 million">
+        <div class="card-icon">🏦</div>
+        <span class="badge blue">Bank placements</span>
+        <h3 class="card-title">Only strong scheduled banks</h3>
+        <p class="card-desc">Banks must be scheduled banks with minimum AA+ rating. No exposure is allowed to Microfinance Banks. Bank placements should be in savings/daily product accounts with competitive returns.</p>
+        <div class="card-meta">Non-remunerative/current accounts: minimal, max PKR 10m</div>
+      </div>
+      <div class="card" data-search="bank limits deposit base equity base car sbp minimum exposure concentration">
+        <div class="card-icon">📏</div>
+        <span class="badge gold">Exposure test</span>
+        <h3 class="card-title">Bank exposure gates</h3>
+        <p class="card-desc">NCGCL deposits should not exceed 2% of a bank's deposit base or 4% of a bank's equity base; CAR must exceed SBP minimum requirements.</p>
+        <div class="card-meta">Use: Counterparty approval gate</div>
+      </div>
+      <div class="card" data-search="dfi placement aaa aa plus 15 percent 10 percent equity base ten percent">
+        <div class="card-icon">🏗️</div>
+        <span class="badge green">DFI</span>
+        <h3 class="card-title">DFI caps</h3>
+        <p class="card-desc">AAA-rated DFIs are capped at 15% of portfolio; AA+ DFIs are capped at 10%. NCGCL placement should not exceed 10% of the DFI's equity base.</p>
+        <div class="card-meta">Use: DFI exposure review</div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Area</th><th>Requirement</th><th>Threshold / limit</th><th>Check before approval</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Bank rating</strong></td><td>Scheduled bank; minimum AA+</td><td>No Microfinance Bank exposure</td><td>Latest rating, licensing status, CAR</td></tr>
+          <tr><td><strong>Bank concentration</strong></td><td>NCGCL deposit vs bank size</td><td>≤2% of bank deposits and ≤4% of bank equity</td><td>Latest financial statements / regulatory data</td></tr>
+          <tr><td><strong>Current accounts</strong></td><td>Keep strictly minimal</td><td>≤PKR 10 million at any point</td><td>Weekly bank balance and exception review</td></tr>
+          <tr><td><strong>DFI concentration</strong></td><td>NCGCL placement vs DFI equity</td><td>≤10% of DFI equity base</td><td>Latest DFI equity and rating</td></tr>
+          <tr><td><strong>AMC quality</strong></td><td>AMC minimum rating</td><td>AM1</td><td>AMC rating and fund mandates</td></tr>
+          <tr><td><strong>Single AMC exposure</strong></td><td>Across all funds of one AMC</td><td>≤20% of total portfolio</td><td>Aggregate exposure by AMC</td></tr>
+          <tr><td><strong>Single mutual fund exposure</strong></td><td>NCGCL exposure vs fund size</td><td>≤10% of fund size</td><td>Latest AUM / fund size</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="risk-liquidity-tax" class="search-section" data-search="liquidity tax risk management volatility stress testing scenario analysis value at risk var interest rate legal regulatory time horizon tax constraints post tax">
+    <div class="section-label">Risk, Liquidity & Tax</div>
+    <h2 class="section-title">Portfolio disciplines beyond allocation limits</h2>
+    <div class="grid-3">
+      <div class="card" data-search="volatility stress testing scenario analysis var board semi annual">
+        <div class="card-icon">🧪</div>
+        <span class="badge blue">Stress testing</span>
+        <h3 class="card-title">Volatility management</h3>
+        <p class="card-desc">Use stress testing, scenario analysis and VaR to assess portfolio risks under adverse market conditions. The Board should be apprised semi-annually.</p>
+        <div class="card-meta">Output: stress loss, liquidity impact, rating sensitivity</div>
+      </div>
+      <div class="card" data-search="liquidity 2 percent bank placements staggered maturities illiquid assets corporate bonds commercial paper">
+        <div class="card-icon">💧</div>
+        <span class="badge green">Liquidity</span>
+        <h3 class="card-title">Liquidity waterfall</h3>
+        <p class="card-desc">Maintain minimum bank placements, use staggered maturities, and avoid over-concentration in less liquid corporate bonds and commercial paper.</p>
+        <div class="card-meta">Output: maturity ladder and liquidity buffer</div>
+      </div>
+      <div class="card" data-search="tax constraints corporate income tax super tax after tax returns arbitrage">
+        <div class="card-icon">🧾</div>
+        <span class="badge gold">Tax</span>
+        <h3 class="card-title">After-tax return lens</h3>
+        <p class="card-desc">Instrument selection must consider different tax treatments, timing of tax collection and annual tax code changes, while remaining within IPS limits.</p>
+        <div class="card-meta">Output: pre-tax vs post-tax yield comparison</div>
+      </div>
+      <div class="card" data-search="legal regulatory constraints internal governance laws regulations compliance">
+        <div class="card-icon">⚖️</div>
+        <span class="badge">Compliance</span>
+        <h3 class="card-title">Legal and regulatory compliance</h3>
+        <p class="card-desc">The portfolio must comply with applicable laws, regulations and internal governance policies at all times.</p>
+        <div class="card-meta">Output: compliance certification</div>
+      </div>
+      <div class="card" data-search="time horizon 10 years long term aaa rating funds available future needs">
+        <div class="card-icon">🗓️</div>
+        <span class="badge blue">Time horizon</span>
+        <h3 class="card-title">Long horizon, liquid posture</h3>
+        <p class="card-desc">NCGCL's 10+ year horizon permits measured risk tolerance, but capital preservation and AAA-rating support remain critical.</p>
+        <div class="card-meta">Output: strategic fit assessment</div>
+      </div>
+      <div class="card" data-search="breach exception rectification priority board quarterly misalignment one quarter">
+        <div class="card-icon">🚦</div>
+        <span class="badge red">Exception</span>
+        <h3 class="card-title">Breach management</h3>
+        <p class="card-desc">Tolerance breaches should be rectified on priority. Credit-quality misalignment should be rectified within one quarter, and PVBP breaches reported to the Board quarterly.</p>
+        <div class="card-meta">Output: breach log and action owner</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="governance" class="search-section" data-search="management investment committee mic ceo cio cfo cgo head of research cro quorum weekly meetings simple majority casting vote">
+    <div class="section-label">Governance</div>
+    <h2 class="section-title">Management Investment Committee</h2>
+    <p class="section-intro">The MIC is the operational forum for directing the investment management process. It converts the IPS into weekly investment decisions, rebalancing actions, monitoring reviews and Board reporting.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Governance element</th><th>IPS requirement</th><th>Practical application</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Members</strong></td><td>CEO, Fund Manager/CIO, Chief Guarantee Officer, CFO, Head of Research, and Chief Risk Officer</td><td>Cross-functional forum: strategy, treasury, risk, guarantee pipeline, finance and macro view.</td></tr>
+          <tr><td><strong>Quorum</strong></td><td>At least three members; CEO and Fund Manager/CIO presence mandatory</td><td>No investment decision should proceed without the core decision-makers present.</td></tr>
+          <tr><td><strong>Decision rule</strong></td><td>Simple majority; CEO has casting vote</td><td>Material decisions should be supported by papers and minuted clearly.</td></tr>
+          <tr><td><strong>Meeting frequency</strong></td><td>Weekly</td><td>Review market movement, expected cash needs, maturities, allocation drift, concentration, credit quality and tax-yield opportunities.</td></tr>
+          <tr><td><strong>Board interface</strong></td><td>Quarterly updates to Board</td><td>Report returns, benchmark, allocations, duration, PVBP, risk exceptions and outlook.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="board-reporting" class="search-section" data-search="board reporting quarterly portfolio return benchmark return allocation instruments credit quality duration pvbp annual review ips semi annual two years">
+    <div class="section-label">Reporting Cadence</div>
+    <h2 class="section-title">What should go to the Board</h2>
+    <div class="grid-3">
+      <div class="card" data-search="quarterly board performance return benchmark allocation duration pvbp credit quality">
+        <div class="card-icon">📊</div>
+        <span class="badge blue">Quarterly</span>
+        <h3 class="card-title">Board investment dashboard</h3>
+        <p class="card-desc">At minimum: portfolio return %, benchmark return %, instrument allocation, credit-quality allocation, portfolio duration and PVBP.</p>
+        <div class="card-meta">Owner: MIC / CFO / CIO</div>
+      </div>
+      <div class="card" data-search="semi annual stress testing var scenario analysis board apprised risk">
+        <div class="card-icon">🧪</div>
+        <span class="badge gold">Semi-annual</span>
+        <h3 class="card-title">Risk stress pack</h3>
+        <p class="card-desc">Semi-annual Board update on stress testing, scenario analysis and VaR under relevant market conditions.</p>
+        <div class="card-meta">Owner: Risk / CIO</div>
+      </div>
+      <div class="card" data-search="annual ips review alignment institution goals changing market conditions semi annual first year two years">
+        <div class="card-icon">🔁</div>
+        <span class="badge green">Review</span>
+        <h3 class="card-title">IPS review cycle</h3>
+        <p class="card-desc">Review annually for strategic alignment; during the first year, review semi-annually, and thereafter every two years unless conditions require earlier action.</p>
+        <div class="card-meta">Owner: Board / MIC</div>
+      </div>
+    </div>
+
+    <div class="verdict">
+      <div class="verdict-label">Suggested quarterly Board pack structure</div>
+      <div class="verdict-text">Start with one page on portfolio performance versus benchmark and inflation; then show allocation by asset class and credit quality; summarize duration/PVBP and liquidity ladder; disclose all breaches/exceptions and corrective actions; highlight tax-adjusted yield opportunities; conclude with MIC outlook and proposed rebalancing actions.</div>
+    </div>
+  </section>
+
+  <section id="quick-checklists" class="search-section" data-search="quick checklists before investment weekly mic monthly rebalancing quarterly board pack exception breach monitoring">
+    <div class="section-label">Quick Reference</div>
+    <h2 class="section-title">Checklists for daily use</h2>
+    <div class="checklist">
+      <div class="check-item" data-search="before investment approval checklist instrument eligible rating limit duration pvbp tax liquidity">
+        <h4>Before approving any investment</h4>
+        <p>Confirm instrument eligibility, minimum rating, asset-class headroom, issuer/counterparty concentration, duration impact, PVBP impact, liquidity impact, post-tax return, and compliance with current MIC/Board guidance.</p>
+      </div>
+      <div class="check-item" data-search="weekly mic checklist maturity allocation drift market rates tax opportunity credit quality breach">
+        <h4>Weekly MIC agenda</h4>
+        <p>Review maturity ladder, expected cash needs, rate outlook, benchmark performance, allocation drift, credit-quality changes, tax-yield opportunities, breaches and proposed tactical shifts.</p>
+      </div>
+      <div class="check-item" data-search="monthly rebalancing checklist strategic asset allocation credit quality misalignment within one quarter">
+        <h4>Monthly rebalancing</h4>
+        <p>Compare actual allocation against SAA ranges, identify misalignment, update portfolio duration/PVBP, test counterparty limits, refresh tax-adjusted yield table, and document actions in MIC minutes.</p>
+      </div>
+      <div class="check-item" data-search="quarterly board pack checklist portfolio return benchmark allocation credit quality duration pvbp breaches">
+        <h4>Quarterly Board pack</h4>
+        <p>Include portfolio return %, benchmark return %, CPI comparison, instrument allocation, credit-quality mix, duration, PVBP, liquidity profile, stress indicators, exceptions and corrective action status.</p>
+      </div>
+      <div class="check-item" data-search="bank placement checklist aa plus scheduled bank deposit base equity base car current account pkr 10 million">
+        <h4>Bank placement checklist</h4>
+        <p>Confirm scheduled bank status, minimum AA+ rating, deposit-base and equity-base limits, CAR above SBP minimum, product type, interest rate competitiveness, and current account balance cap.</p>
+      </div>
+      <div class="check-item" data-search="mutual fund checklist amc rating am1 single amc 20 percent single fund 10 percent sovereign income money market">
+        <h4>Mutual fund checklist</h4>
+        <p>Confirm AMC rating of AM1 or better, fund mandate, fund size, single AMC exposure, single fund exposure, asset class category, liquidity terms and tax treatment.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="search-section" data-search="faq frequently asked questions equity core capital pvbp breach ips review mic benchmark inflation">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">Frequently asked questions</h2>
+    <div class="accordion">
+      <div class="accordion-item">
+        <button class="accordion-head" onclick="toggleAccordion(this)"><span class="accordion-title">Can NCGCL invest in equities?</span><span>+</span></button>
+        <div class="accordion-body">No. Equity exposure is restricted to zero in the initial stage. Any future equity exposure must be reviewed and approved by the Board, with explicit consideration of AAA-rating preservation.</div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-head" onclick="toggleAccordion(this)"><span class="accordion-title">How should Core Capital be invested?</span><span>+</span></button>
+        <div class="accordion-body">Core Capital identified by the Board or Risk Appetite Statement should be invested in Treasury Bills with maximum maturity/tenor of 90 days to preserve immediate access to capital for expected or unexpected losses.</div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-head" onclick="toggleAccordion(this)"><span class="accordion-title">What happens if the PVBP limit is breached?</span><span>+</span></button>
+        <div class="accordion-body">The breach should be rectified on a priority basis. All such breaches should be communicated to the Board on a quarterly basis, with explanation, impact and corrective action.</div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-head" onclick="toggleAccordion(this)"><span class="accordion-title">What is the difference between Strategic Asset Allocation and Tactical Asset Allocation?</span><span>+</span></button>
+        <div class="accordion-body">Strategic Asset Allocation defines the Board-approved long-term ranges. Tactical Asset Allocation allows temporary overweighting or underweighting based on market conditions, economic data and valuations, but only within the overall risk profile and IPS limits.</div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-head" onclick="toggleAccordion(this)"><span class="accordion-title">How often should the IPS be reviewed?</span><span>+</span></button>
+        <div class="accordion-body">The IPS should be reviewed semi-annually during NCGCL's first year of operations. After that, it may be reviewed every two years, with earlier review if performance, market conditions or NCGCL's financial situation change materially.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="verdict">
+    <div class="verdict-label">Source note</div>
+    <div class="verdict-text">This page is an intranet-friendly summary of the NCGCL Investment Policy Statement. For approvals, audit evidence, exceptions, or Board matters, refer to the official signed/approved policy document and MIC/Board minutes.</div>
+  </div>
+</div>
+<script>
+function toggleAccordion(btn) {
+  const item = btn.closest('.accordion-item');
+  item.classList.toggle('open');
+  const sign = btn.querySelector('span:last-child');
+  sign.textContent = item.classList.contains('open') ? '−' : '+';
+}
+
+function clearSearch() {
+  const input = document.getElementById('searchBox');
+  input.value = '';
+  filterCards();
+  input.focus();
+}
+
+function filterCards() {
+  const q = document.getElementById('searchBox').value.trim().toLowerCase();
+  const blocks = document.querySelectorAll('.card, .check-item, .search-section');
+  blocks.forEach(el => {
+    if (!q) {
+      el.classList.remove('hidden');
+      return;
+    }
+    const text = (el.innerText + ' ' + (el.getAttribute('data-search') || '')).toLowerCase();
+    el.classList.toggle('hidden', !text.includes(q));
+  });
+}
+</script>
+
+
+<!-- ==================== NCGCL BRAND FOOTER ==================== -->
+<footer class="ncgcl-footer">
+  <div class="ncgcl-footer-inner">
+    <div class="ncgcl-footer-top">
+      <div class="ncgcl-footer-brand">
+        <img src="Company_Logo_dark_bg.png" alt="NCGCL">
+        <p>National Credit Guarantee Company Limited — enabling catalytic finance for SME, agriculture, and climate growth across Pakistan.</p>
+      </div>
+      <div class="ncgcl-footer-col">
+        <h4>Navigate</h4>
+        <a href="index.html">Operational Hub</a>
+        <a href="index.html#policies">All Policies</a>
+        <a href="index.html#governance">Governance</a>
+        <a href="index.html#risk">Risk &amp; Compliance</a>
+      </div>
+      <div class="ncgcl-footer-col">
+        <h4>Support</h4>
+        <a href="mailto:it@ncgcl.pk">IT Support</a>
+        <a href="#">Staff Directory</a>
+        <a href="mailto:operations@ncgcl.pk">operations@ncgcl.pk</a>
+      </div>
+    </div>
+    <div class="ncgcl-footer-bottom">
+      <div>© 2025 National Credit Guarantee Company Limited · AAA Rated · SBP Regulated</div>
+      <div>Privacy · Terms of Use · Accessibility</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
