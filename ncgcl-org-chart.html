@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NCGCL — Organizational Chart</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="192x192" href="favicon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   NCGCL BRAND TOKENS — match Operational Hub
+   ============================================ */
+:root {
+  --cerulean:        #035076;
+  --cerulean-deep:   #013E5C;
+  --cerulean-soft:   #11688A;
+  --green:           #39A949;
+
+  --white:           #FFFFFF;
+  --ink:             #0E1A24;
+  --ink-2:           #2A3540;
+  --gray-900:        #1F2A36;
+  --gray-700:        #4A5560;
+  --gray-500:        #8A95A0;
+  --gray-300:        #D9DDE2;
+  --gray-200:        #E6E9EE;
+  --gray-100:        #F2F4F7;
+  --gray-50:         #F8F9FB;
+
+  --rule:            #E6E9EE;
+  --hairline:        #D9DDE2;
+
+  --serif:           'Source Serif Pro', 'Georgia', 'Times New Roman', serif;
+  --sans:            'Inter', 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body {
+  font-family: var(--sans);
+  background: var(--white);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.55;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+
+/* ============================================
+   HEADER — same pattern as hub
+   ============================================ */
+.site-header {
+  background: var(--white);
+  border-bottom: 1px solid var(--rule);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.brand-text .brand-1 {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  font-weight: 500;
+}
+.brand-text .brand-2 {
+  font-size: 14px;
+  color: var(--cerulean);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  margin-top: 2px;
+}
+.brand-wordmark {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--cerulean);
+  letter-spacing: -0.01em;
+  padding-right: 14px;
+  border-right: 1px solid var(--hairline);
+}
+
+.nav-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+.back-link {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-700);
+  font-weight: 600;
+  transition: color 0.15s ease;
+}
+.back-link:hover { color: var(--cerulean); }
+
+.nav-search {
+  width: 220px;
+  height: 36px;
+  padding: 0 12px 0 36px;
+  border: 1px solid var(--hairline);
+  border-radius: 2px;
+  font-family: var(--sans);
+  font-size: 13px;
+  background: var(--gray-50) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238A95A0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='8'/><path d='m21 21-4.35-4.35'/></svg>") 12px center no-repeat;
+  color: var(--ink);
+  outline: none;
+  transition: all 0.15s ease;
+}
+.nav-search:focus {
+  border-color: var(--cerulean);
+  background-color: var(--white);
+}
+
+/* ============================================
+   PAGE HEADER — section eyebrow + serif title
+   matches .section-head pattern from hub
+   ============================================ */
+.page-head {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 3.5rem 2rem 2rem;
+}
+.page-head-inner {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+.page-eyebrow-wrap { padding-top: 4px; }
+.page-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--green);
+  font-weight: 600;
+  padding-top: 8px;
+  border-top: 2px solid var(--cerulean);
+  display: inline-block;
+}
+.page-title {
+  font-family: var(--serif);
+  font-size: 42px;
+  line-height: 1.08;
+  font-weight: 400;
+  color: var(--cerulean);
+  letter-spacing: -0.015em;
+  margin-bottom: 0.85rem;
+}
+.page-desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--gray-700);
+  max-width: 720px;
+  font-weight: 300;
+}
+.page-meta {
+  display: flex;
+  gap: 2.5rem;
+  margin-top: 2rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--rule);
+}
+.page-meta-item .label {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.page-meta-item .value {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--cerulean);
+  letter-spacing: -0.01em;
+}
+.page-meta-item .value .unit {
+  font-size: 12px;
+  font-family: var(--sans);
+  color: var(--gray-500);
+  margin-left: 4px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* ============================================
+   CHART CANVAS
+   ============================================ */
+.shell {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem 4rem;
+}
+
+.chart {
+  position: relative;
+  border-top: 1px solid var(--rule);
+  padding-top: 3rem;
+}
+
+.chart-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+.chart-svg path {
+  fill: none;
+  stroke: var(--hairline);
+  stroke-width: 1;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+}
+
+.level {
+  position: relative;
+  z-index: 1;
+}
+
+/* CEO row */
+.level-ceo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+.ceo-wrap {
+  width: 100%;
+  max-width: 360px;
+}
+
+/* Direct reports row — hub-style grid with hairline cells */
+.level-directs {
+  margin-bottom: 3.5rem;
+}
+.directs-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-top: 1px solid var(--rule);
+  border-left: 1px solid var(--rule);
+}
+
+/* Teams row — one team-block per branched parent */
+.level-teams {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid var(--rule);
+  border-left: 1px solid var(--rule);
+}
+
+.team-block {
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 1.75rem 1.5rem 1.5rem;
+  background: var(--gray-50);
+}
+
+.team-block-header {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0 0.85rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--hairline);
+}
+.team-block-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--green);
+  font-weight: 600;
+  flex-basis: 100%;
+  margin-bottom: 4px;
+}
+.team-block-name {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--cerulean);
+  letter-spacing: -0.005em;
+}
+.team-block-count {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--gray-500);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.team-block-grid {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--hairline);
+  border-left: 1px solid var(--hairline);
+  background: var(--white);
+}
+.team-block-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.team-block-grid.cols-1 { grid-template-columns: 1fr; }
+
+/* ============================================
+   PERSON CARD — hub .card pattern exactly
+   ============================================ */
+.person {
+  background: var(--white);
+  padding: 1.5rem 1.25rem 1.4rem;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  min-height: 180px;
+  position: relative;
+  transition: background 0.2s ease;
+}
+.person::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: transparent;
+  transition: background 0.2s ease;
+}
+.person:hover {
+  background: var(--gray-50);
+}
+.person:hover::before {
+  background: var(--cerulean);
+}
+
+.person.is-ceo {
+  min-height: 200px;
+  padding: 1.75rem 1.5rem 1.5rem;
+  border: 1px solid var(--rule);
+}
+.person.is-ceo::before {
+  background: var(--green);
+  height: 2px;
+}
+
+/* Cards inside team blocks are slightly denser */
+.team-block-grid .person {
+  min-height: 132px;
+  padding: 1.2rem 1.1rem 1.1rem;
+}
+.team-block-grid .person::before { display: none; }
+.team-block-grid .person:hover { background: var(--gray-50); }
+
+.person-tag {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  font-weight: 600;
+  margin-bottom: 0.7rem;
+}
+
+.person-name {
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.45rem;
+}
+.person.is-ceo .person-name {
+  font-size: 22px;
+}
+.team-block-grid .person-name {
+  font-size: 15px;
+}
+
+.person-title {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--gray-700);
+  font-weight: 300;
+  flex-grow: 1;
+  margin-bottom: 0.85rem;
+}
+.team-block-grid .person-title {
+  font-size: 12px;
+  margin-bottom: 0.5rem;
+}
+
+.person-foot {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: auto;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--rule);
+}
+.team-block-grid .person-foot {
+  border-top: 1px solid var(--hairline);
+  padding-top: 0.45rem;
+}
+
+.person-initials {
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cerulean);
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.person.is-ceo .person-initials {
+  width: 32px;
+  height: 32px;
+  font-size: 12px;
+  background: var(--green);
+}
+.team-block-grid .person-initials {
+  width: 22px;
+  height: 22px;
+  font-size: 9px;
+}
+
+.person-reports {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  font-weight: 600;
+}
+.person-reports strong {
+  color: var(--cerulean);
+  font-weight: 600;
+}
+
+/* Search-filter states */
+.person.is-match {
+  background: var(--gray-50);
+}
+.person.is-match::before {
+  background: var(--cerulean);
+}
+.person.is-dimmed {
+  opacity: 0.28;
+}
+
+/* ============================================
+   CAPTION
+   ============================================ */
+.caption {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  font-size: 12px;
+  color: var(--gray-500);
+  line-height: 1.6;
+}
+.caption strong {
+  color: var(--ink-2);
+  font-weight: 600;
+}
+
+/* ============================================
+   FOOTER — same as hub
+   ============================================ */
+footer {
+  background: var(--cerulean-deep);
+  color: rgba(255,255,255,0.7);
+}
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 3rem 2rem 1.75rem;
+}
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.footer-bottom-links { display: flex; gap: 1.5rem; }
+.footer-bottom-links a {
+  color: rgba(255,255,255,0.5);
+  transition: color 0.15s ease;
+}
+.footer-bottom-links a:hover { color: var(--white); }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1100px) {
+  .directs-grid { grid-template-columns: repeat(3, 1fr); }
+  .level-teams { grid-template-columns: 1fr 1fr; }
+  .level-teams .team-block:first-child { grid-column: 1 / -1; }
+  .page-head-inner { grid-template-columns: 1fr; gap: 1rem; }
+  .page-title { font-size: 34px; }
+}
+
+@media (max-width: 768px) {
+  .nav-inner { height: 64px; padding: 0 1.25rem; }
+  .brand-wordmark { font-size: 18px; padding-right: 10px; }
+  .brand-text .brand-2 { font-size: 12px; }
+  .nav-search { display: none; }
+
+  .page-head { padding: 2rem 1.25rem 1.5rem; }
+  .page-title { font-size: 26px; }
+  .page-meta { flex-wrap: wrap; gap: 1.5rem 2rem; }
+  .shell { padding: 0 1.25rem 2.5rem; }
+
+  .chart { padding-top: 2rem; }
+  .level-ceo { margin-bottom: 2rem; }
+  .level-directs { margin-bottom: 2.5rem; }
+
+  .directs-grid { grid-template-columns: repeat(2, 1fr); }
+  .level-teams { grid-template-columns: 1fr; }
+  .level-teams .team-block:first-child { grid-column: auto; }
+
+  .person { min-height: 160px; padding: 1.25rem 1rem 1.15rem; }
+  .person.is-ceo { min-height: 170px; padding: 1.25rem 1.25rem 1.15rem; }
+  .person-name { font-size: 16px; }
+  .person.is-ceo .person-name { font-size: 19px; }
+  .person-title { font-size: 12.5px; }
+
+  .team-block { padding: 1.25rem 1rem 1rem; }
+}
+
+@media (max-width: 480px) {
+  .directs-grid { grid-template-columns: 1fr; }
+  .team-block-grid.cols-2 { grid-template-columns: 1fr; }
+  .page-meta { gap: 1rem 1.5rem; }
+  .page-meta-item .value { font-size: 20px; }
+}
+
+/* Print-friendly */
+@media print {
+  .site-header, .nav-actions, footer { display: none; }
+  .chart-svg path { stroke: #888; }
+  .person { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== HEADER ==================== -->
+<header class="site-header">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-wordmark">NCGCL</span>
+      <div class="brand-text">
+        <div class="brand-1">Operational Hub</div>
+        <div class="brand-2">Organizational Chart</div>
+      </div>
+    </a>
+    <div class="nav-actions">
+      <input type="text" class="nav-search" id="search-input" placeholder="Search the chart">
+      <a href="index.html" class="back-link">← Back to Hub</a>
+    </div>
+  </div>
+</header>
+
+<!-- ==================== PAGE HEAD ==================== -->
+<div class="page-head">
+  <div class="page-head-inner">
+    <div class="page-eyebrow-wrap">
+      <span class="page-eyebrow">03 · Governance</span>
+    </div>
+    <div>
+      <h1 class="page-title">Organizational Chart</h1>
+      <p class="page-desc">Reporting lines across National Credit Guarantee Company Limited — the Chief Executive Officer, ten direct reports across functional and operational mandates, and the analyst and executive teams supporting them.</p>
+      <div class="page-meta">
+        <div class="page-meta-item">
+          <div class="label">Headcount</div>
+          <div class="value">17<span class="unit">staff</span></div>
+        </div>
+        <div class="page-meta-item">
+          <div class="label">Direct Reports</div>
+          <div class="value">10<span class="unit">to CEO</span></div>
+        </div>
+        <div class="page-meta-item">
+          <div class="label">Departments</div>
+          <div class="value">10<span class="unit">active</span></div>
+        </div>
+        <div class="page-meta-item">
+          <div class="label">As Of</div>
+          <div class="value">FY 25–26</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== CHART ==================== -->
+<div class="shell">
+  <div class="chart" id="chart">
+    <svg class="chart-svg" id="chart-svg" aria-hidden="true"></svg>
+
+    <!-- CEO -->
+    <div class="level level-ceo">
+      <div class="ceo-wrap" id="ceo-wrap"></div>
+    </div>
+
+    <!-- Direct reports -->
+    <div class="level level-directs">
+      <div class="directs-grid" id="directs-grid"></div>
+    </div>
+
+    <!-- Teams -->
+    <div class="level level-teams" id="teams-row"></div>
+
+    <p class="caption">
+      <strong>How to read.</strong> The five-column grid lists the Chief Executive Officer's ten direct reports in functional order. Where a direct report leads a team, that team appears in a labeled block below — Guarantee Operations under the Chief Guarantee Officer, Finance under the Financial Controller, and Operations under the Manager of Operations. Search by name, title, or department to filter the chart.
+    </p>
+  </div>
+</div>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <div>© 2025 National Credit Guarantee Company Limited · AAA Rated · SBP Regulated</div>
+      <div class="footer-bottom-links">
+        <a href="index.html">Hub</a>
+        <a href="#">Privacy</a>
+        <a href="#">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================================
+   DATA — edit here to change the org structure
+   ============================================ */
+const ORG_DATA = {
+  id: "ceo",
+  name: "Ammar Habib Khan",
+  title: "Chief Executive Officer",
+  department: "Office of the CEO",
+  children: [
+    { id: "falak", name: "Falak Raja",
+      title: "Company Secretary & Head of Government Relations",
+      department: "Corporate Affairs" },
+    { id: "adil", name: "Adil Mansoor",
+      title: "Head of Research & Communications",
+      department: "Research & Communications" },
+    { id: "saher", name: "Saher Shaikh",
+      title: "Chief Guarantee Officer",
+      department: "Guarantee Operations",
+      children: [
+        { id: "shajeea", name: "Shajeea Khalid",
+          title: "Technical Specialist — Climate Finance",
+          department: "Guarantee Operations" },
+        { id: "furqan", name: "Muhammad Furqan Ahmad Malik",
+          title: "Financial Analyst",
+          department: "Guarantee Operations" },
+        { id: "jamal", name: "Jamal Nasir",
+          title: "Financial Analyst",
+          department: "Guarantee Operations" },
+        { id: "areeba", name: "Areeba Khan",
+          title: "Financial Analyst",
+          department: "Guarantee Operations" }
+      ] },
+    { id: "shahmir", name: "Shahmir Khan",
+      title: "Analyst — Financial Planning & Treasury",
+      department: "Treasury" },
+    { id: "majid", name: "Majid Shah",
+      title: "Head of Product & Innovation",
+      department: "Product & Innovation" },
+    { id: "arif", name: "Arif Shamsi",
+      title: "Head of Credit Administration",
+      department: "Credit Administration" },
+    { id: "saira", name: "Saira Giga",
+      title: "Senior Manager — Asset Liability Management",
+      department: "Treasury" },
+    { id: "farhan", name: "Farhan Ali",
+      title: "Financial Controller",
+      department: "Finance",
+      children: [
+        { id: "shahfain", name: "Shahfain Ejaz",
+          title: "Financial Analyst",
+          department: "Finance" }
+      ] },
+    { id: "misbah", name: "Misbah Zafar Kayani",
+      title: "Manager — Operations",
+      department: "Operations",
+      children: [
+        { id: "salahuddin", name: "Salahuddin Syed",
+          title: "Operations Executive",
+          department: "Operations" }
+      ] },
+    { id: "fatima", name: "Fatima Saeed Khan",
+      title: "Manager — People & Culture",
+      department: "People & Culture" }
+  ]
+};
+
+/* ============================================
+   RENDER
+   ============================================ */
+(function () {
+  "use strict";
+
+  let searchTerm = "";
+
+  function initials(name) {
+    const parts = name.trim().split(/\s+/);
+    if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  }
+
+  function findNode(id, root = ORG_DATA) {
+    if (root.id === id) return root;
+    if (root.children) {
+      for (const c of root.children) {
+        const found = findNode(id, c);
+        if (found) return found;
+      }
+    }
+    return null;
+  }
+
+  /* Build a card matching the hub's .card pattern:
+       eyebrow tag (department, uppercased)
+       serif name (title slot)
+       descriptive title text (desc slot)
+       footer with initials + reports indicator */
+  function buildPerson(node, opts = {}) {
+    const el = document.createElement("div");
+    el.className = "person";
+    if (opts.isCeo) el.classList.add("is-ceo");
+    el.dataset.id = node.id;
+
+    const tag = document.createElement("div");
+    tag.className = "person-tag";
+    tag.textContent = node.department || "";
+    el.appendChild(tag);
+
+    const name = document.createElement("div");
+    name.className = "person-name";
+    name.textContent = node.name;
+    el.appendChild(name);
+
+    const title = document.createElement("div");
+    title.className = "person-title";
+    title.textContent = node.title;
+    el.appendChild(title);
+
+    const foot = document.createElement("div");
+    foot.className = "person-foot";
+
+    const ini = document.createElement("div");
+    ini.className = "person-initials";
+    ini.textContent = initials(node.name);
+    foot.appendChild(ini);
+
+    const reports = document.createElement("div");
+    reports.className = "person-reports";
+    if (opts.isCeo) {
+      reports.innerHTML = `<strong>${node.children ? node.children.length : 0}</strong> Direct Reports`;
+      foot.appendChild(reports);
+    } else if (node.children && node.children.length) {
+      reports.innerHTML = `Leads <strong>${node.children.length}</strong>`;
+      foot.appendChild(reports);
+    }
+    // Individual contributors: no label — the absence is informative enough.
+
+    el.appendChild(foot);
+    return el;
+  }
+
+  /* ----- Initial render ----- */
+
+  const ceoWrap = document.getElementById("ceo-wrap");
+  const directsGrid = document.getElementById("directs-grid");
+  const teamsRow = document.getElementById("teams-row");
+
+  ceoWrap.appendChild(buildPerson(ORG_DATA, { isCeo: true }));
+
+  ORG_DATA.children.forEach(person => {
+    directsGrid.appendChild(buildPerson(person));
+  });
+
+  ORG_DATA.children.forEach(parent => {
+    if (!(parent.children && parent.children.length)) return;
+
+    const block = document.createElement("div");
+    block.className = "team-block";
+    block.dataset.parentId = parent.id;
+
+    const header = document.createElement("div");
+    header.className = "team-block-header";
+
+    const eyebrow = document.createElement("div");
+    eyebrow.className = "team-block-eyebrow";
+    eyebrow.textContent = parent.department;
+    header.appendChild(eyebrow);
+
+    const name = document.createElement("div");
+    name.className = "team-block-name";
+    name.textContent = `Reports to ${parent.name}`;
+    header.appendChild(name);
+
+    const count = document.createElement("div");
+    count.className = "team-block-count";
+    count.textContent = `${parent.children.length} ${parent.children.length === 1 ? 'member' : 'members'}`;
+    header.appendChild(count);
+
+    block.appendChild(header);
+
+    const grid = document.createElement("div");
+    grid.className = "team-block-grid " + (parent.children.length >= 3 ? "cols-2" : "cols-1");
+    parent.children.forEach(child => grid.appendChild(buildPerson(child)));
+    block.appendChild(grid);
+
+    teamsRow.appendChild(block);
+  });
+
+  /* ----- Search ----- */
+
+  function applyFilters() {
+    document.querySelectorAll(".person").forEach(el => {
+      el.classList.remove("is-match", "is-dimmed");
+      if (!searchTerm) return;
+
+      const node = findNode(el.dataset.id);
+      if (!node) return;
+      const hay = (node.name + " " + node.title + " " + (node.department || "")).toLowerCase();
+      if (hay.includes(searchTerm)) el.classList.add("is-match");
+      else el.classList.add("is-dimmed");
+    });
+    drawConnectors();
+  }
+
+  const searchInput = document.getElementById("search-input");
+  if (searchInput) {
+    searchInput.addEventListener("input", e => {
+      searchTerm = e.target.value.trim().toLowerCase();
+      applyFilters();
+    });
+    searchInput.addEventListener("keydown", e => {
+      if (e.key === "Escape") {
+        e.target.value = "";
+        searchTerm = "";
+        applyFilters();
+      }
+    });
+  }
+
+  /* ----- Connectors -----
+     A single vertical rule from the CEO card down to the top of the
+     directs grid — clean editorial line, one piece of ink.
+     Team-blocks below are not connected by lines; their labeled
+     headers ("GUARANTEE OPERATIONS TEAM" etc.) carry the relationship
+     to their parent. Drawing lines from row-2 directs to non-aligned
+     team-blocks created visual noise without adding information.
+  */
+  function drawConnectors() {
+    const svg = document.getElementById("chart-svg");
+    const chart = document.getElementById("chart");
+    const cr = chart.getBoundingClientRect();
+
+    svg.setAttribute("viewBox", `0 0 ${cr.width} ${cr.height}`);
+    svg.setAttribute("width", cr.width);
+    svg.setAttribute("height", cr.height);
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+    const rect = el => {
+      const r = el.getBoundingClientRect();
+      return { x: r.left - cr.left, y: r.top - cr.top, w: r.width, h: r.height };
+    };
+
+    const ceoCard = ceoWrap.querySelector(".person");
+    if (!ceoCard) return;
+
+    const directsR = rect(directsGrid);
+    const ceoR = rect(ceoCard);
+    const cx = ceoR.x + ceoR.w / 2;
+    addPath(svg, `M ${cx} ${ceoR.y + ceoR.h} L ${cx} ${directsR.y}`);
+  }
+
+  function addPath(svg, d) {
+    const p = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    p.setAttribute("d", d);
+    svg.appendChild(p);
+  }
+
+  /* Initial paint after fonts/layout settle */
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => requestAnimationFrame(drawConnectors));
+  } else {
+    requestAnimationFrame(() => requestAnimationFrame(drawConnectors));
+  }
+  setTimeout(drawConnectors, 300);
+
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(drawConnectors, 50);
+  });
+})();
+</script>
+</body>
+</html>
