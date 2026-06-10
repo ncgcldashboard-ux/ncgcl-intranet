@@ -818,6 +818,17 @@ footer {
           e.preventDefault();
           await signOut(auth);
           window.location.replace("login.html");
+           const changePwBtn = document.getElementById("changePasswordBtn");
+if (changePwBtn) {
+  changePwBtn.addEventListener("click", async e => {
+    e.preventDefault();
+    const { sendPasswordResetEmail } = await import(
+      "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js"
+    );
+    await sendPasswordResetEmail(auth, user.email);
+    alert(`A password reset link has been sent to ${user.email}`);
+  });
+}
         });
       }
     }
