@@ -1,150 +1,409 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log In</title>
-    <style>
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
-            display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f6f8fa; 
-        }
-        .auth-card { 
-            background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
-            width: 100%; max-width: 320px; text-align: center; border: 1px solid #e1e4e8;
-        }
-        .auth-card h2 { margin-top: 0; color: #24292e; }
-        input { 
-            width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #d1d5da; 
-            border-radius: 6px; box-sizing: border-box; font-size: 14px;
-        }
-        button { 
-            width: 100%; padding: 10px; margin: 8px 0; border: none; border-radius: 6px; 
-            font-size: 14px; font-weight: 600; cursor: pointer; transition: background-color 0.2s;
-        }
-        #login-btn { background-color: #2ea44f; color: white; }
-        #login-btn:hover { background-color: #2c974b; }
-        #signup-btn { background-color: #fafbfc; color: #24292e; border: 1px solid #d1d5da; }
-        #signup-btn:hover { background-color: #f3f4f6; }
-        #logout-btn { background-color: #d73a49; color: white; display: none; }
-        #logout-btn:hover { background-color: #cb2431; }
-        #message { margin-top: 15px; font-size: 13px; color: #d73a49; min-height: 20px; }
-        .hidden { display: none; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In — NCGCL Operational Hub</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<style>
+:root {
+  --cerulean:      #035076;
+  --cerulean-deep: #013E5C;
+  --cerulean-soft: #11688A;
+  --green:         #39A949;
+  --white:         #FFFFFF;
+  --ink:           #0E1A24;
+  --ink-2:         #2A3540;
+  --gray-700:      #4A5560;
+  --gray-500:      #8A95A0;
+  --gray-300:      #D9DDE2;
+  --gray-200:      #E6E9EE;
+  --gray-100:      #F2F4F7;
+  --gray-50:       #F8F9FB;
+  --rule:          #E6E9EE;
+  --serif: 'Source Serif Pro', Georgia, 'Times New Roman', serif;
+  --sans:  'Inter', 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+body {
+  font-family: var(--sans);
+  background: var(--cerulean);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle geometric accent — echoes the DE1 motif from index */
+body::before {
+  content: '';
+  position: absolute;
+  right: -120px;
+  top: -120px;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  border: 80px solid rgba(255,255,255,0.04);
+  pointer-events: none;
+}
+body::after {
+  content: '';
+  position: absolute;
+  left: -80px;
+  bottom: -80px;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  border: 60px solid rgba(255,255,255,0.03);
+  pointer-events: none;
+}
+
+/* ── Card ── */
+.login-card {
+  background: var(--white);
+  width: 100%;
+  max-width: 420px;
+  padding: 2.5rem 2.25rem 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Brand ── */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+.brand img { height: 36px; width: auto; display: block; }
+.brand-text { border-left: 1px solid var(--gray-300); padding-left: 12px; }
+.brand-text .b1 {
+  font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--gray-500); font-weight: 500;
+}
+.brand-text .b2 {
+  font-size: 13px; color: var(--cerulean);
+  font-weight: 600; letter-spacing: -0.005em; margin-top: 2px;
+}
+
+/* ── Heading ── */
+.eyebrow {
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--green); font-weight: 600;
+  border-top: 2px solid var(--cerulean); padding-top: 6px;
+  display: inline-block; margin-bottom: 0.5rem;
+}
+h1 {
+  font-family: var(--serif);
+  font-size: 30px; font-weight: 400; color: var(--ink);
+  letter-spacing: -0.015em; margin-bottom: 0.4rem; line-height: 1.1;
+}
+.subtitle {
+  font-size: 13px; color: var(--gray-700);
+  font-weight: 300; margin-bottom: 1.75rem; line-height: 1.5;
+}
+
+/* ── Form ── */
+.field { margin-bottom: 1.1rem; }
+.field label {
+  display: block; font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--gray-700); font-weight: 600; margin-bottom: 6px;
+}
+.field input {
+  width: 100%; height: 42px;
+  border: 1px solid var(--gray-300); border-radius: 2px;
+  padding: 0 12px; font-family: var(--sans); font-size: 14px;
+  color: var(--ink); background: var(--white); outline: none;
+  transition: border-color 0.15s ease;
+  -webkit-appearance: none;
+}
+.field input:focus { border-color: var(--cerulean); }
+.field input::placeholder { color: var(--gray-500); }
+
+/* ── Error ── */
+.error-box {
+  display: none;
+  background: #FCEBEB; border: 1px solid #F09595; border-radius: 2px;
+  padding: 10px 12px; font-size: 12.5px; color: #A32D2D;
+  margin-bottom: 1.1rem; line-height: 1.45;
+}
+.error-box.visible { display: block; }
+
+/* ── Buttons ── */
+.btn-primary {
+  width: 100%; height: 44px;
+  background: var(--cerulean); color: var(--white);
+  border: none; border-radius: 2px; font-family: var(--sans);
+  font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+  font-weight: 600; cursor: pointer;
+  transition: background 0.15s ease;
+  margin-bottom: 0.75rem;
+}
+.btn-primary:hover:not(:disabled) { background: var(--cerulean-deep); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-secondary {
+  width: 100%; height: 44px;
+  background: transparent; color: var(--cerulean);
+  border: 1px solid var(--gray-300); border-radius: 2px; font-family: var(--sans);
+  font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+  font-weight: 600; cursor: pointer;
+  transition: all 0.15s ease;
+  margin-bottom: 0.75rem;
+}
+.btn-secondary:hover:not(:disabled) {
+  border-color: var(--cerulean);
+  background: var(--gray-50);
+}
+.btn-secondary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── Signed-in state ── */
+.signed-in-view { display: none; text-align: center; }
+.signed-in-view.visible { display: block; }
+.signed-in-email {
+  font-size: 14px; font-weight: 500; color: var(--cerulean);
+  margin-bottom: 1.5rem;
+}
+.go-link {
+  display: block; width: 100%; height: 44px; line-height: 44px;
+  background: var(--cerulean); color: var(--white); text-align: center;
+  border-radius: 2px; font-size: 12px; letter-spacing: 0.1em;
+  text-transform: uppercase; font-weight: 600; text-decoration: none;
+  margin-bottom: 0.75rem;
+  transition: background 0.15s ease;
+}
+.go-link:hover { background: var(--cerulean-deep); }
+
+/* ── Footer ── */
+.card-footer {
+  font-size: 11px; color: var(--gray-500);
+  text-align: center; margin-top: 1.5rem;
+  padding-top: 1.25rem; border-top: 1px solid var(--rule);
+  line-height: 1.5;
+}
+
+/* ── Mode toggle link ── */
+.mode-toggle {
+  font-size: 12px; color: var(--gray-500); text-align: center;
+  margin-top: 0.5rem;
+}
+.mode-toggle a {
+  color: var(--cerulean); cursor: pointer; text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  .login-card { padding: 2rem 1.5rem 1.75rem; }
+  h1 { font-size: 26px; }
+}
+</style>
 </head>
 <body>
 
-    <div class="auth-card">
-        <h2 id="form-title">Sign In</h2>
-        
-        <div id="auth-forms">
-            <input type="email" id="email" placeholder="Email address" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <button id="login-btn">Sign in</button>
-            <button id="signup-btn">Create an account</button>
-        </div>
-        
-        <div id="logged-in-view" class="hidden">
-            <p>Welcome back!</p>
-            <p style="font-weight: bold; color: #0366d6;" id="user-email"></p>
-            <a href="index.html" style="display: block; margin-bottom: 15px; color: #586069; text-decoration: none;">&larr; Go to Dashboard</a>
-            <button id="logout-btn">Sign out</button>
-        </div>
+<div class="login-card">
 
-        <div id="message"></div>
+  <!-- Brand -->
+  <div class="brand">
+    <img src="Company_Logo_transparent.png" alt="NCGCL">
+    <div class="brand-text">
+      <div class="b1">Operational Hub</div>
+      <div class="b2">Internal Platform</div>
+    </div>
+  </div>
+
+  <!-- Auth forms (sign-in / sign-up) -->
+  <div id="authView">
+    <span class="eyebrow" id="modeEyebrow">Secure Access</span>
+    <h1 id="modeTitle">Sign in</h1>
+    <p class="subtitle" id="modeSubtitle">Use your NCGCL staff email and password.</p>
+
+    <div class="error-box" id="errorBox"></div>
+
+    <div class="field">
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="you@ncgcl.pk" autocomplete="email">
+    </div>
+    <div class="field">
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="••••••••" autocomplete="current-password">
     </div>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } 
-        from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+    <button class="btn-primary" id="primaryBtn">Sign In →</button>
+    <button class="btn-secondary" id="secondaryBtn">Create Account</button>
 
-        // TODO: PASTE YOUR FIREBASE CONFIG HERE
-        const firebaseConfig = {
-            // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+    <div class="mode-toggle" id="modeToggle">
+      Don't have an account? <a id="toggleLink">Create one</a>
+    </div>
+  </div>
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyBVapuBqcV_KTeZW7llJj0Xdm5KodKTL4c",
-  authDomain: "ncgcl-intranet.firebaseapp.com",
-  projectId: "ncgcl-intranet",
-  storageBucket: "ncgcl-intranet.firebasestorage.app",
-  messagingSenderId: "794801501623",
-  appId: "1:794801501623:web:96caf4cabffc7e06f22432",
-  measurementId: "G-PH6GHDV62L"
-};
+  <!-- Signed-in state -->
+  <div class="signed-in-view" id="signedInView">
+    <span class="eyebrow">Access Granted</span>
+    <h1 style="margin-bottom:1rem;">Welcome back</h1>
+    <p class="signed-in-email" id="userEmailDisplay"></p>
+    <a href="index.html" class="go-link">Go to Hub →</a>
+    <button class="btn-secondary" id="logoutBtn">Sign Out</button>
+  </div>
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-        };
+  <p class="card-footer">
+    © 2025 National Credit Guarantee Company Limited · AAA Rated · SBP Regulated
+  </p>
+</div>
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+  import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut
+  } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
-        // DOM Elements
-        const emailInput = document.getElementById('email');
-        const passwordInput = document.getElementById('password');
-        const loginBtn = document.getElementById('login-btn');
-        const signupBtn = document.getElementById('signup-btn');
-        const logoutBtn = document.getElementById('logout-btn');
-        const msgText = document.getElementById('message');
-        const authForms = document.getElementById('auth-forms');
-        const loggedInView = document.getElementById('logged-in-view');
-        const userEmailText = document.getElementById('user-email');
-        const formTitle = document.getElementById('form-title');
+  const firebaseConfig = {
+    apiKey:            "AIzaSyBVapuBqcV_KTeZW7llJj0Xdm5KodKTL4c",
+    authDomain:        "ncgcl-intranet.firebaseapp.com",
+    projectId:         "ncgcl-intranet",
+    storageBucket:     "ncgcl-intranet.firebasestorage.app",
+    messagingSenderId: "794801501623",
+    appId:             "1:794801501623:web:96caf4cabffc7e06f22432",
+    measurementId:     "G-PH6GHDV62L"
+  };
 
-        // Helper to show messages
-        const showMessage = (msg, isError = true) => {
-            msgText.style.color = isError ? "#d73a49" : "#2ea44f";
-            msgText.innerText = msg;
-        };
+  const app  = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
 
-        // Create Account
-        signupBtn.addEventListener('click', () => {
-            if(!emailInput.value || !passwordInput.value) return showMessage("Please enter email and password.");
-            createUserWithEmailAndPassword(auth, emailInput.value, passwordInput.value)
-                .then(() => showMessage("Account created!", false))
-                .catch((error) => showMessage(error.message));
-        });
+  /* ── DOM refs ── */
+  const emailInput      = document.getElementById('email');
+  const passwordInput   = document.getElementById('password');
+  const primaryBtn      = document.getElementById('primaryBtn');
+  const secondaryBtn    = document.getElementById('secondaryBtn');
+  const logoutBtn       = document.getElementById('logoutBtn');
+  const errorBox        = document.getElementById('errorBox');
+  const authView        = document.getElementById('authView');
+  const signedInView    = document.getElementById('signedInView');
+  const userEmailDisplay= document.getElementById('userEmailDisplay');
+  const modeTitle       = document.getElementById('modeTitle');
+  const modeSubtitle    = document.getElementById('modeSubtitle');
+  const modeEyebrow     = document.getElementById('modeEyebrow');
+  const modeToggle      = document.getElementById('modeToggle');
+  const toggleLink      = document.getElementById('toggleLink');
 
-        // Sign In
-        loginBtn.addEventListener('click', () => {
-            if(!emailInput.value || !passwordInput.value) return showMessage("Please enter email and password.");
-            signInWithEmailAndPassword(auth, emailInput.value, passwordInput.value)
-                .then(() => showMessage("Success!", false))
-                .catch((error) => showMessage("Invalid email or password."));
-        });
+  let isSignUpMode = false;
 
-        // Sign Out
-        logoutBtn.addEventListener('click', () => {
-            signOut(auth).then(() => showMessage("Signed out.", false));
-        });
+  /* ── Friendly error messages ── */
+  const errorMessages = {
+    'auth/user-not-found':      'No account found with this email address.',
+    'auth/wrong-password':      'Incorrect password. Please try again.',
+    'auth/invalid-email':       'Please enter a valid email address.',
+    'auth/invalid-credential':  'Invalid email or password. Please try again.',
+    'auth/too-many-requests':   'Too many attempts — please wait a moment before trying again.',
+    'auth/email-already-in-use':'An account with this email already exists.',
+    'auth/weak-password':       'Password must be at least 6 characters.',
+    'auth/network-request-failed': 'Network error. Check your connection and try again.',
+  };
 
-        // Listen for Auth State Changes
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                authForms.classList.add('hidden');
-                loggedInView.classList.remove('hidden');
-                logoutBtn.style.display = "block";
-                userEmailText.innerText = user.email;
-                formTitle.innerText = "Dashboard";
-                msgText.innerText = ""; 
-            } else {
-                authForms.classList.remove('hidden');
-                loggedInView.classList.add('hidden');
-                logoutBtn.style.display = "none";
-                formTitle.innerText = "Sign In";
-                emailInput.value = "";
-                passwordInput.value = "";
-            }
-        });
-    </script>
+  function showError(code) {
+    errorBox.textContent = errorMessages[code] || 'Something went wrong. Please try again.';
+    errorBox.classList.add('visible');
+  }
+  function clearError() {
+    errorBox.textContent = '';
+    errorBox.classList.remove('visible');
+  }
+
+  function setLoading(loading) {
+    primaryBtn.disabled   = loading;
+    secondaryBtn.disabled = loading;
+    primaryBtn.textContent = loading
+      ? (isSignUpMode ? 'Creating account…' : 'Signing in…')
+      : (isSignUpMode ? 'Create Account →' : 'Sign In →');
+  }
+
+  /* ── Mode toggle (sign-in ↔ create account) ── */
+  function setMode(signUp) {
+    isSignUpMode = signUp;
+    clearError();
+    if (signUp) {
+      modeEyebrow.textContent  = 'New Account';
+      modeTitle.textContent    = 'Create account';
+      modeSubtitle.textContent = 'Register with your NCGCL staff email.';
+      primaryBtn.textContent   = 'Create Account →';
+      secondaryBtn.style.display = 'none';
+      modeToggle.innerHTML = 'Already have an account? <a id="toggleLink">Sign in</a>';
+    } else {
+      modeEyebrow.textContent  = 'Secure Access';
+      modeTitle.textContent    = 'Sign in';
+      modeSubtitle.textContent = 'Use your NCGCL staff email and password.';
+      primaryBtn.textContent   = 'Sign In →';
+      secondaryBtn.style.display = 'block';
+      modeToggle.innerHTML = "Don't have an account? <a id=\"toggleLink\">Create one</a>";
+    }
+    // Re-bind toggle link after innerHTML replacement
+    document.getElementById('toggleLink').addEventListener('click', () => setMode(!isSignUpMode));
+  }
+
+  toggleLink.addEventListener('click', () => setMode(!isSignUpMode));
+
+  /* ── Sign In ── */
+  primaryBtn.addEventListener('click', async () => {
+    clearError();
+    const email    = emailInput.value.trim();
+    const password = passwordInput.value;
+    if (!email || !password) { showError('auth/invalid-email'); return; }
+
+    setLoading(true);
+    try {
+      if (isSignUpMode) {
+        await createUserWithEmailAndPassword(auth, email, password);
+      } else {
+        await signInWithEmailAndPassword(auth, email, password);
+      }
+      // onAuthStateChanged handles the redirect/view switch
+    } catch (err) {
+      showError(err.code);
+      setLoading(false);
+    }
+  });
+
+  /* ── Create Account (secondary button, sign-in mode only) ── */
+  secondaryBtn.addEventListener('click', () => setMode(true));
+
+  /* ── Sign Out ── */
+  logoutBtn.addEventListener('click', async () => {
+    await signOut(auth);
+  });
+
+  /* ── Enter key ── */
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && authView.style.display !== 'none') primaryBtn.click();
+  });
+
+  /* ── Auth state listener ── */
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      authView.style.display    = 'none';
+      signedInView.classList.add('visible');
+      userEmailDisplay.textContent = user.email;
+    } else {
+      authView.style.display    = 'block';
+      signedInView.classList.remove('visible');
+      setLoading(false);
+      emailInput.value    = '';
+      passwordInput.value = '';
+    }
+  });
+</script>
 </body>
 </html>
