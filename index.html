@@ -782,7 +782,60 @@ footer {
 </style>
 </head>
 <body>
+   <!-- ==================== AUTH GUARD ==================== -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut }
+    from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
+  const firebaseConfig = {
+    apiKey:            "AIzaSyBVapuBqcV_KTeZW7llJj0Xdm5KodKTL4c",
+    authDomain:        "ncgcl-intranet.firebaseapp.com",
+    projectId:         "ncgcl-intranet",
+    storageBucket:     "ncgcl-intranet.firebasestorage.app",
+    messagingSenderId: "794801501623",
+    appId:             "1:794801501623:web:96caf4cabffc7e06f22432",
+    measurementId:     "G-PH6GHDV62L"
+  };
+
+  const app  = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  document.documentElement.style.visibility = "hidden";
+
+  onAuthStateChanged(auth, user => {
+    if (!user) {
+      window.location.replace("login.html");
+    } else {
+      document.documentElement.style.visibility = "visible";
+
+      const emailEl = document.getElementById("authUserEmail");
+      if (emailEl) emailEl.textContent = user.email;
+
+      const signOutBtn = document.getElementById("signOutBtn");
+      if (signOutBtn) {
+        signOutBtn.addEventListener("click", async e => {
+          e.preventDefault();
+          await signOut(auth);
+          window.location.replace("login.html");
+        });
+      }
+    }
+  });
+</script>
+<!-- ==================== UTILITY BAR ==================== -->
+<div class="utility-bar">
+  <div class="utility-inner">
+    <div class="utility-left">
+      <span>National Credit Guarantee Company Limited</span>
+    </div>
+    <div class="utility-right">
+      <span id="authUserEmail"></span>
+      <span class="utility-divider"></span>
+      <a href="#" id="signOutBtn">Sign Out</a>
+    </div>
+  </div>
+</div>
 
 <!-- ==================== MAIN HEADER ==================== -->
 <header class="site-header">
