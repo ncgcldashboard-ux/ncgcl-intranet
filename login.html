@@ -11,16 +11,12 @@
 :root {
   --cerulean:      #035076;
   --cerulean-deep: #013E5C;
-  --cerulean-soft: #11688A;
   --green:         #39A949;
   --white:         #FFFFFF;
   --ink:           #0E1A24;
-  --ink-2:         #2A3540;
   --gray-700:      #4A5560;
   --gray-500:      #8A95A0;
   --gray-300:      #D9DDE2;
-  --gray-200:      #E6E9EE;
-  --gray-100:      #F2F4F7;
   --gray-50:       #F8F9FB;
   --rule:          #E6E9EE;
   --serif: 'Source Serif Pro', Georgia, 'Times New Roman', serif;
@@ -42,15 +38,11 @@ body {
   position: relative;
   overflow: hidden;
 }
-
-/* Subtle geometric accent — echoes the DE1 motif from index */
 body::before {
   content: '';
   position: absolute;
-  right: -120px;
-  top: -120px;
-  width: 520px;
-  height: 520px;
+  right: -120px; top: -120px;
+  width: 520px; height: 520px;
   border-radius: 50%;
   border: 80px solid rgba(255,255,255,0.04);
   pointer-events: none;
@@ -58,16 +50,13 @@ body::before {
 body::after {
   content: '';
   position: absolute;
-  left: -80px;
-  bottom: -80px;
-  width: 360px;
-  height: 360px;
+  left: -80px; bottom: -80px;
+  width: 360px; height: 360px;
   border-radius: 50%;
   border: 60px solid rgba(255,255,255,0.03);
   pointer-events: none;
 }
 
-/* ── Card ── */
 .login-card {
   background: var(--white);
   width: 100%;
@@ -77,7 +66,6 @@ body::after {
   z-index: 1;
 }
 
-/* ── Brand ── */
 .brand {
   display: flex;
   align-items: center;
@@ -97,7 +85,6 @@ body::after {
   font-weight: 600; letter-spacing: -0.005em; margin-top: 2px;
 }
 
-/* ── Heading ── */
 .eyebrow {
   font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
   color: var(--green); font-weight: 600;
@@ -114,7 +101,6 @@ h1 {
   font-weight: 300; margin-bottom: 1.75rem; line-height: 1.5;
 }
 
-/* ── Form ── */
 .field { margin-bottom: 1.1rem; }
 .field label {
   display: block; font-size: 10px; letter-spacing: 0.12em;
@@ -131,7 +117,6 @@ h1 {
 .field input:focus { border-color: var(--cerulean); }
 .field input::placeholder { color: var(--gray-500); }
 
-/* ── Error ── */
 .error-box {
   display: none;
   background: #FCEBEB; border: 1px solid #F09595; border-radius: 2px;
@@ -140,7 +125,14 @@ h1 {
 }
 .error-box.visible { display: block; }
 
-/* ── Buttons ── */
+.success-box {
+  display: none;
+  background: #EAF7EC; border: 1px solid #7DC887; border-radius: 2px;
+  padding: 10px 12px; font-size: 12.5px; color: #1E6B2E;
+  margin-bottom: 1.1rem; line-height: 1.45;
+}
+.success-box.visible { display: block; }
+
 .btn-primary {
   width: 100%; height: 44px;
   background: var(--cerulean); color: var(--white);
@@ -153,22 +145,15 @@ h1 {
 .btn-primary:hover:not(:disabled) { background: var(--cerulean-deep); }
 .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
 
-.btn-secondary {
-  width: 100%; height: 44px;
-  background: transparent; color: var(--cerulean);
-  border: 1px solid var(--gray-300); border-radius: 2px; font-family: var(--sans);
-  font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
-  font-weight: 600; cursor: pointer;
-  transition: all 0.15s ease;
-  margin-bottom: 0.75rem;
+.forgot-link {
+  display: block; text-align: center;
+  font-size: 12px; color: var(--gray-500);
+  cursor: pointer; margin-top: 0.25rem;
+  transition: color 0.15s ease;
 }
-.btn-secondary:hover:not(:disabled) {
-  border-color: var(--cerulean);
-  background: var(--gray-50);
-}
-.btn-secondary:disabled { opacity: 0.5; cursor: not-allowed; }
+.forgot-link:hover { color: var(--cerulean); }
 
-/* ── Signed-in state ── */
+/* Signed-in state */
 .signed-in-view { display: none; text-align: center; }
 .signed-in-view.visible { display: block; }
 .signed-in-email {
@@ -184,23 +169,21 @@ h1 {
   transition: background 0.15s ease;
 }
 .go-link:hover { background: var(--cerulean-deep); }
+.btn-secondary {
+  width: 100%; height: 44px;
+  background: transparent; color: var(--cerulean);
+  border: 1px solid var(--gray-300); border-radius: 2px; font-family: var(--sans);
+  font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+  font-weight: 600; cursor: pointer;
+  transition: all 0.15s ease;
+}
+.btn-secondary:hover { border-color: var(--cerulean); background: var(--gray-50); }
 
-/* ── Footer ── */
 .card-footer {
   font-size: 11px; color: var(--gray-500);
   text-align: center; margin-top: 1.5rem;
   padding-top: 1.25rem; border-top: 1px solid var(--rule);
   line-height: 1.5;
-}
-
-/* ── Mode toggle link ── */
-.mode-toggle {
-  font-size: 12px; color: var(--gray-500); text-align: center;
-  margin-top: 0.5rem;
-}
-.mode-toggle a {
-  color: var(--cerulean); cursor: pointer; text-decoration: underline;
-  text-underline-offset: 2px;
 }
 
 @media (max-width: 480px) {
@@ -213,7 +196,6 @@ h1 {
 
 <div class="login-card">
 
-  <!-- Brand -->
   <div class="brand">
     <img src="Company_Logo_transparent.png" alt="NCGCL">
     <div class="brand-text">
@@ -222,11 +204,11 @@ h1 {
     </div>
   </div>
 
-  <!-- Auth forms (sign-in / sign-up) -->
+  <!-- Sign-in form -->
   <div id="authView">
-    <span class="eyebrow" id="modeEyebrow">Secure Access</span>
-    <h1 id="modeTitle">Sign in</h1>
-    <p class="subtitle" id="modeSubtitle">Use your NCGCL staff email and password.</p>
+    <span class="eyebrow">Secure Access</span>
+    <h1>Sign in</h1>
+    <p class="subtitle">Use your NCGCL staff email and password.</p>
 
     <div class="error-box" id="errorBox"></div>
 
@@ -239,12 +221,26 @@ h1 {
       <input type="password" id="password" placeholder="••••••••" autocomplete="current-password">
     </div>
 
-    <button class="btn-primary" id="primaryBtn">Sign In →</button>
-    <button class="btn-secondary" id="secondaryBtn">Create Account</button>
+    <button class="btn-primary" id="signInBtn">Sign In →</button>
+    <span class="forgot-link" id="forgotLink">Forgot password?</span>
+  </div>
 
-    <div class="mode-toggle" id="modeToggle">
-      Don't have an account? <a id="toggleLink">Create one</a>
+  <!-- Forgot password form -->
+  <div id="resetView" style="display:none;">
+    <span class="eyebrow">Password Reset</span>
+    <h1>Reset password</h1>
+    <p class="subtitle">Enter your staff email and we'll send a reset link.</p>
+
+    <div class="error-box" id="resetErrorBox"></div>
+    <div class="success-box" id="resetSuccessBox"></div>
+
+    <div class="field">
+      <label for="resetEmail">Email</label>
+      <input type="email" id="resetEmail" placeholder="you@ncgcl.pk" autocomplete="email">
     </div>
+
+    <button class="btn-primary" id="sendResetBtn">Send Reset Link →</button>
+    <span class="forgot-link" id="backToSignIn">← Back to sign in</span>
   </div>
 
   <!-- Signed-in state -->
@@ -265,8 +261,8 @@ h1 {
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
   import {
     getAuth,
-    createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
+    sendPasswordResetEmail,
     onAuthStateChanged,
     signOut
   } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
@@ -284,122 +280,111 @@ h1 {
   const app  = initializeApp(firebaseConfig);
   const auth = getAuth(app);
 
-  /* ── DOM refs ── */
+  /* DOM refs */
+  const authView        = document.getElementById('authView');
+  const resetView       = document.getElementById('resetView');
+  const signedInView    = document.getElementById('signedInView');
   const emailInput      = document.getElementById('email');
   const passwordInput   = document.getElementById('password');
-  const primaryBtn      = document.getElementById('primaryBtn');
-  const secondaryBtn    = document.getElementById('secondaryBtn');
-  const logoutBtn       = document.getElementById('logoutBtn');
+  const signInBtn       = document.getElementById('signInBtn');
+  const forgotLink      = document.getElementById('forgotLink');
+  const resetEmailInput = document.getElementById('resetEmail');
+  const sendResetBtn    = document.getElementById('sendResetBtn');
+  const backToSignIn    = document.getElementById('backToSignIn');
   const errorBox        = document.getElementById('errorBox');
-  const authView        = document.getElementById('authView');
-  const signedInView    = document.getElementById('signedInView');
+  const resetErrorBox   = document.getElementById('resetErrorBox');
+  const resetSuccessBox = document.getElementById('resetSuccessBox');
+  const logoutBtn       = document.getElementById('logoutBtn');
   const userEmailDisplay= document.getElementById('userEmailDisplay');
-  const modeTitle       = document.getElementById('modeTitle');
-  const modeSubtitle    = document.getElementById('modeSubtitle');
-  const modeEyebrow     = document.getElementById('modeEyebrow');
-  const modeToggle      = document.getElementById('modeToggle');
-  const toggleLink      = document.getElementById('toggleLink');
 
-  let isSignUpMode = false;
-
-  /* ── Friendly error messages ── */
   const errorMessages = {
-    'auth/user-not-found':      'No account found with this email address.',
-    'auth/wrong-password':      'Incorrect password. Please try again.',
-    'auth/invalid-email':       'Please enter a valid email address.',
-    'auth/invalid-credential':  'Invalid email or password. Please try again.',
-    'auth/too-many-requests':   'Too many attempts — please wait a moment before trying again.',
-    'auth/email-already-in-use':'An account with this email already exists.',
-    'auth/weak-password':       'Password must be at least 6 characters.',
+    'auth/user-not-found':       'No account found with this email address.',
+    'auth/wrong-password':       'Incorrect password. Please try again.',
+    'auth/invalid-email':        'Please enter a valid email address.',
+    'auth/invalid-credential':   'Invalid email or password. Please try again.',
+    'auth/too-many-requests':    'Too many attempts — please wait before trying again.',
     'auth/network-request-failed': 'Network error. Check your connection and try again.',
   };
 
-  function showError(code) {
-    errorBox.textContent = errorMessages[code] || 'Something went wrong. Please try again.';
-    errorBox.classList.add('visible');
+  function showError(box, code) {
+    box.textContent = errorMessages[code] || 'Something went wrong. Please try again.';
+    box.classList.add('visible');
   }
-  function clearError() {
-    errorBox.textContent = '';
-    errorBox.classList.remove('visible');
+  function clearFeedback(...boxes) {
+    boxes.forEach(b => { b.textContent = ''; b.classList.remove('visible'); });
   }
-
-  function setLoading(loading) {
-    primaryBtn.disabled   = loading;
-    secondaryBtn.disabled = loading;
-    primaryBtn.textContent = loading
-      ? (isSignUpMode ? 'Creating account…' : 'Signing in…')
-      : (isSignUpMode ? 'Create Account →' : 'Sign In →');
+  function setLoading(btn, loading, defaultLabel) {
+    btn.disabled = loading;
+    btn.textContent = loading ? 'Please wait…' : defaultLabel;
   }
 
-  /* ── Mode toggle (sign-in ↔ create account) ── */
-  function setMode(signUp) {
-    isSignUpMode = signUp;
-    clearError();
-    if (signUp) {
-      modeEyebrow.textContent  = 'New Account';
-      modeTitle.textContent    = 'Create account';
-      modeSubtitle.textContent = 'Register with your NCGCL staff email.';
-      primaryBtn.textContent   = 'Create Account →';
-      secondaryBtn.style.display = 'none';
-      modeToggle.innerHTML = 'Already have an account? <a id="toggleLink">Sign in</a>';
-    } else {
-      modeEyebrow.textContent  = 'Secure Access';
-      modeTitle.textContent    = 'Sign in';
-      modeSubtitle.textContent = 'Use your NCGCL staff email and password.';
-      primaryBtn.textContent   = 'Sign In →';
-      secondaryBtn.style.display = 'block';
-      modeToggle.innerHTML = "Don't have an account? <a id=\"toggleLink\">Create one</a>";
-    }
-    // Re-bind toggle link after innerHTML replacement
-    document.getElementById('toggleLink').addEventListener('click', () => setMode(!isSignUpMode));
-  }
-
-  toggleLink.addEventListener('click', () => setMode(!isSignUpMode));
-
-  /* ── Sign In ── */
-  primaryBtn.addEventListener('click', async () => {
-    clearError();
+  /* Sign In */
+  signInBtn.addEventListener('click', async () => {
+    clearFeedback(errorBox);
     const email    = emailInput.value.trim();
     const password = passwordInput.value;
-    if (!email || !password) { showError('auth/invalid-email'); return; }
-
-    setLoading(true);
+    if (!email || !password) { showError(errorBox, 'auth/invalid-email'); return; }
+    setLoading(signInBtn, true, 'Sign In →');
     try {
-      if (isSignUpMode) {
-        await createUserWithEmailAndPassword(auth, email, password);
-      } else {
-        await signInWithEmailAndPassword(auth, email, password);
-      }
-      // onAuthStateChanged handles the redirect/view switch
+      await signInWithEmailAndPassword(auth, email, password);
     } catch (err) {
-      showError(err.code);
-      setLoading(false);
+      showError(errorBox, err.code);
+      setLoading(signInBtn, false, 'Sign In →');
     }
   });
 
-  /* ── Create Account (secondary button, sign-in mode only) ── */
-  secondaryBtn.addEventListener('click', () => setMode(true));
+  /* Forgot password — show reset view */
+  forgotLink.addEventListener('click', () => {
+    clearFeedback(errorBox, resetErrorBox, resetSuccessBox);
+    resetEmailInput.value = emailInput.value; // pre-fill if already typed
+    authView.style.display  = 'none';
+    resetView.style.display = 'block';
+  });
 
-  /* ── Sign Out ── */
+  backToSignIn.addEventListener('click', () => {
+    resetView.style.display = 'none';
+    authView.style.display  = 'block';
+  });
+
+  /* Send reset email */
+  sendResetBtn.addEventListener('click', async () => {
+    clearFeedback(resetErrorBox, resetSuccessBox);
+    const email = resetEmailInput.value.trim();
+    if (!email) { showError(resetErrorBox, 'auth/invalid-email'); return; }
+    setLoading(sendResetBtn, true, 'Send Reset Link →');
+    try {
+      await sendPasswordResetEmail(auth, email);
+      resetSuccessBox.textContent = `Reset link sent to ${email}. Check your inbox.`;
+      resetSuccessBox.classList.add('visible');
+    } catch (err) {
+      showError(resetErrorBox, err.code);
+    }
+    setLoading(sendResetBtn, false, 'Send Reset Link →');
+  });
+
+  /* Sign Out */
   logoutBtn.addEventListener('click', async () => {
     await signOut(auth);
   });
 
-  /* ── Enter key ── */
+  /* Enter key */
   document.addEventListener('keydown', e => {
-    if (e.key === 'Enter' && authView.style.display !== 'none') primaryBtn.click();
+    if (e.key !== 'Enter') return;
+    if (resetView.style.display === 'block') sendResetBtn.click();
+    else if (authView.style.display !== 'none') signInBtn.click();
   });
 
-  /* ── Auth state listener ── */
+  /* Auth state */
   onAuthStateChanged(auth, user => {
     if (user) {
-      authView.style.display    = 'none';
+      authView.style.display      = 'none';
+      resetView.style.display     = 'none';
       signedInView.classList.add('visible');
       userEmailDisplay.textContent = user.email;
     } else {
-      authView.style.display    = 'block';
+      authView.style.display      = 'block';
       signedInView.classList.remove('visible');
-      setLoading(false);
+      setLoading(signInBtn, false, 'Sign In →');
       emailInput.value    = '';
       passwordInput.value = '';
     }
