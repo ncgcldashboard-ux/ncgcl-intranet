@@ -811,36 +811,74 @@ footer {
 
   document.documentElement.style.visibility = "hidden";
 
-  onAuthStateChanged(auth, user => {
-    if (!user) {
-      window.location.replace("login.html");
-    } else {
-      document.documentElement.style.visibility = "visible";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut }
+  from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+import { getFirestore, doc, getDoc }
+  from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
-      const emailEl = document.getElementById("authUserEmail");
-      if (emailEl) emailEl.textContent = user.email;
+const firebaseConfig = {
+  apiKey:            "AIzaSyBVapuBqcV_KTeZW7llJj0Xdm5KodKTL4c",
+  authDomain:        "ncgcl-intranet.firebaseapp.com",
+  projectId:         "ncgcl-intranet",
+  storageBucket:     "ncgcl-intranet.firebasestorage.app",
+  messagingSenderId: "794801501623",
+  appId:             "1:794801501623:web:96caf4cabffc7e06f22432",
+  measurementId:     "G-PH6GHDV62L"
+};
 
-      const signOutBtn = document.getElementById("signOutBtn");
-      if (signOutBtn) {
-        signOutBtn.addEventListener("click", async e => {
-          e.preventDefault();
-          await signOut(auth);
-          window.location.replace("login.html");
-           const changePwBtn = document.getElementById("changePasswordBtn");
-if (changePwBtn) {
-  changePwBtn.addEventListener("click", async e => {
-    e.preventDefault();
-    const { sendPasswordResetEmail } = await import(
-      "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js"
-    );
-    await sendPasswordResetEmail(auth, user.email);
-    alert(`A password reset link has been sent to ${user.email}`);
-  });
-}
-        });
+const app  = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db   = getFirestore(app);
+
+document.documentElement.style.visibility = "hidden";
+
+onAuthStateChanged(auth, async user => {
+  if (!user) {
+    window.location.replace("login.html");
+  } else {
+    // Fetch sensitive URLs from Firestore
+    try {
+      const snap = await getDoc(doc(db, "config", "sensitive_urls"));
+      if (snap.exists()) {
+        const data = snap.data();
+        // Inject Power BI URL only after auth confirmed
+        const pbLink = document.querySelector('a[data-secure="powerbi_investment"]');
+        if (pbLink && data.powerbi_investment) {
+          pbLink.href = data.powerbi_investment;
+        }
       }
+    } catch (e) {
+      console.warn("Could not load secure URLs:", e);
     }
-  });
+
+    document.documentElement.style.visibility = "visible";
+
+    const emailEl = document.getElementById("authUserEmail");
+    if (emailEl) emailEl.textContent = user.email;
+
+    const signOutBtn = document.getElementById("signOutBtn");
+    if (signOutBtn) {
+      signOutBtn.addEventListener("click", async e => {
+        e.preventDefault();
+        await signOut(auth);
+        window.location.replace("login.html");
+      });
+    }
+
+    const changePwBtn = document.getElementById("changePasswordBtn");
+    if (changePwBtn) {
+      changePwBtn.addEventListener("click", async e => {
+        e.preventDefault();
+        const { sendPasswordResetEmail } = await import(
+          "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js"
+        );
+        await sendPasswordResetEmail(auth, user.email);
+        alert(`A password reset link has been sent to ${user.email}`);
+      });
+    }
+  }
+});
 </script>
 <!-- ==================== UTILITY BAR ==================== -->
 <div class="utility-bar">
@@ -938,7 +976,7 @@ if (changePwBtn) {
     </div>
 
     <div class="grid grid-3">
-      <a href="https://app.powerbi.com/view?r=eyJrIjoiY2EzNWJlZDUtYzI3Ni00NTc4LTkzM2YtNTAwYTQwOWU4NjU2IiwidCI6ImE1NDFjYjIyLWM3YzMtNGQ4ZS05OTg2LTNjOTk0ODk0M2RlYiIsImMiOjl9" class="card">
+      <a href="#" data-secure="powerbi_investment" class="card">">
         <div class="card-tag">Investments</div>
         <h3 class="card-title">Investment Dashboard</h3>
         <p class="card-desc">Fund allocation, utilization tracking, and risk-weighted portfolio performance across all investment vehicles.</p>
