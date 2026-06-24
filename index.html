@@ -1514,7 +1514,7 @@ footer {
 
 <script>
 // Smooth navigation — track card opens
-document.querySelectorAll('.card[href="#"], .policy-row[href="#"]').forEach(el => {
+document.querySelectorAll('.card[href="#"]:not([data-secure]), .policy-row[href="#"]').forEach(el => {
   el.addEventListener('click', function(e) {
     e.preventDefault();
     const titleEl = this.querySelector('.card-title, .ttl');
